@@ -3,8 +3,11 @@
 \usepackage[T1]{fontenc}
 \usepackage{mlmodern}
 \usepackage[a4paper, margin=3cm]{geometry}
+\usepackage{enumerate}
 
-\usepackage[colorlinks]{hyperref}
+\usepackage[pdftitle=Riemann-Roch\ Through\ Cohomology,
+pdfauthor=Miika\ Rankaviita,pdfsubject=Sheaf\ Cohomology,
+colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 
 \usepackage{mathtools}
 \usepackage{amsmath}
@@ -29,6 +32,16 @@
 \author{Miika Rankaviita\\Imperial College London}
 \date{\today}
 \maketitle
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}{Corollary}[thm]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lemm}[thm]{Lemma}
+\newtheorem*{rem}{Remark}
+\theoremstyle{definition}
+\newtheorem{defin}[thm]{Definition}
+\newtheorem{ex}[thm]{Example}
 
 \tcbset{beforeafter skip=8pt, toptitle=2pt, bottomtitle=2pt}
 \newtcolorbox{cat}{colback=blue!5!white, colframe=blue!80!white, title=\emoji{warning} Abstract nonsense ahead}
@@ -72,6 +85,41 @@ warning for people who are not fond of abstract nonsense:
 The category of sheaves is abelian, so we can do homological
 algebra in it.
 
+\begin{thm}\label{thm:ses_equivalence}
+  For a collection $(\mathcal{F}_{i})_{i\in\mathbb{Z}}$ of sheaves on
+  a variety $X$ and maps ${\mathcal{F}_{i}\to\mathcal{F}_{i+1}}$,
+  the following are equivalent.
+  \begin{enumerate}[(i)]
+    \item The sequence
+          \[
+            \begin{tikzcd}
+              \cdots \arrow{r} & \mathcal{F}_{i-1}\arrow{r}
+              & \mathcal{F}_{i}\arrow{r} & \mathcal{F}_{i+1}\arrow{r} & \cdots
+            \end{tikzcd}
+          \]
+          is exact.
+    \item There is an open cover $(U_{j})_{j\in\mathbb{I}}$ of $X$ such that
+          the sequence
+          \[
+          \begin{tikzcd}
+            \cdots \arrow{r} & \mathcal{F}_{i-1}\mid_{U_{j}}\arrow{r}
+            & \mathcal{F}_{i}\mid_{U_{j}}\arrow{r}
+            & \mathcal{F}_{i+1}\mid_{U_{j}}\arrow{r} & \cdots
+          \end{tikzcd}
+          \]
+          is exact for every $j\in I$.
+    \item For every $P\in X$, the induced sequence
+          \[
+          \begin{tikzcd}
+            \cdots \arrow{r} & (\mathcal{F}_{i-1})_{P}\arrow{r}
+            & (\mathcal{F}_{i})_{P}\arrow{r}
+            & (\mathcal{F}_{i+1})_{P}\arrow{r} & \cdots
+          \end{tikzcd}
+          \]
+          is exact.
+  \end{enumerate}
+\end{thm}
+
 \section{Sheaf cohomology}
 Studying sheaves using homological algebra turns out to be surprisingly
 useful in many situations. For example, knowing that there is a SES
@@ -81,7 +129,7 @@ useful in many situations. For example, knowing that there is a SES
     \mathcal{H} \arrow{r} & 0
   \end{tikzcd}
 \]
-lets us relate the three sheaves together. By Thm.~\ref{thm:ses_stalks}
+lets us relate the three sheaves together. By Thm.~\ref{thm:ses_equivalence}
 this information is inherently \emph{local} since this sequence is exact
 if and only if the corresponding sequences on stalks are exact.
 Then the question is: Can we get \emph{global} information from

@@ -1,46 +1,112 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{mlmodern}
+\usepackage[a4paper, margin=3cm]{geometry}
+
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{calrsfs}
 \usepackage{cancel}
 \usepackage{float}
 \usepackage{tikz}
 \usepackage{tikz-cd}
 
+\linespread{1.1}
 \frenchspacing
 
 \begin{document}
 
-\title{UROP: Riemann-Roch and Serre duality}
+\title{Riemann--Roch Through Cohomology\\
+        \large A Motivated Introduction to Sheaves and Cohomology}
 \author{Miika Rankaviita\\Imperial College London}
 \date{\today}
 \maketitle
 
 \section{Introduction}
-The main topics of this paper are the Riemann-Roch theorem
-and Serre duality, which are extremely important results in
-algebraic geometry. We will prove these result using \emph{sheaf
-  cohomologoy}, which is a ubiqutous tool in modern algebraic geometry.
-The aim of this paper is to develop the machinery of this abstract theory
-and use it to prove the two results while linking back to the classical
-approach to build intuition. The reader is assumed to be familiar with
-basic algebraic geometry. An excellent introduction to the topic is
-[reid], and there is also a good set of lecture notes which goes beyond
-the basics [gathmann].
+In this paper I will give a proof of the Riemann--Roch theorem
+by using one of the most important tools in modern algebraic geometry ---
+sheaf cohomology. This text is aimed at the student with
+basic knowledge of varieties, and will function as an introduction
+to the topic of sheaf cohomolgy, motivated by the problem of classifying
+algebraic varieties.
+
+% TODO: Insert a short description of Riemann-Roch
+
+The main ingredient in the proof of the Riemann-Roch theorem is
+Serre duality, which is a more general result. The proof will again
+be cohomological and is usually rather abstract. However, I will
+approach the proof by giving concrete interpretations of
+the cohomology groups by following Serre's exposition in \cite{serre}.
+
+The reader is assumed to be familiar with basic algebraic geometry.
+An excellent introduction to the topic is \cite{reid}, and a good set
+of lecture notes which goes beyond the basics is \cite{gathmann}.
+% TODO: Insert warning
 
 \section{Sheaves}
 The category of sheaves is abelian, so we can do homological
 algebra in it.
 
 \section{Sheaf cohomology}
+Studying sheaves using homological algebra turns out to be surprisingly
+useful in many situations. For example, knowing that there is a SES
+\[
+  \begin{tikzcd}
+    0 \arrow{r} & \mathcal{F} \arrow{r} & \mathcal{G} \arrow{r} &
+    \mathcal{H} \arrow{r} & 0
+  \end{tikzcd}
+\]
+lets us relate the three sheaves together. By Thm.~\ref{thm:ses_stalks}
+this information is inherently \emph{local} since this sequence is exact
+if and only if the corresponding sequences on stalks are exact.
+Then the question is: Can we get \emph{global} information from
+such exact sequences? We would hope that since the sequence is exact
+on stalks, it would also be exact on global sections:
+\[
+  \begin{tikzcd}
+    0 \arrow{r} & \Gamma(\mathcal{F}) \arrow{r} & \Gamma(\mathcal{G})
+    \arrow{r} & \Gamma(\mathcal{H}) \arrow{r} & 0
+  \end{tikzcd}
+\]
+Unfortunately, this is not the case. One can prove that this sequence
+is exact at $\Gamma(\mathcal{F})$ and $\Gamma(\mathcal{G})$, but it
+is not always exact at $\Gamma(\mathcal{H})$.
 
+\begin{quote}
+  We say that the global sections functor $\Gamma: \text{Sh}(X)\to \mathcal{O}_{X}\text{-Mod}$ is left-exact but not right-exact.
+\end{quote}
+
+As a concrete example, if we know that a morphism $f: \mathcal{F}
+\to\mathcal{G}$ is injective on stalks, it is also injective on
+global sections. But if the morphism is surjective on stalks, we don't
+know whether or not it is surjective on global sections.
+
+Although exact sequences are not completely preserved under taking
+global sections, we won't give up! There might still be \emph{a way of
+measuring how much the exactness fails}. We could measure the
+\emph{obstruction} to exactness by continuing the sequence to the right
+so that the following sequence is exact.
+\[
+  \begin{tikzcd}
+    0 \arrow{r} & \Gamma(\mathcal{F}) \arrow{r} & \Gamma(\mathcal{G})
+    \arrow{r} & \Gamma(\mathcal{H})
+    \arrow[out=0, in=180, looseness=1.5, overlay]{dll} & \\
+     & H^{1}(\mathcal{F}) \arrow{r} & H^{1}(\mathcal{G})
+    \arrow{r} & H^{1}(\mathcal{H}) \arrow{r} & \cdots \\
+    \cdots \arrow{r}& H^{k}(\mathcal{F}) \arrow{r} & H^{k}(\mathcal{G})
+    \arrow{r} & H^{k}(\mathcal{H}) \arrow{r} & 0
+  \end{tikzcd}
+\]
 
 \section{The Riemann-Roch theorem}
 \subsection{Applications}
 
 \section{Serre duality}
+
+\section{Bibliography}
+
 
 \end{document}

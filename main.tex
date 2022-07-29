@@ -16,6 +16,9 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 
+\usepackage{tcolorbox}
+\usepackage{emoji}
+
 \linespread{1.1}
 \frenchspacing
 
@@ -26,6 +29,9 @@
 \author{Miika Rankaviita\\Imperial College London}
 \date{\today}
 \maketitle
+
+\tcbset{beforeafter skip=8pt, toptitle=2pt, bottomtitle=2pt}
+\newtcolorbox{cat}{colback=blue!5!white, colframe=blue!80!white, title=\emoji{warning} Abstract nonsense ahead}
 
 \section{Introduction}
 In this paper I will give a proof of the Riemann--Roch theorem
@@ -46,7 +52,21 @@ the cohomology groups by following Serre's exposition in \cite{serre}.
 The reader is assumed to be familiar with basic algebraic geometry.
 An excellent introduction to the topic is \cite{reid}, and a good set
 of lecture notes which goes beyond the basics is \cite{gathmann}.
-% TODO: Insert warning
+Through out the paper, I will also try to point out category theoretical
+contexts of the concepts discussed. However, it is not necessary to know
+any category theory to understand this paper, and I will always place a
+warning for people who are not fond of abstract nonsense:
+
+\begin{cat}
+  The product $(A\prod B, \pi_{A}, \pi_{B})$ of $A$ and $B$ is defined by the
+  following universal property.
+  \[
+    \begin{tikzcd}
+      &C\arrow{ld}[swap]{f}\arrow[dashed]{d}{!\exists}\arrow{rd}{g}&\\
+      A&A\prod B\arrow{l}{\pi_{A}}\arrow{r}[swap]{\pi_{B}}&B
+    \end{tikzcd}
+  \]
+\end{cat}
 
 \section{Sheaves}
 The category of sheaves is abelian, so we can do homological
@@ -65,7 +85,7 @@ lets us relate the three sheaves together. By Thm.~\ref{thm:ses_stalks}
 this information is inherently \emph{local} since this sequence is exact
 if and only if the corresponding sequences on stalks are exact.
 Then the question is: Can we get \emph{global} information from
-such exact sequences? We would hope that since the sequence is exact
+such exact sequences? We would hope that just as the sequence is exact
 on stalks, it would also be exact on global sections:
 \[
   \begin{tikzcd}
@@ -76,19 +96,17 @@ on stalks, it would also be exact on global sections:
 Unfortunately, this is not the case. One can prove that this sequence
 is exact at $\Gamma(\mathcal{F})$ and $\Gamma(\mathcal{G})$, but it
 is not always exact at $\Gamma(\mathcal{H})$.
-
-\begin{quote}
+\begin{cat}
   We say that the global sections functor $\Gamma: \text{Sh}(X)\to \mathcal{O}_{X}\text{-Mod}$ is left-exact but not right-exact.
-\end{quote}
-
-As a concrete example, if we know that a morphism $f: \mathcal{F}
+\end{cat}
+In more concrete terms, if we know that a morphism $f: \mathcal{F}
 \to\mathcal{G}$ is injective on stalks, it is also injective on
 global sections. But if the morphism is surjective on stalks, we don't
 know whether or not it is surjective on global sections.
 
 Although exact sequences are not completely preserved under taking
 global sections, we won't give up! There might still be \emph{a way of
-measuring how much the exactness fails}. We could measure the
+measuring how much exactness fails}. We could measure the
 \emph{obstruction} to exactness by continuing the sequence to the right
 so that the following sequence is exact.
 \[

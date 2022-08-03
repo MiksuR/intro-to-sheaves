@@ -13,7 +13,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{calrsfs}
+\usepackage{mathrsfs}
 \usepackage{cancel}
 \usepackage{float}
 \usepackage{tikz}
@@ -27,7 +27,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 
 \begin{document}
 
-\title{Riemann--Roch Through Cohomology\\
+\title{Riemann-Roch Through Cohomology\\
         \large A Motivated Introduction to Sheaves and Cohomology}
 \author{Miika Rankaviita\\Imperial College London}
 \date{\today}
@@ -47,12 +47,12 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \newtcolorbox{cat}{colback=blue!5!white, colframe=blue!80!white, title=\emoji{warning} Abstract nonsense ahead}
 
 \section{Introduction}
-In this paper I will give a proof of the Riemann--Roch theorem
+In this paper I will give a proof of the Riemann-Roch theorem
 by using one of the most important tools in modern algebraic geometry ---
 sheaf cohomology. This text is aimed at the student with
 basic knowledge of varieties, and will function as an introduction
 to the topic of sheaf cohomolgy, motivated by the problem of classifying
-algebraic varieties.
+algebraic curves.
 
 % TODO: Insert a short description of Riemann-Roch
 
@@ -68,52 +68,41 @@ of lecture notes which goes beyond the basics is \cite{gathmann}.
 Through out the paper, I will also try to point out category theoretical
 contexts of the concepts discussed. However, it is not necessary to know
 any category theory to understand this paper, and I will always place a
-warning for people who are not fond of abstract nonsense:
-
-\begin{cat}
-  The product $(A\prod B, \pi_{A}, \pi_{B})$ of $A$ and $B$ is defined by the
-  following universal property.
-  \[
-    \begin{tikzcd}
-      &C\arrow{ld}[swap]{f}\arrow[dashed]{d}{!\exists}\arrow{rd}{g}&\\
-      A&A\prod B\arrow{l}{\pi_{A}}\arrow{r}[swap]{\pi_{B}}&B
-    \end{tikzcd}
-  \]
-\end{cat}
+warning for people who are not fond of abstract nonsense.
 
 \section{Sheaves}
-The category of sheaves is abelian, so we can do homological
-algebra in it.
+The category of sheaves which takes values in an abelian category is
+itself abelian, so we can do homological algebra in it.
 
 \begin{thm}\label{thm:ses_equivalence}
-  For a collection $(\mathcal{F}_{i})_{i\in\mathbb{Z}}$ of sheaves on
-  a variety $X$ and maps ${\mathcal{F}_{i}\to\mathcal{F}_{i+1}}$,
+  For a collection $(\mathscr{F}_{i})_{i\in\mathbb{Z}}$ of sheaves on
+  a variety $X$ and maps ${\mathscr{F}_{i}\to\mathscr{F}_{i+1}}$,
   the following are equivalent.
   \begin{enumerate}[(i)]
     \item The sequence
           \[
-            \begin{tikzcd}
-              \cdots \arrow{r} & \mathcal{F}_{i-1}\arrow{r}
-              & \mathcal{F}_{i}\arrow{r} & \mathcal{F}_{i+1}\arrow{r} & \cdots
-            \end{tikzcd}
+          \begin{tikzcd}
+            \cdots \arrow{r} & \mathscr{F}_{i-1}\arrow{r}
+            & \mathscr{F}_{i}\arrow{r} & \mathscr{F}_{i+1}\arrow{r} & \cdots
+          \end{tikzcd}
           \]
           is exact.
     \item There is an open cover $(U_{j})_{j\in\mathbb{I}}$ of $X$ such that
           the sequence
           \[
           \begin{tikzcd}
-            \cdots \arrow{r} & \mathcal{F}_{i-1}\mid_{U_{j}}\arrow{r}
-            & \mathcal{F}_{i}\mid_{U_{j}}\arrow{r}
-            & \mathcal{F}_{i+1}\mid_{U_{j}}\arrow{r} & \cdots
+            \cdots \arrow{r} & \mathscr{F}_{i-1}\mid_{U_{j}}\arrow{r}
+            & \mathscr{F}_{i}\mid_{U_{j}}\arrow{r}
+            & \mathscr{F}_{i+1}\mid_{U_{j}}\arrow{r} & \cdots
           \end{tikzcd}
           \]
           is exact for every $j\in I$.
     \item For every $P\in X$, the induced sequence
           \[
           \begin{tikzcd}
-            \cdots \arrow{r} & (\mathcal{F}_{i-1})_{P}\arrow{r}
-            & (\mathcal{F}_{i})_{P}\arrow{r}
-            & (\mathcal{F}_{i+1})_{P}\arrow{r} & \cdots
+            \cdots \arrow{r} & (\mathscr{F}_{i-1})_{P}\arrow{r}
+            & (\mathscr{F}_{i})_{P}\arrow{r}
+            & (\mathscr{F}_{i+1})_{P}\arrow{r} & \cdots
           \end{tikzcd}
           \]
           is exact.
@@ -125,8 +114,8 @@ Studying sheaves using homological algebra turns out to be surprisingly
 useful in many situations. For example, knowing that there is a SES
 \[
   \begin{tikzcd}
-    0 \arrow{r} & \mathcal{F} \arrow{r} & \mathcal{G} \arrow{r} &
-    \mathcal{H} \arrow{r} & 0
+    0 \arrow{r} & \mathscr{F} \arrow{r} & \mathscr{G} \arrow{r} &
+    \mathscr{H} \arrow{r} & 0
   \end{tikzcd}
 \]
 lets us relate the three sheaves together. By Thm.~\ref{thm:ses_equivalence}
@@ -136,21 +125,22 @@ Then the question is: Can we get \emph{global} information from
 such exact sequences? We would hope that just as the sequence is exact
 on stalks, it would also be exact on global sections:
 \[
-  \begin{tikzcd}
-    0 \arrow{r} & \Gamma(\mathcal{F}) \arrow{r} & \Gamma(\mathcal{G})
-    \arrow{r} & \Gamma(\mathcal{H}) \arrow{r} & 0
-  \end{tikzcd}
+\begin{tikzcd}
+  0 \arrow{r} & \Gamma(\mathscr{F}) \arrow{r} & \Gamma(\mathscr{G})
+  \arrow{r} & \Gamma(\mathscr{H}) \arrow{r} & 0
+\end{tikzcd}
 \]
 Unfortunately, this is not the case. One can prove that this sequence
-is exact at $\Gamma(\mathcal{F})$ and $\Gamma(\mathcal{G})$, but it
-is not always exact at $\Gamma(\mathcal{H})$.
+is exact at $\Gamma(\mathscr{F})$ and $\Gamma(\mathscr{G})$, but it
+is not always exact at $\Gamma(\mathscr{H})$.
 \begin{cat}
-  We say that the global sections functor $\Gamma: \text{Sh}(X)\to \mathcal{O}_{X}\text{-Mod}$ is left-exact but not right-exact.
+  We say that the global sections functor $\Gamma: \text{Sh}(X)\to \textbf{Ab}$ is left-exact but not right-exact.
 \end{cat}
-In more concrete terms, if we know that a morphism $f: \mathcal{F}
-\to\mathcal{G}$ is injective on stalks, it is also injective on
+In more concrete terms, if we know that a morphism $f: \mathscr{F}
+\to\mathscr{G}$ is injective on stalks, it is also injective on
 global sections. But if the morphism is surjective on stalks, we don't
 know whether or not it is surjective on global sections.
+% TODO: Add an example
 
 Although exact sequences are not completely preserved under taking
 global sections, we won't give up! There might still be \emph{a way of
@@ -158,16 +148,29 @@ measuring how much exactness fails}. We could measure the
 \emph{obstruction} to exactness by continuing the sequence to the right
 so that the following sequence is exact.
 \[
-  \begin{tikzcd}
-    0 \arrow{r} & \Gamma(\mathcal{F}) \arrow{r} & \Gamma(\mathcal{G})
-    \arrow{r} & \Gamma(\mathcal{H})
-    \arrow[out=0, in=180, looseness=1.5, overlay]{dll} & \\
-     & H^{1}(\mathcal{F}) \arrow{r} & H^{1}(\mathcal{G})
-    \arrow{r} & H^{1}(\mathcal{H}) \arrow{r} & \cdots \\
-    \cdots \arrow{r}& H^{k}(\mathcal{F}) \arrow{r} & H^{k}(\mathcal{G})
-    \arrow{r} & H^{k}(\mathcal{H}) \arrow{r} & 0
-  \end{tikzcd}
+\begin{tikzcd}
+  0 \arrow{r} & \Gamma(\mathscr{F}) \arrow{r} & \Gamma(\mathscr{G})
+  \arrow{r} & \Gamma(\mathscr{H})
+  \arrow[out=0, in=180, looseness=1.5, overlay]{dll} & \\
+    & H^{1}(\mathscr{F}) \arrow{r} & H^{1}(\mathscr{G})
+  \arrow{r} & H^{1}(\mathscr{H}) \arrow{r} & \cdots \\
+  \cdots \arrow{r}& H^{i}(\mathscr{F}) \arrow{r} & H^{i}(\mathscr{G})
+  \arrow{r} & H^{i}(\mathscr{H}) \arrow{r} & \cdots
+\end{tikzcd}
 \]
+This problem of extending incomplete short exact sequences appears
+elsewhere in homological algebra and is generally solved by constructing
+so-called \emph{derived functors}. These modules $H^{i}(-)$ given by derived
+functors are then called the sheaf cohomology groups. In practise, they are
+difficult to compute, so we want to find an alternative definition,
+which is easier to work with. This is achieved by \emph{\v Cech cohomology}.
+Next, I will explain derived functors and show how we arrived at \v Cech
+cohomology from there. However, this will involve a lot of new, high-level
+concepts and category theory. Understanding the philosophy behind
+\v Cech cohomolgy is not essential, and one can safely skip straight to the
+definition of the \v Cech cohomology groups given in Def.~\ref{def:cech}.
+
+\subsection{Motivating \v Cech cohomology}
 
 \section{The Riemann-Roch theorem}
 \subsection{Applications}

@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{mlmodern}
 \usepackage[a4paper, margin=3cm]{geometry}
-\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
 
 \usepackage[pdftitle=Riemann-Roch\ Through\ Cohomology,
 pdfauthor=Miika\ Rankaviita,pdfsubject=Sheaf\ Cohomology,
@@ -45,6 +45,8 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 
 \tcbset{beforeafter skip=8pt, toptitle=2pt, bottomtitle=2pt}
 \newtcolorbox{cat}{colback=blue!5!white, colframe=blue!80!white, title=\emoji{warning} Abstract nonsense ahead}
+\newtcolorbox{lnote}{colback=white, colframe=yellow!90!black, center}
+\newtcbox{\note}{colback=white, colframe=yellow!90!black, center}
 
 \section{Introduction}
 In this paper I will give a proof of the Riemann-Roch theorem

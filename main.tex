@@ -15,6 +15,8 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \usepackage{amsthm}
 \usepackage{mathrsfs}
 \usepackage{cancel}
+\usepackage{braket}
+
 \usepackage{float}
 \usepackage{tikz}
 \usepackage{tikz-cd}
@@ -47,6 +49,8 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \newtcolorbox{cat}{colback=blue!5!white, colframe=blue!80!white, title=\emoji{warning} Abstract nonsense ahead}
 \newtcolorbox{lnote}{colback=white, colframe=yellow!90!black, center}
 \newtcbox{\note}{colback=white, colframe=yellow!90!black, center}
+
+\newcommand{\ord}{\text{ord}}
 
 \section{Introduction}
 In this paper I will give a proof of the Riemann-Roch theorem
@@ -129,7 +133,7 @@ on stalks, it would also be exact on global sections:
 \[
 \begin{tikzcd}
   0 \arrow{r} & \Gamma(\mathscr{F}) \arrow{r} & \Gamma(\mathscr{G})
-  \arrow{r} & \Gamma(\mathscr{H}) \arrow{r} & 0
+  \arrow{r} & \Gamma(\mathscr{H}) \arrow{r} & 0.
 \end{tikzcd}
 \]
 Unfortunately, this is not the case. One can prove that this sequence
@@ -157,7 +161,7 @@ so that the following sequence is exact.
     & H^{1}(\mathscr{F}) \arrow{r} & H^{1}(\mathscr{G})
   \arrow{r} & H^{1}(\mathscr{H}) \arrow{r} & \cdots \\
   \cdots \arrow{r}& H^{i}(\mathscr{F}) \arrow{r} & H^{i}(\mathscr{G})
-  \arrow{r} & H^{i}(\mathscr{H}) \arrow{r} & \cdots
+  \arrow{r} & H^{i}(\mathscr{H}) \arrow{r} & \cdots.
 \end{tikzcd}
 \]
 This problem of extending incomplete short exact sequences appears
@@ -173,6 +177,19 @@ concepts and category theory. Understanding the philosophy behind
 definition of the \v Cech cohomology groups given in Def.~\ref{def:cech}.
 
 \subsection{Motivating \v Cech cohomology}
+
+
+\subsection{Results in cohomology}
+
+\begin{prop}\label{prop:const_sheaf}
+  If $X$ is an irreducible variety, and $A$ is an abelian group,
+  then for the constant sheaf $\underline{A}$,
+  \begin{enumerate}[(a)]
+    \item $H^{0}(X,\underline{A}) = A$,
+    \item $H^{1}(X,\underline{A})=0$.
+  \end{enumerate}
+\end{prop}
+
 
 \section{The Riemann-Roch theorem}
 Equiped with sheaf cohomology, we will prove the Riemann-Roch theorem
@@ -190,6 +207,8 @@ theorem, which we will make complete after proving Serre duality.
   In this section, $X$ will always denote an irreducible, non-singular,
   complete algebraic curve, and any divisor $D$ is defined on $X$.
 \end{lnote}
+
+% TODO: Give a proof that the cohomology groups are finite-dimensional.
 
 \begin{thm}[Riemann-Roch, incomplete version]
   \label{thm:riemann_roch_incomplete}
@@ -227,7 +246,7 @@ theorem, which we will make complete after proving Serre duality.
           \[
           \begin{tikzcd}
             0\arrow{r} & \mathcal{L}(D)\arrow{r} & \mathcal{L}(D+P)\arrow{r}
-            & Q\arrow{r} & 0
+            & Q\arrow{r} & 0,
           \end{tikzcd}
           \]
           where $Q$ is the quotient sheaf. The stalks of $Q$ are clearly
@@ -238,7 +257,7 @@ theorem, which we will make complete after proving Serre duality.
           As $\mathcal{O}_{P}/(t)=k$, we can write $u=vt+r$,
           where $v\in\mathcal{O}_{P}$ and $r\in k$.
           Then,
-          \[\frac{u}{t^{n+1}}=\frac{v}{t^n}+\frac{r}{t^{n+1}}\]
+          \[\frac{u}{t^{n+1}}=\frac{v}{t^n}+\frac{r}{t^{n+1}}.\]
           Since $v/t^n$ is an element of $\mathcal{L}(D)_{P}$, we conclude
           that every element of $\mathcal{L}(D+P)_{P}$ is equivalent to
           an element $r/t^{n+1}$ modulo $\mathcal{L}(D)_{P}$ for some
@@ -259,13 +278,13 @@ theorem, which we will make complete after proving Serre duality.
             & H^{0}(X, \mathcal{L}(D+P))\arrow{r}
             & H^{0}(X, k_{P}) \\
             \arrow{r} & H^{1}(X, \mathcal{L}(D))\arrow{r}
-            & H^{1}(X, \mathcal{L}(D+P))\arrow{r} & 0
+            & H^{1}(X, \mathcal{L}(D+P))\arrow{r} & 0.
           \end{tikzcd}
           \]
           Now, by Prop.~\ref{prop:homology_dim},
           \[
           h^{0}(X,\mathcal{L}(D))-h^{0}(X, \mathcal{L}(D+P))
-          +1-h^{1}(X,\mathcal{L}(D))+h^{1}(X,\mathcal{L}(D+P)) = 0
+          +1-h^{1}(X,\mathcal{L}(D))+h^{1}(X,\mathcal{L}(D+P)) = 0.
           \]
           Therefore,
           \begin{align*}
@@ -273,29 +292,28 @@ theorem, which we will make complete after proving Serre duality.
             =\left(h^{0}(X,\mathcal{L}(D))-h^{1}(X,\mathcal{L}(D+P))\right)
               +1 \\
             =&\deg(D)+1-g+1\quad\text{(by induction hypothesis)} \\
-            =&\deg(D+P)+1-g
+            =&\deg(D+P)+1-g.
           \end{align*}
           This is exactly the induction step we wanted to prove.
           We also need to prove
           \[
             h^{0}(X,\mathcal{L}(D-P))-h^{1}(X,\mathcal{L}(D-P))
-            =\deg(D-P)+1-g
+            =\deg(D-P)+1-g,
           \]
           but we can run the same argument starting with the SES
           \[
           \begin{tikzcd}
             0\arrow{r} & \mathcal{L}(D-P)\arrow{r} & \mathcal{L}(D)\arrow{r}
-            & k_{P}\arrow{r} & 0
+            & k_{P}\arrow{r} & 0.
           \end{tikzcd}
           \]
   \end{description}
 \end{proof}
 
 This form of the theorem is not the most useful one, because computing
-$h^{1}(X,\mathcal{L}(D))$ is not easy. We will devote the last part
-of the paper to proving the Serre duality theorem, which relates
-zeroth and first cohomology groups. The theorem implies the
-following equality of dimensions:
+$h^{1}(X,\mathcal{L}(D))$ is not easy. Luckily, the Serre Duality theorem
+--- which we will prove later --- relates zeroth and first cohomology
+groups, and implies the following equality of dimensions:
 \[h^{1}(X,\mathcal{L}(D))=h^{0}(X,\mathcal{L}(K_{X}-D))\]
 
 Now, this equality lets us write the complete form of the Riemann-Roch
@@ -313,6 +331,168 @@ Before proving the Serre duality theorem, I want to take some time to
 look at applications of the Riemann-Roch theorem.
 
 \section{Serre duality}
+The rest of this paper is devoted to proving the Serre duality:
+\begin{thm}[Serre Duality]
+  If $X$ is an algebraic curve as in the previous section
+  and $D$ is a divisor on $X$, there is an isomorphism
+  \[
+    H^{1}(X, \mathcal{L}(D))^{\vee}\cong H^{0}(X, K_{X}
+    \otimes \mathcal{L}(D)^{\vee}).
+  \]
+  of $k$-vector spaces, where $K_{X}$ is the canonical divisor of $X$.
+\end{thm}
+We will complete the proof in three steps:
+\begin{enumerate}
+  \item Give a more concrete representation of $H^{1}(X,\mathcal{L}(D))$.
+  \item Construct a perfect pairing between $H^{1}(X,\mathcal{L}(D))$
+        and some specific vector space of differentials.
+  \item Show that this vector space is isomorphic to
+        $H^{0}(X,K_{X}\otimes\mathcal{L}(D)^{\vee})$.
+\end{enumerate}
+
+\subsection{Concrete representation of $H^{1}(X,\mathcal{L}(D))$}
+To prove the Serre duality, we do not want to directly work with the \v Cech
+cohomology definition of $H^{1}(X,\mathcal{L}(D))$.
+Instead we want to find some SES involving $\mathcal{L}(D)$,
+take the cohomology sequence of the SES, and then use it to simplify
+the definition of $H^{1}(X,\mathcal{L}(D))$. Since $\mathcal{L}(D)$ is
+a subsheaf of the constant sheaf $\underline{k(X)}$, we can simply consider
+the following SES.
+\[
+  \begin{tikzcd}
+    0\arrow{r} & \mathcal{L}(D)\arrow{r} & \underline{k(X)}\arrow{r}
+    & \underline{k(X)}/\mathcal{L}(D)\arrow{r} & 0,
+  \end{tikzcd}
+\]
+which yields the following exact sequence
+\[
+  \begin{tikzcd}
+    H^{0}(X,\underline{k(X)})\arrow{r} & H^{0}(X,\underline{k(X)}
+    /\mathcal{L}(D))\arrow{r} & H^{1}(X,\mathcal{L}(D))\arrow{r}
+    & H^{1}(X,\underline{k(X)}).
+  \end{tikzcd}
+\]
+But Prop.~\ref{prop:const_sheaf} implies that
+$H^{0}(X,\underline{k(X)})=k(X)$ and $H^{1}(X,\underline{k(X)})=0$
+so that the exact sequence simplifies to
+\[
+  \begin{tikzcd}
+    k(X)\arrow{r} & H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\arrow{r}
+    & H^{1}(X,\mathcal{L}(D))\arrow{r} & 0.
+  \end{tikzcd}
+\]
+Let us first try to understand the space
+$H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$. An element of the space
+is of the form $([f_{P}])_{P\in X}$, where $[f_{P}]$ is the equivalence
+class of some $f_{P}\in k(X)$ modulo $\mathcal{L}(D)_{P}$.
+Note that the $f_{P}$ must be related together so that the sections
+satisfy sheaf axioms, and it would be easier if we didn't need to worry about
+this condition. We can in fact construct an isomorphic vector space, which is
+similar, but where we don't need to worry about the sheaf axioms. To see
+this, first make the following observation.
+\begin{prop}
+  If $(f_{P})_{P\in X}\in \Gamma(\underline{k(X)})$,
+  $f_{P}\in\mathscr{O}_{X,P}$ for almost all $P\in X$.
+\end{prop}
+\begin{proof}
+  Fix an arbitrary $P\in X$. Since $\underline{k(X)}$ is obtained by
+  sheafification of the constant presheaf, there must be an open
+  set $U\subseteq X$ and $g\in k(X)$ such that
+  $\forall Q\in U,\ [f_{Q}]=[g]$. Next we note that $g$
+  is defined for almost all points of $U$ so that $g_{Q}
+  \in\mathscr{O}_{X,Q}$ for almost all $Q\in V$.
+
+  Thus, there is an open neighbourhood for every point
+  of $X$ where the statement holds. Next we extend this to the whole of $X$.
+  Let us construct a sequence of open sets inductively:
+  \begin{enumerate}
+    \item Choose an arbitrary point $P_{0}\in X$
+    \item Let $U_{0}$ be the neighbourhood of $P_{0}$ constructed as above
+    \item Assume we have constructed the set $U_{n}$
+    \item Choose an arbitrary point $P_{n+1}$ of $X\setminus U_{n}$
+    \item Let $U_{n+1}$ be the union of $U_{n}$ with the
+          neighbourhood of $P_{n+1}$ constructed as above
+  \end{enumerate}
+  % Insert picture with X, P_0, U_0, and P_1
+  Since $X$ is Noetherian, there must be $N\in\mathbb{N}$
+  such that $\forall k\geq N, U_{k+1}=U_{k}$. Moreover, these sets must
+  cover $X$, because otherwise the chain wouldn't end at $U_{N}$.
+  Therefore, $X$ can be covered by finitely many sets where the statement
+  holds.
+\end{proof}
+Now, we define a vector space of families $\{r_{P}\}_{P\in X}$, where we don't
+impose any other requirement on $r_{P}$ other than that $r_{P}\in k(X)$ and
+$r_{P}\in\mathscr{O}_{X,P}$ for almost all $P\in X$ (Serre calls such a
+family a \emph{r\'epartition}).
+% TODO: It might be wise to point out that by r_P\in O_{X,P} we
+% actually mean (r_P)_P\in O_{X,P}.
+Now, I claim that there is a subspace
+$S\leq R$ such that $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\cong R/S$.
+This isomorphism will be given by the trivial map
+\[
+  \varphi: H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\to R/S
+  :([f_{P}])_{P\in X}\mapsto [\{f_{P}\}_{P\in X}].
+\]
+For this map to be well-defined, $([f_{P}])_{P\in X}$ needs to be
+mapped to $[0]$ whenever $f_{P}\in\mathcal{L}(D)_{P}$. Since I want
+$\varphi$ also to be injective, such elements $(f_{P})_{P\in X}$ should be
+the \emph{only} elements that get mapped to $[0]$. Thus, I define $S$
+to be the subspace such that $\set{\{r_{P}\}_{P\in X}\mid \ord_{P}(r)
+  \geq -D(P)}=:R(D)$, and I claim that this is the right choice of $S$.
+
+\begin{lemm}
+  For a divisor $D$ on a curve $X$, we have the following isomorphism:
+  \[
+    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\cong R/R(D).
+  \]
+\end{lemm}
+\begin{proof}
+  The map $\varphi$ is a well-defined injection by construction,
+  so we only need to show it is surjective. Thus,
+  suppose $[\{r_{P}\}_{P\in X}]\in R/R(D)$. I want to show that equivalence
+  classes $[r_{P}]$ of the components form a global section of the sheaf
+  $\underline{k(X)}/\mathcal{L}(D)$. First, let $P_{1},\ldots,P_{r}$
+  be the points where $D$ is non-zero and $Q_{1},\ldots,Q_{s}$ be the
+  points where $r_{Q_{i}}\not\in \mathscr{O}_{X,Q_{i}}$. Then, let $P\in X$
+  be an arbitrary point. We want to find an open neighbourhood $U\ni P$
+  and a section $g\in k(X)$ such that $\forall Q\in U,\ [r_{Q}]=[g]$.
+  There are two cases:
+  \begin{description}[style=nextline]
+    \item[$P\not\in\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}\big)$]
+          It follows from the definition of the points $P_{i}$ and $Q_{j}$
+          that $[r_{P}]=[0]$. And if we let $U$ be the complement of
+          the set $\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}$, we see
+          that the same hold for every $r_{Q}$ on $U$ so that we can simply
+          choose $0\in k(X)$ as the section on the open neighbourhood $U$.
+    \item[$P\in\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}\big)$]
+          First, denote $Y=\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}
+          \setminus \set{P}$ and $g=r_{P}\in k(X)$. Next, let
+          $S_{1},\ldots,S_{t}$ be the points where
+          $g_{S_{i}}\not\in\mathscr{O}_{X,S_{i}}$. Then, let $U$ be
+          the complement of $Y\cup \set{S_{1},\ldots,S_{t}}$. As above,
+          $[r_{Q}]=[0]$ for all $Q\in U$ except for $Q=P$. But since
+          the points $S_{i}$ are also included in the complement, we have
+          that $[g]=[0]$ away from $P$. Thus, $[r_{Q}]=[g]$ on $U$.
+  \end{description}
+\end{proof}
+Now we can return to the SES derived above and replace
+$H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ by $R/R(D)$:
+\[
+  \begin{tikzcd}
+    k(X)\arrow{r} & R/R(D)\arrow{r} & H^{1}(X,\mathcal{L}(D))\arrow{r} & 0.
+  \end{tikzcd}
+\]
+This exact sequence finally gives us the representation of the first
+cohomology group: The second map of the sequence is a surjection
+onto $H^{1}(X,\mathcal{L}(D))$. The space $k(X)$ can be seen as a subspace
+of $R$ and it is thus the kernel of the map. Such a surjection maps $R/R(D)$
+onto the space $R/\left(R(D)+k(X)\right)$, and thus we get the isomorphism
+\[H^{1}(X,\mathcal{L}(D))\cong R/\left(R(D)+k(X)\right).\]
+Now, the dual space $H^{1}(X,\mathcal{L}(D))^{\vee}$ is simply the space
+of linear functionals on $R$, which vanish on $R(D)$ and $k(X)$!
+
+\subsection{Constructing a pairing}
+
 
 \section{Bibliography}
 \bibliographystyle{alpha}

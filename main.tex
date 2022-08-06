@@ -17,6 +17,10 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \usepackage{cancel}
 \usepackage{braket}
 
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\res}{Res}
+
 \usepackage{float}
 \usepackage{tikz}
 \usepackage{tikz-cd}
@@ -50,7 +54,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \newtcolorbox{lnote}{colback=white, colframe=yellow!90!black, center}
 \newtcbox{\note}{colback=white, colframe=yellow!90!black, center}
 
-\newcommand{\ord}{\text{ord}}
+\newcommand{\diffs}{H^0(X,K_X\otimes\mathcal{L}(D)^{\vee})}
 
 \section{Introduction}
 In this paper I will give a proof of the Riemann-Roch theorem
@@ -341,14 +345,10 @@ The rest of this paper is devoted to proving the Serre duality:
   \]
   of $k$-vector spaces, where $K_{X}$ is the canonical divisor of $X$.
 \end{thm}
-We will complete the proof in three steps:
-\begin{enumerate}
-  \item Give a more concrete representation of $H^{1}(X,\mathcal{L}(D))$.
-  \item Construct a perfect pairing between $H^{1}(X,\mathcal{L}(D))$
-        and some specific vector space of differentials.
-  \item Show that this vector space is isomorphic to
-        $H^{0}(X,K_{X}\otimes\mathcal{L}(D)^{\vee})$.
-\end{enumerate}
+We will prove the theorem by first finding a more concrete representation of
+$H^{1}(X,\mathcal{L}(D))$ and then constructing a perfect pairing between
+$H^{1}(X,\mathcal{L}(D))$ and $H^{0}(X,K_{X}\otimes\mathcal{L}(D)^{\vee})$,
+which will give us the isomorphism.
 
 \subsection{Concrete representation of $H^{1}(X,\mathcal{L}(D))$}
 To prove the Serre duality, we do not want to directly work with the \v Cech
@@ -486,13 +486,76 @@ This exact sequence finally gives us the representation of the first
 cohomology group: The second map of the sequence is a surjection
 onto $H^{1}(X,\mathcal{L}(D))$. The space $k(X)$ can be seen as a subspace
 of $R$ and it is thus the kernel of the map. Such a surjection maps $R/R(D)$
-onto the space $R/\left(R(D)+k(X)\right)$, and thus we get the isomorphism
+onto the space $R\,/\left(R(D)+k(X)\right)$, and thus we get the isomorphism
 \[H^{1}(X,\mathcal{L}(D))\cong R/\left(R(D)+k(X)\right).\]
 Now, the dual space $H^{1}(X,\mathcal{L}(D))^{\vee}$ is simply the space
 of linear functionals on $R$, which vanish on $R(D)$ and $k(X)$!
 
 \subsection{Constructing a pairing}
+Next I will construct a bilinear form
+\[
+  \langle -,-\rangle:\diffs\times H^{1}(X,\mathcal{L}(D))\to k.
+\]
+Note that the space $\diffs$ consists of differential forms $\omega$
+such that $(\omega)\geq D$.
+%But first we want to understand the space $H^{0}(X,K_{X}
+%\otimes\mathcal{L}(D)^{\vee})$ better.
+%Consider the stalk of the sheaf
+%$K_{X}\otimes\mathcal{L}(D)^{\vee}$ at a point $P$:
+%\[
+%  \left(K_{X}\otimes\mathcal{L}(D)^{\vee}\right)_{P}
+%  =(K_{X})_{P}\otimes_{\mathscr{O}_{X}}\mathcal{L}(D)^{\vee}_{P}
+%  =D_{k}(\mathscr{O}_{X})\otimes_{\mathscr{O}_{X}}\mathcal{L}(D)^{\vee}_{P}
+%  =D_{k}\left(\mathcal{L}(D)^{\vee}_{P}\right).
+%\]
+Now, define the bilinear form as follows.
+\[
+  \langle\omega,r\rangle=\sum_{P\in X}\res_{P}(r_{P}\omega),
+\]
+where $r=[\{r_{P}\}_{P\in X}]\in R\,/\left(R(D)+k(X)\right)$. The sum is
+well-defined, because the term $\res_{P}(r_{P}\omega)$ can be non-zero only
+when $P$ is a point such that $D(P)\neq 0$ or $r_{P}\not\in\mathscr{O}_{X,P}$.
+Otherwise, $r_{P},f\in\mathscr{O}_{X,P}$, if we write $\omega=f\,dt$
+where $t$ is a local uniformiser at $P$. This clearly implies that the
+coefficients of the negative terms in the serier expansion of $r_{P}f$
+are all zero.
 
+Now, Serre duality will follow from showing that the map
+\[
+  i_{D}:\diffs\to H^{1}(X,\mathcal{L}(D))^{\vee}
+  :\omega\mapsto\langle\omega,-\rangle
+\]
+is a bijection. But first we need to confirm that $i_{D}$ actually maps
+differentials to elements of $H^{1}(X,\mathcal{L}(D))^{\vee}$. For a
+differential $\omega\in\diffs$, $i_{D}(\omega)$ is of course a linear
+functional on $R$, but we need to check that it vanishes on $R(D)$ and
+$k(X)$. If $r\in R(D)$, then $(r_{P}\omega)=(r_{P})+(\omega)\geq -D+D=0$
+and thus $\res_{P}(r_{P}\omega)=0$ by the same argument as in the last
+paragraph. And if $r\in k(X)$, then $\langle r,\omega\rangle=0$ by
+Thm.~\ref{thm:residue}. Thus, $i_{D}(\omega)\in H^{1}(X,\mathcal{L}(D))^{\vee}$
+for every $\omega\in\diffs$.
+
+Now, we can proceed to prove the bijectivity of $i_{D}$, starting with
+injectivity.
+\begin{lemm}
+  The map $i_{D}:\diffs\to H^{1}(X,\mathcal{L}(D))^{\vee}$ is an injection.
+\end{lemm}
+\begin{proof}
+  The map is injective if its kernel is trivial. Thus, suppose
+  $i_{D}(\omega)=0$. I will show that for every $P\in X$,
+  $\ord_{P}(\omega)=\infty$, which implies $\omega=0$.
+  Assume to the contrary, so that there is a point $P\in X$ where
+  $\ord_{P}(\omega)$ is bounded. But now we can construct a r\'epartition
+  $r=[\{r_{Q}\}_{Q\in X}]$ such that $r_{Q}=0$ when $Q\neq P$ and
+  $r_{P}=1/t^{\ord_{P}(\omega)+1}$, where $t$ is a local uniformiser at $P$.
+  Then,
+  \[
+    i_{D}(\omega)(r)=\sum_{Q\in X}\res_{Q}(r_{Q}\omega)=\res_{P}(r_{P}\omega)
+  \]
+  Since $\ord_{P}(r_{P}\omega)=\ord_{P}(r_{P})+\ord_{P}(\omega)
+  =-\ord_{P}(\omega)-1+\ord_{P}(\omega)=-1$, we have that $i_{D}(\omega)(r)$ is
+  non-zero, which contradicts the assumption that $i_{D}(\omega)=0$.
+\end{proof}
 
 \section{Bibliography}
 \bibliographystyle{alpha}

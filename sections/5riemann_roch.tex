@@ -1,0 +1,139 @@
+\section{The Riemann-Roch theorem}
+Equiped with sheaf cohomology, we will prove the Riemann-Roch theorem
+using the methods we have learnt. But first we need to quickly review
+two constructions needed to state the Riemann-Roch theorem: \emph{divisors}
+and \emph{differentials}.
+
+\subsection{Divisors and differentials}
+
+\subsection{Proof of Riemann-Roch}
+We are now able to state and prove an ``incomplete'' version of the
+Riemann-Roch theorem, which we will make complete after proving Serre
+duality.
+
+\begin{lnote}
+  In this section, $X$ will always denote an irreducible, non-singular,
+  complete algebraic curve, and any divisor $D$ is defined on $X$.
+\end{lnote}
+
+% TODO: Give a proof that the cohomology groups are finite-dimensional.
+
+\begin{thm}[Riemann-Roch, cohomology version]
+  \label{thm:riemann_roch_cohomology}
+  For every divisor $D$,
+  \[
+    h^{0}(X, \mathcal{L}(D))-h^{1}(X, \mathcal{L}(D))=\deg(D)+1-g,
+  \]
+  where $g=h^{1}(X, \mathcal{O}_{X})$.
+\end{thm}
+\begin{proof}
+  We can use an induction argument, because any divisor $D$ can be
+  obtained from the zero divisor by adding and subtracting points.
+  Thus, we proceed by first proving the base case and then proving
+  the induction step.
+
+  \begin{description}[style=nextline]
+    \item[base case$\big)$]
+          Since $\mathcal{L}(0)=\mathscr{O}_{X}$ and $\deg(0)=0$,
+          we need to verify that
+          \[h^{0}(X, \mathscr{O}_{X})-h^{1}(X, \mathscr{O}_{X})=1-g.\]
+          But note that the only globally defined regular functions
+          on $X$ are constant by Cor.~\ref{cor:global_const},
+          and thus they form a one-dimensional vector space.
+          Moreover, $h^{1}(X, \mathscr{O}_{X})=g$ by definition
+          so that the equality holds.
+    \item[induction step$\big)$]
+          In the induction step we want to relate the zeroth and first
+          cohomology groups of $\mathcal{L}(D)$ to the zeroth and
+          first cohomology groups of $\mathcal{L}(D+P)$, where
+          $P$ is some point. To do this, we first note that
+          $\mathcal{L}(D)$ is a subsheaf of $\mathcal{L}(D+P)$, since
+          the orders of germs of $\mathcal{L}(D+P)$ at $P$ are allowed to
+          be smaller than the orders of germs of $\mathcal{L}(D)$ at $P$.
+          Thus, there is an exact sequence
+          \[
+          \begin{tikzcd}
+            0\arrow{r} & \mathcal{L}(D)\arrow{r} & \mathcal{L}(D+P)\arrow{r}
+            & Q\arrow{r} & 0,
+          \end{tikzcd}
+          \]
+          where $Q$ is the quotient sheaf. The stalks of $Q$ are clearly
+          zero away from $P$. The stalk at $P$ consists of zero and
+          elements of the form $u/t^{n+1}$, where $t$ is the local
+          uniformiser of $\mathscr{O}_{P}$, $u$ is a unit in
+          $\mathcal{O}_{P}$, and $n$ is the order of $P$ in $D$.
+          As $\mathcal{O}_{P}/(t)=k$, we can write $u=vt+r$,
+          where $v\in\mathcal{O}_{P}$ and $r\in k$.
+          Then,
+          \[\frac{u}{t^{n+1}}=\frac{v}{t^n}+\frac{r}{t^{n+1}}.\]
+          Since $v/t^n$ is an element of $\mathcal{L}(D)_{P}$, we conclude
+          that every element of $\mathcal{L}(D+P)_{P}$ is equivalent to
+          an element $r/t^{n+1}$ modulo $\mathcal{L}(D)_{P}$ for some
+          $r\in k$. Therefore, $Q_{P}\cong k$ and $Q$ is the skyscraper sheaf!
+
+          Now we apply our cohomology machinery on the SES
+          \[
+          \begin{tikzcd}
+            0\arrow{r} & \mathcal{L}(D)\arrow{r} & \mathcal{L}(D+P)\arrow{r}
+            & k_{P}\arrow{r} & 0
+          \end{tikzcd}
+          \]
+          to get the following exact sequence (using
+          Prop.~\ref{prop:sky_cohom}).
+          \[
+          \begin{tikzcd}
+            0\arrow{r} & H^{0}(X, \mathcal{L}(D))\arrow{r}
+            & H^{0}(X, \mathcal{L}(D+P))\arrow{r}
+            & H^{0}(X, k_{P}) \\
+            \arrow{r} & H^{1}(X, \mathcal{L}(D))\arrow{r}
+            & H^{1}(X, \mathcal{L}(D+P))\arrow{r} & 0.
+          \end{tikzcd}
+          \]
+          Now, by Prop.~\ref{prop:homology_dim},
+          \[
+          h^{0}(X,\mathcal{L}(D))-h^{0}(X, \mathcal{L}(D+P))
+          +1-h^{1}(X,\mathcal{L}(D))+h^{1}(X,\mathcal{L}(D+P)) = 0.
+          \]
+          Therefore,
+          \begin{align*}
+            h^{0}(X,\mathcal{L}(D+P))&-h^{1}(X,\mathcal{L}(D+P))
+            =\left(h^{0}(X,\mathcal{L}(D))-h^{1}(X,\mathcal{L}(D+P))\right)
+              +1 \\
+            =&\deg(D)+1-g+1\quad\text{(by induction hypothesis)} \\
+            =&\deg(D+P)+1-g.
+          \end{align*}
+          This is exactly the induction step we wanted to prove.
+          We also need to prove
+          \[
+            h^{0}(X,\mathcal{L}(D-P))-h^{1}(X,\mathcal{L}(D-P))
+            =\deg(D-P)+1-g,
+          \]
+          but we can run the same argument starting with the SES
+          \[
+          \begin{tikzcd}
+            0\arrow{r} & \mathcal{L}(D-P)\arrow{r} & \mathcal{L}(D)\arrow{r}
+            & k_{P}\arrow{r} & 0.
+          \end{tikzcd}
+          \]
+  \end{description}
+\end{proof}
+
+This form of the theorem is not the most useful one for applications,
+because computing $h^{1}(X,\mathcal{L}(D))$ is not easy. Luckily, the Serre
+Duality theorem --- which we will prove later --- relates zeroth and first
+cohomology groups, and implies the following equality of dimensions:
+\[h^{1}(X,\mathcal{L}(D))=h^{0}(X,\mathcal{L}(K_{X}-D))\]
+
+Now, this equality lets us write the complete form of the Riemann-Roch
+theorem.
+\begin{thm}[Riemann-Roch]\label{thm:riemann_roch}
+  For every divisor $D$,
+  \[
+    h^{0}(X, \mathcal{L}(D))-h^{0}(X, \mathcal{L}(K_{X}-D))=\deg(D)+1-g,
+  \]
+  where $g=h^{1}(X, \mathcal{O}_{X})$.
+\end{thm}
+
+\subsection{Applications}
+Before proving the Serre duality theorem, I want to take some time to
+look at applications of the Riemann-Roch theorem.

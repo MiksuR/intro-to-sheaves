@@ -1,0 +1,38 @@
+\section{Sheaves}
+The category of sheaves which takes values in an abelian category is
+itself abelian, so we can do homological algebra in it.
+
+\begin{thm}\label{thm:ses_equivalence}
+  For a collection $(\mathscr{F}_{i})_{i\in\mathbb{Z}}$ of sheaves on
+  a variety $X$ and maps ${\mathscr{F}_{i}\to\mathscr{F}_{i+1}}$,
+  the following are equivalent.
+  \begin{enumerate}[(i)]
+    \item The sequence
+          \[
+          \begin{tikzcd}
+            \cdots \arrow{r} & \mathscr{F}_{i-1}\arrow{r}
+            & \mathscr{F}_{i}\arrow{r} & \mathscr{F}_{i+1}\arrow{r} & \cdots
+          \end{tikzcd}
+          \]
+          is exact.
+    \item There is an open cover $(U_{j})_{j\in\mathbb{I}}$ of $X$ such that
+          the sequence
+          \[
+          \begin{tikzcd}
+            \cdots \arrow{r} & \mathscr{F}_{i-1}\mid_{U_{j}}\arrow{r}
+            & \mathscr{F}_{i}\mid_{U_{j}}\arrow{r}
+            & \mathscr{F}_{i+1}\mid_{U_{j}}\arrow{r} & \cdots
+          \end{tikzcd}
+          \]
+          is exact for every $j\in I$.
+    \item For every $P\in X$, the induced sequence
+          \[
+          \begin{tikzcd}
+            \cdots \arrow{r} & (\mathscr{F}_{i-1})_{P}\arrow{r}
+            & (\mathscr{F}_{i})_{P}\arrow{r}
+            & (\mathscr{F}_{i+1})_{P}\arrow{r} & \cdots
+          \end{tikzcd}
+          \]
+          is exact.
+  \end{enumerate}
+\end{thm}

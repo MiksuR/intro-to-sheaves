@@ -3,8 +3,8 @@ Studying sheaves using homological algebra turns out to be surprisingly
 useful in many situations. For example, knowing that there is a SES
 \[
   \begin{tikzcd}
-    0 \arrow{r} & \mathscr{F} \arrow{r} & \mathscr{G} \arrow{r} &
-    \mathscr{H} \arrow{r} & 0
+    0 \rar & \mathscr{F} \rar & \mathscr{G} \rar &
+    \mathscr{H} \rar & 0
   \end{tikzcd}
 \]
 lets us relate the three sheaves together. By Thm.~\ref{thm:ses_equivalence}
@@ -15,8 +15,8 @@ such exact sequences? We would hope that just as the sequence is exact
 on stalks, it would also be exact on global sections:
 \[
 \begin{tikzcd}
-  0 \arrow{r} & \Gamma(\mathscr{F}) \arrow{r} & \Gamma(\mathscr{G})
-  \arrow{r} & \Gamma(\mathscr{H}) \arrow{r} & 0.
+  0 \rar & \Gamma(\mathscr{F}) \rar & \Gamma(\mathscr{G})
+  \rar & \Gamma(\mathscr{H}) \rar & 0.
 \end{tikzcd}
 \]
 Unfortunately, this is not the case. One can prove that this sequence
@@ -38,13 +38,13 @@ measuring how much exactness fails}. We could measure the
 so that the following sequence is exact.
 \[
 \begin{tikzcd}
-  0 \arrow{r} & \Gamma(\mathscr{F}) \arrow{r} & \Gamma(\mathscr{G})
-  \arrow{r} & \Gamma(\mathscr{H})
+  0 \rar & \Gamma(\mathscr{F}) \rar & \Gamma(\mathscr{G})
+  \rar & \Gamma(\mathscr{H})
   \arrow[out=0, in=180, looseness=1.5, overlay]{dll} & \\
-    & H^{1}(\mathscr{F}) \arrow{r} & H^{1}(\mathscr{G})
-  \arrow{r} & H^{1}(\mathscr{H}) \arrow{r} & \cdots \\
-  \cdots \arrow{r}& H^{i}(\mathscr{F}) \arrow{r} & H^{i}(\mathscr{G})
-  \arrow{r} & H^{i}(\mathscr{H}) \arrow{r} & \cdots.
+    & H^{1}(\mathscr{F}) \rar & H^{1}(\mathscr{G})
+  \rar & H^{1}(\mathscr{H}) \rar & \cdots \\
+  \cdots \rar& H^{i}(\mathscr{F}) \rar & H^{i}(\mathscr{G})
+  \rar & H^{i}(\mathscr{H}) \rar & \cdots.
 \end{tikzcd}
 \]
 This problem of extending incomplete short exact sequences appears

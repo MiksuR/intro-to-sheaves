@@ -20,6 +20,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\res}{Res}
+\DeclareMathOperator{\Div}{Div}
 
 \usepackage{float}
 \usepackage{tikz}
@@ -31,6 +32,8 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \linespread{1.1}
 \frenchspacing
 
+%\includeonly{sections/6serre}
+
 \begin{document}
 
 \title{Riemann-Roch Through Cohomology\\
@@ -38,6 +41,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \author{Miika Rankaviita\\Imperial College London}
 \date{\today}
 \maketitle
+\tableofcontents
 
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
@@ -54,7 +58,8 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \newtcolorbox{lnote}{colback=white, colframe=yellow!90!black, center}
 \newtcbox{\note}{colback=white, colframe=yellow!90!black, center}
 
-\newcommand{\diffs}{H^0(X,K_X\otimes\mathcal{L}(D)^{\vee})}
+\newcommand{\diffs}[1]{H^0(X,K_X\otimes\mathcal{L}(#1)^{\vee})}
+\newcommand{\dual}[1]{H^1(X,\mathcal{L}(#1))^{\vee}}
 \newcommand{\duals}{H^1(X,\mathcal{L}(\kern.08em\bullet\kern.08em))^{\vee}}
 
 \include{sections/1intro}

@@ -1,6 +1,7 @@
 \section{Serre duality}
 The rest of this paper is devoted to proving the Serre duality:
-\begin{thm}[Serre Duality]
+\newtheorem*{thm:serre}{Theorem~\ref{thm:serre}}
+\begin{thm:serre}[Serre Duality]
   If $X$ is an algebraic curve as in the previous section
   and $D$ is a divisor on $X$, there is an isomorphism
   \[
@@ -8,8 +9,8 @@ The rest of this paper is devoted to proving the Serre duality:
     \otimes \mathcal{L}(D)^{\vee}).
   \]
   of $k$-vector spaces, where $K_{X}$ is the canonical divisor of $X$.
-\end{thm}
-We will prove the theorem by first finding a more concrete representation of
+\end{thm:serre}
+I will prove the theorem by first finding a more concrete representation of
 $H^{1}(X,\mathcal{L}(D))$ and then constructing a perfect pairing between
 $H^{1}(X,\mathcal{L}(D))$ and $H^{0}(X,K_{X}\otimes\mathcal{L}(D)^{\vee})$,
 which will give us the isomorphism.
@@ -39,12 +40,12 @@ which yields the following exact sequence
 But Prop.~\ref{prop:const_sheaf} implies that
 $H^{0}(X,\underline{k(X)})=k(X)$ and $H^{1}(X,\underline{k(X)})=0$
 so that the exact sequence simplifies to
-\[
+\begin{equation}\label{eq:repartition_ses}
   \begin{tikzcd}
     k(X)\rar & H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\rar
     & H^{1}(X,\mathcal{L}(D))\rar & 0.
   \end{tikzcd}
-\]
+\end{equation}
 Let us first try to understand the space
 $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$. An element of the space
 is of the form $([f_{P}])_{P\in X}$, where $[f_{P}]$ is the equivalence
@@ -58,10 +59,14 @@ this, first make the following observation.
   If $(f_{P})_{P\in X}\in \Gamma(\underline{k(X)})$,
   $f_{P}\in\mathscr{O}_{X,P}$ for almost all $P\in X$.
 \end{prop}
+Note, $f_{P}\in k(X)$ and $\mathscr{O}_{X,P}$ is a space of germs. Thus,
+when I write $f_{P}\in\mathscr{O}_{X,P}$, I actually mean $(f_{P})_{P}
+\in\mathscr{O}_{X,P}$. I will continue using the simpler notation through out
+the paper.
 \begin{proof}
   Fix an arbitrary $P\in X$. Since $\underline{k(X)}$ is obtained by
   sheafification of the constant presheaf, there must be an open
-  set $U\subseteq X$ and $g\in k(X)$ such that
+  neighbourhood $U\subseteq X$ of $P$ and $g\in k(X)$ such that
   $\forall Q\in U,\ [f_{Q}]=[g]$. Next we note that $g$
   is defined for almost all points of $U$ so that $g_{Q}
   \in\mathscr{O}_{X,Q}$ for almost all $Q\in V$.
@@ -90,14 +95,12 @@ this, first make the following observation.
     H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\cong \bigoplus_{P\in X}
     k(X)/\mathcal{L}(D)_{P},
   \]
-  which might be a helpful way of thinking this cohomology group.
+  which might be a helpful way of thinking this space of global sections.
 \end{rem}
 Now, we define a vector space of families $\{r_{P}\}_{P\in X}$, where we don't
 impose any other requirement on $r_{P}$ other than that $r_{P}\in k(X)$ and
 $r_{P}\in\mathscr{O}_{X,P}$ for almost all $P\in X$ (Serre calls such a
-family a \emph{r\'epartition}).
-% TODO: It might be wise to point out that by r_P\in O_{X,P} we
-% actually mean (r_P)_P\in O_{X,P}.
+family a \emph{r\'epartition} in \cite{serre}).
 Now, I claim that there is a subspace
 $S\leq R$ such that $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\cong R/S$.
 This isomorphism will be given by the trivial map
@@ -131,10 +134,14 @@ to be the subspace such that $\set{\{r_{P}\}_{P\in X}\mid \ord_{P}(r_{P})
   There are two cases:
   \begin{description}[style=nextline]
     \item[$P\not\in\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}\big)$]
-          It follows from the definition of the points $P_{i}$ and $Q_{j}$
-          that $[r_{P}]=[0]$. And if we let $U$ be the complement of
+          Since $P$ is none of the points $P_{1},\ldots,P_{r}$,
+          $\mathcal{L}(D)_{P}$ consists of all functions $f\in k(X)$
+          with non-negative order at $P$: $\ord_{P}(f)\geq 0$.
+          Since $P$ is non of the points $Q_{1},\ldots,Q_{s}$,
+          $r_{P}\in\mathscr{Q}_{X,P}$. Therefore, $r_{P}\in\mathcal{L}(D)_{P}$
+          so that $[r_{P}]=[0]$. Now, if we let $U$ be the complement of
           the set $\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}$, we see
-          that the same hold for every $r_{Q}$ on $U$ so that we can simply
+          that $[r_{Q}]=[0]$ for every $r_{Q}$ on $U$ so that we can simply
           choose $0\in k(X)$ as the section on the open neighbourhood $U$.
     \item[$P\in\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}\big)$]
           First, denote $Y=\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}
@@ -147,8 +154,8 @@ to be the subspace such that $\set{\{r_{P}\}_{P\in X}\mid \ord_{P}(r_{P})
           that $[g]=[0]$ away from $P$. Thus, $[r_{Q}]=[g]$ on $U$.
   \end{description}
 \end{proof}
-Now we can return to the SES derived above and replace
-$H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ by $R/R(D)$:
+Now we can return to the SES \eqref{eq:repartition_ses} derived above and
+replace $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ by $R/R(D)$:
 \[
   \begin{tikzcd}
     k(X)\rar & R/R(D)\rar & H^{1}(X,\mathcal{L}(D))\rar & 0.
@@ -193,53 +200,32 @@ coefficients of the negative terms in the serier expansion of $r_{P}f$
 are all zero.
 % TODO: Explain why we choose this bilinear form
 
-Now, Serre duality will follow from showing that the map
+Now, Serre duality will follow if we can show that the map
 \[
-  i_{D}:\diffs{D}\to \dual{D}
+  \iota_{D}:\diffs{D}\to \dual{D}
   :\omega\mapsto\langle\omega,-\rangle
 \]
-is a bijection. But first we need to confirm that $i_{D}$ actually maps
+is a bijection. But first we need to confirm that $\iota_{D}$ actually maps
 differentials to elements of $\dual{D}$. For a
-differential $\omega\in\diffs{D}$, $i_{D}(\omega)$ is of course a linear
+differential $\omega\in\diffs{D}$, $\iota_{D}(\omega)$ is of course a linear
 functional on $R$, but we need to check that it vanishes on $R(D)$ and
 $k(X)$. If $r\in R(D)$, then $(r_{P}\omega)=(r_{P})+(\omega)\geq -D+D=0$
 and thus $\res_{P}(r_{P}\omega)=0$ by the same argument as in the last
-paragraph. And if $r\in k(X)$, then $\langle r,\omega\rangle=0$ by
-Thm.~\ref{thm:residue}. Thus, $i_{D}(\omega)\in \dual{D}$
-for every $\omega\in\diffs{D}$.
+paragraph. And if $r\in k(X)$, then $\langle r,\omega\rangle=0$ by the
+residue theorem (Thm.~\ref{thm:residue}). Thus, $\iota_{D}(\omega)\in
+\dual{D}$ for every $\omega\in\diffs{D}$.
 
-Now, we can proceed to prove the bijectivity of $i_{D}$, starting with
-injectivity.
-\begin{prop}\label{prop:injectivity}
-  The map $i_{D}:\diffs{D}\to \dual{D}$ is an injection.
-\end{prop}
-\begin{proof}
-  The map is injective if its kernel is trivial. Thus, suppose
-  $i_{D}(\omega)=0$. I will show that for every $P\in X$,
-  $\ord_{P}(\omega)=\infty$, which implies $\omega=0$.
-  Assume to the contrary, so that there is a point $P\in X$ where
-  $\ord_{P}(\omega)$ is bounded. But now we can construct a r\'epartition
-  $r=[\{r_{Q}\}_{Q\in X}]$ such that $r_{Q}=0$ when $Q\neq P$ and
-  $r_{P}=1/t^{\ord_{P}(\omega)+1}$, where $t$ is a local uniformiser at $P$.
-  Then,
-  \[
-    i_{D}(\omega)(r)=\sum_{Q\in X}\res_{Q}(r_{Q}\omega)=\res_{P}(r_{P}\omega)
-  \]
-  Since $\ord_{P}(r_{P}\omega)=\ord_{P}(r_{P})+\ord_{P}(\omega)
-  =-\ord_{P}(\omega)-1+\ord_{P}(\omega)=-1$, we have that $i_{D}(\omega)(r)$ is
-  non-zero, which contradicts the assumption that $i_{D}(\omega)=0$.
-\end{proof}
-
-\subsection{Proof of surjectivity}
-Proving the surjectivity of $\iota_{D}$ is the more challenging and
-interesting part. I begin by making the following basic observation.
-For any two divisors $D_{1}, D_{2}$ such that $D_{1}\geq D_{2}$, we have
-$R(D_{1})\supseteq R(D_{2})$. Therefore, a linear functional vanishing on
-$R(D_{1})$ will also vanish on $R(D_{2})$ so that
+Now I can proceed to prove the bijectivity of $\iota_{D}$. The proof relies
+on the observation that the spaces $\dual{D}$ and $\diffs{D}$ form so called
+\emph{filtered families}, which are tied together by $\iota_{D}$. In the
+proofs of injectivity and surjectivity we will ``move through the
+filtration'' to derive the wanted results. Thus, let us make the following
+observation. For any two divisors $D_{1}, D_{2}$ such that $D_{1}\geq D_{2}$,
+we have $R(D_{1})\supseteq R(D_{2})$. Therefore, a linear functional
+vanishing on $R(D_{1})$ will also vanish on $R(D_{2})$ so that
 $H^{1}(X,\mathcal{L}(D_{1}))^{\vee}\subseteq H^{1}(X,\mathcal{L}(D_{2}))^\vee$.
-Thus, the spaces $\dual{D}$ form a \emph{filtered
-  family}. One can also see that if $D_{1}\geq D_{2}$, then
-$\diffs{D_{1}}\subseteq\diffs{D_{2}}$. Moreover, these inclusions trivially
+One can also see that if $D_{1}\geq D_{2}$, then $\diffs{D_{1}}
+\subseteq\diffs{D_{2}}$. Moreover, these inclusions trivially
 commute with $\iota_{\bullet}$ so that the following square is commutative.
 \begin{equation}\label{eq:iota_square}
   \begin{tikzcd}[column sep=large]
@@ -260,30 +246,59 @@ commute with $\iota_{\bullet}$ so that the following square is commutative.
   between the functors $\diffs{-}$ and $\dual{-}$.
 \end{cat}
 
-The strategy to proving the surjectivity of $\iota_{D}$ is to take
-advantage of this filtering structure. The following proposition will
-let us ``transport the problem along the filtration''.
-\begin{prop}\label{prop:invert_inclusion}
+Now, the following lemma will let us ``transport the problem along the
+filtration''.
+\begin{lemm}\label{lemm:invert_inclusion}
   Suppose $D_{1}$ and $D_{2}$ are two divisors on $X$ such that
   $D_{1}\geq D_{2}$. Furthermore, let $\lambda\in\dual{D_{1}}$ and
   $\omega\in\diffs{D_{2}}$. If $i_{D_{1}}^{D_{2}}(\lambda)
   =\iota_{D_{2}}(\omega)$, then $\omega\in\diffs{D_{1}}$ and
   $\iota_{D}(\omega)=\lambda$.
+\end{lemm}
+This lemma is effectively saying that if we can invert $\lambda$
+along $\iota_{D_{2}}$, then we can invert it along $\iota_{D_{1}}$, when
+$D_{1}\geq D_{2}$.
+\begin{proof}
+  Assume to the contrary that $\omega\not\in\diffs{D_{1}}$. Then,
+  there is a point $P\in X$ such that $\ord_{P}(\omega)<D_{1}(P)$.
+  Now we can construct a r\'epartition $r=\{r_{Q}\}_{Q\in X}$ such that
+  $r_{Q}=0$ when $Q\neq P$ and $r_{P}=1/t^{\ord_{P}(\omega)+1}$, where $t$ is a
+  local uniformiser at $P$. We have $r\in R(D_{1})$, because
+  \[
+    \ord_{P}(r_{P})=-\ord_{P}(\omega)-1>-D_{1}(P)-1
+    \implies \ord_{P}(r_{P})\geq -D_{1}(P).
+  \]
+  Then,
+  \[
+    \lambda(r)=i_{D_{1}}^{D_{2}}(r)=\iota_{D_{2}}(\omega)(r)
+    =\sum_{Q\in X}\res_{Q}(r_{Q}\omega)=\res_{P}(r_{P}\omega).
+  \]
+  Since $\ord_{P}(r_{P}\omega)=\ord_{P}(r_{P})+\ord_{P}(\omega)
+  =-\ord_{P}(\omega)-1+\ord_{P}(\omega)=-1$, we have that $\lambda(r)$ is
+  non-zero. Therefore, $\lambda$ doesn't vanish on $R(D_{1})$, which
+  contradicts the assumption that $\lambda\in\dual{D_{1}}$.
+\end{proof}
+Injectivity of $\iota_{D}$ follows easily from this lemma.
+\begin{prop}\label{prop:injectivity}
+  The map $\iota_{D}:\diffs{D}\to \dual{D}$ is an injection.
 \end{prop}
 \begin{proof}
-  TODO.
+  The map is injective if its kernel is trivial. Thus, suppose
+  $\iota_{D}(\omega)=0$. Since $0\in\dual{D^{\prime}}$ for every divisor
+  $D^{\prime}$, $\omega\in\diffs{D^{\prime}}$ for every divisor $D^{\prime}$
+  such that $D^{\prime}\geq D$ by the above lemma. This clearly implies that
+  $\omega$ must be zero.
 \end{proof}
-This proposition is effectively saying that if we can invert $\lambda$
-along $\iota_{D^{\prime}}$ for some $D^{\prime}\leq D$, then we can
-invert it along $\iota_{D}$. Therefore, if we fix $\lambda\in\dual{D}$,
-our goal is to find some divisor $D^{\prime}$ such that it is easy
-to invert $\lambda$ along $\iota_{D^{\prime}}$.
 
-Now I will introduce an extra degree of freedom, which I can work with.
-Namely, I consider an arbitrary element $\psi\in H^{0}(X,\mathcal{L}(\Delta))$
-for some divisor $\Delta$. This section induces a map
+Proving surjectivity is not quite as easy. Let us fix an element $\lambda
+\in\dual{D}$. I want to find a suitable divisor $D^{\prime}$ with
+$D^{\prime}\leq D$ such that it is easy to invert $\lambda$ along
+$\iota_{D^{\prime}}$. But first I will introduce an extra degree of freedom,
+which I can work with. Namely, I consider an arbitrary element $\psi\in
+H^{0}(X,\mathcal{L}(\Delta))$ for some divisor $\Delta$. This section induces
+a map
 \[H^{1}(X,\mathcal{L}(D-\Delta))\to H^{1}(X,\mathcal{L}(D))
-:[\{r_{P}\}_{P\in X}]\mapsto [\{\psi r_{P}\}_{P\in X}],\]
+:[\{r_{P}\}_{P\in X}]\mapsto [\{\psi r_{P}\}_{P\in X}].\]
 It is easy to check that this map is well-defined. Then, the dual map
 $\dual{D}\to\dual{D-\Delta}$ is defined so that $(\psi f)(r)
 =f(\psi r)$. Note that $\frac1{\psi}\in H^{0}(X,\mathcal{L}((\psi)))$,
@@ -295,18 +310,18 @@ factored as follows.
     \dual{D}\rar["\psi\cdot"]\drar["i_{D}^{D^{\prime}}"']
     & \dual{D-\Delta}\dar["\frac1{\psi}\cdot"] \\ & \dual{D-\Delta-(\psi)}
   \end{tikzcd}\]
-Now, I will prove a result analogous to Prop.~\ref{prop:invert_inclusion},
-which lets us move along these maps induced by elements of
+Now, I will prove a result analogous to Lemma~\ref{lemm:invert_inclusion},
+which lets us ``move along these maps'' induced by elements of
 $H^{0}(X,\mathcal{L}(D))$.
-\begin{prop}\label{prop:invert_multiplication}
+\begin{lemm}\label{lemm:invert_multiplication}
   Suppose $D_{1}$ and $D_{2}$ are two divisors on $X$ and $\psi
   \in H^{0}(X,\mathcal{L}(D_{2}))$. Then, the following square commutes.
   \[\begin{tikzcd}[column sep=large]
-      \dual{D_{1}}\rar[shorten=.3em,"\psi"] & \dual{D_{1}-D_{2}} \\
-      \diffs{D_{1}}\rar["\psi"']\uar["\iota_{D_{1}}"]
+      \dual{D_{1}}\rar[shorten=.3em,"\psi\cdot"] & \dual{D_{1}-D_{2}} \\
+      \diffs{D_{1}}\rar["\psi\cdot"']\uar["\iota_{D_{1}}"]
       & \diffs{D_{2}}\uar["\iota_{D_{2}}"']
     \end{tikzcd}\]
-\end{prop}
+\end{lemm}
 \begin{proof}
   Let $\omega\in\diffs{D_{1}}$ and $r\in H^{1}(X,\mathcal{L}(D_{1}-D_{2}))$.
   Then,
@@ -323,12 +338,12 @@ $H^{0}(X,\mathcal{L}(D))$.
 
 Now I will invert $\psi\lambda$ along $\iota_{D-\Delta}$, which will finally
 let us prove the surjectivity of $\iota_{D}$.
-\begin{prop}\label{prop:invert_iota}
+\begin{lemm}\label{lemm:invert_iota}
   Let $\lambda\in\dual{D}$. Then, there is a divisor $\Delta$,
   a section $\psi\in H^{0}(X,\mathcal{L}(\Delta))$ and a differential
   $\omega\in\diffs{D-\Delta}$ such that $\psi\lambda
   =\iota_{D-\Delta}(\omega)$.
-\end{prop}
+\end{lemm}
 \begin{proof}
   Let $\Delta$ be an arbitrary divisor. The elements $\psi\lambda$ form a
   subspace
@@ -339,23 +354,79 @@ let us prove the surjectivity of $\iota_{D}$.
   $\Lambda$ must interesect with $\im(\iota_{D-\Delta})$. Therefore,
   let us first find a bound for the dimension of $\Lambda$. Consider the map
   \[H^{0}(X,\Delta)\to\dual{D-\Delta}:\psi\mapsto\psi\lambda.\]
-  TODO: Finish proof
-\end{proof}
+  \begin{claim}
+    This map is an injection.
+  \end{claim}
+  {\renewcommand{\qedsymbol}{$\blacksquare$}
+    \begin{proof}
+      Assume for a contradiction that the kernel of this map is non-trivial
+      so that there is some non-zero $\psi\in H^{0}(X,\Delta)$ such that
+      $\psi\lambda=0$. Note that the multiplication map
+      \[
+        H^{1}(X,\mathcal{L}(D-\Delta))\to H^{1}(X,\mathcal{L}(D))
+        :[\{r_{P}\}_{P\in X}]\mapsto [\{\psi r_{P}\}_{P\in X}]
+      \]
+      is clearly surjective since for a repartition
+      $[\{r_{P}\}_{P\in X}\in H^{1}(X,\mathcal{L}(D))]$,
+      $[\{1/\psi\cdot r_{P}\}_{P\in X}]\in H^{1}(X,\mathcal{L}(D-\Delta))$.
+      Thus, the dual map $\psi\cdot:\dual{D}\to\dual{D-\Delta}$ is an injection. But this is a contradiction, because we also have that
+      $\psi\cdot 0=0$. Therefore, the kernel of the map
+      $H^{0}(X,\Delta)\to\dual{D-\Delta}$ is trivial, and hence the map is
+      injective.
+    \end{proof}
+  }
 
-Finally, I can bring all propositions together to prove the surjectivity
-of $\iota_{D}$.
+  Now, this claim implies that $\dim\Lambda=h^{0}(X,\Delta)$, and I can apply
+  the cohomological version of the Riemann-Roch theorem to get a bound
+  \begin{equation}\label{eq:lambda_dimension}
+    \dim\Lambda\geq \deg{\Delta}-g+1.
+  \end{equation}
+  Similarly, since $\iota_{D-\Delta}:\diffs{D-\Delta}\to\dual{D-\Delta}$
+  is an injection, $\dim\left(\im(\iota_{D-\Delta})\right)
+  % TODO: change \dim(\diffs) to h^0.
+  =\dim(\diffs{D-\Delta})$. As $\diffs{D-\Delta}$ is isomorphic to
+  $\mathcal{L}((\omega)-D+\Delta)$ by Prop.~\ref{prop:diffs_isomorph},
+  I can apply Riemann-Roch again:
+  \begin{equation}\label{eq:im_dimension}
+    \dim\left(\im(\iota_{D-\Delta})\right)
+    =h^{0}(X,\mathcal{L}((\omega)-D+\Delta))\geq \deg((\omega)-D+\Delta)-g+1.
+  \end{equation}
+  Of course, I can also apply Riemann-Roch to $\mathcal{L}(D-\Delta)$
+  to get $h^{0}(X,\mathcal{L}(D-\Delta))-h^{1}(X,\mathcal{L}(D-\Delta))
+  =\deg(D-\Delta)-g+1$. Since $\Delta$ was an arbitrary divisor, I can
+  choose it so that $\deg\Delta\geq\deg D$. Then the zeroth cohomology
+  group vanishes and we are left with
+  \begin{equation}\label{eq:fst_dimension}
+    h^{1}(X,\mathcal{L}(D-\Delta))=\deg(\Delta)-\deg D+g-1.
+  \end{equation}
+  Combining inequalities \eqref{eq:lambda_dimension} and
+  \eqref{eq:im_dimension}, we get the following:
+  \[
+    \dim\Lambda+\dim\left(\im(\iota_{D-\Delta})\right)
+    \geq 2\deg(\Delta)-\deg D+\deg(\omega)-2g+2.
+  \]
+  Again, since $\Delta$ was arbitrary, we can make its degree large enough
+  so that
+  \[
+    \dim\Lambda+\dim\left(\im(\iota_{D-\Delta})\right)
+    \geq h^{1}(X,\mathcal{L}(D-\Delta)).
+  \]
+  Now, since the sum of the dimensions of these two subspaces is larger
+  than the total space, they must intersect.
+\end{proof}
+Combining all these lemmas, the surjectivity of $\iota_{D}$ follows.
 \begin{prop}\label{prop:surjectivity}
-  The map $i_{D}:\diffs{D}\to \dual{D}$ is a surjection.
+  The map $\iota_{D}:\diffs{D}\to \dual{D}$ is a surjection.
 \end{prop}
 \begin{proof}
-  Fix an element $\lambda\in\dual{D}$. Then, by Prop.~\ref{prop:invert_iota},
+  Fix an element $\lambda\in\dual{D}$. Then, by Lemma~\ref{lemm:invert_iota},
   there is a section $\psi\in H^{0}(X,\mathcal{L}(\Delta))$ and a differential
   $\omega\in\diffs{D-\Delta}$ such that $\psi\lambda=\iota_{D-\Delta}(\omega)$.
   Then,
   \[\lambda=\frac1{\psi}(\psi\lambda)=\frac1{\psi}\iota_{D-\Delta}(\omega),\]
-  and by Prop.~\ref{prop:invert_multiplication}, this is
+  and by Lemma~\ref{lemm:invert_multiplication}, this is
   \[\lambda=\iota_{D-\Delta-(\psi)}(\frac1{\psi}\omega).\]
-  Finally, Prop.~\ref{prop:invert_inclusion} implies that
+  Finally, Lemma~\ref{lemm:invert_inclusion} implies that
   $\frac1{\psi}\omega\in\dual{D}$ and that $\iota_{D}(\frac1{\psi}\omega)
   =\lambda$, concluding the proof.
 \end{proof}
@@ -378,9 +449,8 @@ of $\iota_{D}$.
   \end{tikzcd}\]
 \end{cat}
 
-\subsection{Conclusion}
 We finally arrive at the Serre Duality theorem!
-\begin{thm}[Serre Duality]
+\begin{thm}[Serre Duality]\label{thm:serre}
   If $X$ is an algebraic curve as in the previous section
   and $D$ is a divisor on $X$, there is an isomorphism
   \[
@@ -392,6 +462,6 @@ We finally arrive at the Serre Duality theorem!
 \begin{proof}
   Combining Propositions \ref{prop:injectivity} and \ref{prop:surjectivity}
   shows that the linear map
-  \[i_{D}:\diffs{D}\to \dual{D}\]
+  \[\iota_{D}:\diffs{D}\to \dual{D}\]
   is a bijection so that it defines an isomorphism between the two spaces.
 \end{proof}

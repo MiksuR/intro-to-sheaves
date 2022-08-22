@@ -19,17 +19,43 @@ on stalks, it would also be exact on global sections:
   \rar & \Gamma(\mathscr{H}) \rar & 0.
 \end{tikzcd}
 \]
-Unfortunately, this is not the case. One can prove that this sequence
-is exact at $\Gamma(\mathscr{F})$ and $\Gamma(\mathscr{G})$, but it
-is not always exact at $\Gamma(\mathscr{H})$.
+Unfortunately, this is not the case. For example, let
+$X=\mathbb{P}^{1}_{\mathbb{C}}$ and consider the sheaf morphism
+\[f:\mathscr{O}_{X}\to\mathbb{C}_{P_{0}}\oplus\mathbb{C}_{P_{1}},\]
+which evaluates $f$ at some points $P_{0},P_{1}\in X$. Then, the
+morphism is clearly surjective on the stalks. But it is not surjective
+on global sections, since the global sections of $\mathscr{O}_{X}$ are
+the constant functions. In other words, the exact sequence
+\[\mathscr{O}_{X}\to\mathbb{C}_{P_{0}}\oplus\mathbb{C}_{P_{1}}\to 0\]
+does not give an exact sequence on global sections.
+
+However, we have the following.
+\begin{prop}
+  If the sequence
+  \[
+  \begin{tikzcd}
+    0\rar & \mathscr{F}\rar & \mathscr{G}\rar & \mathscr{H}\rar & 0
+  \end{tikzcd}
+  \]
+  is exact, then the sequence
+  \[
+  \begin{tikzcd}
+    0\rar & \Gamma(\mathscr{F})\rar{\alpha} & \Gamma(\mathscr{G})\rar{\beta}
+    & \Gamma(\mathscr{H})
+  \end{tikzcd}
+  \]
+  is also exact.
+\end{prop}
+\begin{proof}\hfill
+  \begin{description}[style=nextline]
+    \item[Exactness at $\Gamma(\mathscr{F})$]
+          Suppose $\phi\in\ker(\alpha)$ % TODO
+  \end{description}
+
+\end{proof}
 \begin{cat}
   We say that the global sections functor $\Gamma: \text{Sh}(X)\to \textbf{Ab}$ is left-exact but not right-exact.
 \end{cat}
-In more concrete terms, if we know that a morphism $f: \mathscr{F}
-\to\mathscr{G}$ is injective on stalks, it is also injective on
-global sections. But if the morphism is surjective on stalks, we don't
-know whether or not it is surjective on global sections.
-% TODO: Add an example
 
 Although exact sequences are not completely preserved under taking
 global sections, we won't give up! There might still be \emph{a way of
@@ -39,8 +65,10 @@ so that the following sequence is exact.
 \[
 \begin{tikzcd}
   0 \rar & \Gamma(\mathscr{F}) \rar & \Gamma(\mathscr{G})
-  \rar & \Gamma(\mathscr{H})
-  \arrow[out=0, in=180, looseness=1.5, overlay]{dll} & \\
+  \rar\dar[phantom, ""{coordinate, name=Z}] & \Gamma(\mathscr{H})
+  \arrow[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+    |- (Z) -| ([xshift=-2ex]\tikztotarget.west) -- (\tikztotarget)},
+  overlay]{dll} & \\
     & H^{1}(\mathscr{F}) \rar & H^{1}(\mathscr{G})
   \rar & H^{1}(\mathscr{H}) \rar & \cdots \\
   \cdots \rar& H^{i}(\mathscr{F}) \rar & H^{i}(\mathscr{G})
@@ -49,18 +77,124 @@ so that the following sequence is exact.
 \]
 This problem of extending incomplete short exact sequences appears
 elsewhere in homological algebra and is generally solved by constructing
-so-called \emph{derived functors}. These modules $H^{i}(-)$ given by derived
-functors are then called the sheaf cohomology groups. In practise, they are
-difficult to compute, so we want to find an alternative definition,
-which is easier to work with. This is achieved by \emph{\v Cech cohomology}.
-Next, I will explain derived functors and show how we arrived at \v Cech
-cohomology from there. However, this will involve a lot of new, high-level
-concepts and category theory. Understanding the philosophy behind
-\v Cech cohomolgy is not essential, and one can safely skip straight to the
-definition of the \v Cech cohomology groups given in Def.~\ref{def:cech}.
+so-called \emph{derived functors}. These vector spaces $H^{i}(-)$ given by
+derived functors are then called the sheaf cohomology groups. In practise,
+they are difficult to compute, and thus I will define the \emph{\v Cech
+  cohomology} which is a tool for computing sheaf cohomology.
+In the next subsection I will introduce derived functors and deduce the
+definition of \v Cech cohomology. The contents of the subsection will be
+more technical than the rest of the paper, and it is probably a good idea
+to skip straight to Definition~\ref{def:cech}, which can be taken as
+\emph{the} definition of sheaf cohomology.
 
-\subsection{Motivating \v Cech cohomology}
+\subsection{From derived functors to \v Cech cohomology*}
+Let us consider the general problem of extending a left-exact
+functor $\mathcal{F}:\mathcal{A}\to\mathcal{B}$ between abelian categories
+(which one may think of as categories of modules). Thus, for objects
+$A,B,C$ of $\mathcal{A}$, we want to find groups $H^{i}(A),H^{i}(B),H^{i}(C)$
+and connecting morphisms so that the sequence
+\[
+\begin{tikzcd}
+  0 \rar & \mathcal{F}(A) \rar & \mathcal{F}(B)
+  \rar\dar[phantom, ""{coordinate, name=Z}] & \mathcal{F}(C)
+  \arrow[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+    |- (Z) -| ([xshift=-2ex]\tikztotarget.west) -- (\tikztotarget)},
+  overlay]{dll} & \\
+    & H^{1}(A) \rar & H^{1}(B)\rar & H^{1}(C) \rar & \cdots \\
+  \cdots \rar& H^{i}(A) \rar & H^{i}(B)\rar & H^{i}(C) \rar & \cdots.
+\end{tikzcd}
+\]
+is exact. The following lemma from homological algebra gives a hint of
+what approach we should take to find such groups.
+\begin{lemm}[Zig-zag lemma]
+  Suppose $A^{\bullet},B^{\bullet},C^{\bullet}$ are cochain complexes in some
+  abelian category. If there is a SES
+  \[\begin{tikzcd}
+      0\rar & A^{\bullet}\rar & B^{\bullet}\rar & C^{\bullet}\rar & 0
+    \end{tikzcd},\]
+  then there are maps between the cohomology groups of these complexes
+  such that the sequence
+  \[\begin{tikzcd}
+    & H^{0}(A^{\bullet}) \rar & H^{0}(B^{\bullet})
+    \rar\dar[phantom, ""{coordinate, name=Z}] & H^{0}(C^{\bullet})
+    \arrow[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
+      |- (Z) -| ([xshift=-2ex]\tikztotarget.west) -- (\tikztotarget)},
+    overlay]{dll} & \\
+    & H^{1}(A^{\bullet}) \rar & H^{1}(B^{\bullet})\rar
+    & H^{1}(C^{\bullet}) \rar & \cdots \\
+    \cdots \rar& H^{i}(A^{\bullet}) \rar & H^{i}(B^{\bullet})\rar
+    & H^{i}(C^{\bullet}) \rar & \cdots.
+    \end{tikzcd}\]
+  is exact.
+\end{lemm}
+\begin{proof}
+  The maps $H^{i}(A^{\bullet})\to H^{i}(B^{\bullet})$ and $H^{i}(B^{\bullet})
+  \to H^{i}(C^{\bullet})$ are given by functoriality, and the connecting
+  morphisms $H^{i}(C^{\bullet})\to H^{i+1}(A^{\bullet})$ are given by the
+  snake lemma. It would be an easy but mundane exercise to check exactness
+  of this sequence. I will instead use a spectral sequence argument (See
+  below for more discussion on spectral sequences).
 
+  Define the zeroth page of a spectral sequence to be the following
+  double complex given by the SES of complexes.
+  \[\begin{tikzcd}
+      & \vdots & \vdots & \vdots & \\
+      0\rar & A^{2}\rar\uar & B^{2}\rar\uar & C^{2}\rar\uar & 0 \\
+      0\rar & A^{1}\rar\uar & B^{1}\rar\uar & C^{1}\rar\uar & 0 \\
+      0\rar & A^{0}\rar\uar & B^{0}\rar\uar & C^{0}\rar\uar & 0 \\
+      & 0\uar & 0\uar & 0\uar &
+    \end{tikzcd}\]
+  Since the rows are exact the first page is zero when we use the rightward
+  orientation. Now, compute the first page using upward orientation.
+  We get the following
+  \[\begin{tikzcd}
+      & \vdots & \vdots & \vdots & \\
+      0\rar & H^{2}(A^{\bullet})\rar{\alpha_{2}}
+      & H^{2}(B^{\bullet})\rar{\beta_{2}} & H^{2}(C^{\bullet})\rar & 0 \\
+      0\rar & H^{1}(A^{\bullet})\rar{\alpha_{1}}
+      & H^{1}(B^{\bullet})\rar{\beta_{1}} & H^{1}(C^{\bullet})\rar & 0 \\
+      0\rar & H^{0}(A^{\bullet})\rar{\alpha_{0}}
+      & H^{0}(B^{\bullet})\rar{\beta_{0}} & H^{0}(C^{\bullet})\rar & 0 \\
+    \end{tikzcd}\]
+  Finally, the second page we will have
+
+  \begin{center}
+  \begin{tikzpicture}[commutative diagrams/every diagram, x=2.2cm, y=1.7cm]
+    \clip (0.8,0.5) rectangle (5.2,3.5);
+    \node (A0) at (2,1) {$H^{0}(A^{\bullet})$};
+    \node (B0) at (3,1) {$H^{0}(B^{\bullet})$};
+    \node (C0) at (4,1) {$H^{0}(C^{\bullet})$};
+    \node (A1) at (2,2) {$H^{1}(A^{\bullet})$};
+    \node (B1) at (3,2) {$H^{1}(B^{\bullet})$};
+    \node (C1) at (4,2) {$H^{1}(C^{\bullet})$};
+    \node (A2) at (2,3) {$H^{2}(A^{\bullet})$};
+    \node (B2) at (3,3) {$H^{2}(B^{\bullet})$};
+    \node (C2) at (4,3) {$H^{2}(C^{\bullet})$};
+    \node (lu) at (1,3) {$0$};
+    \node (lm) at (1,2) {$0$};
+    \node (rd) at (5,1) {$0$};
+    \node (rm) at (5,2) {$0$};
+
+    \path[commutative diagrams/.cd, every arrow, every label]
+      (0,4) edge (A2)
+      (0,3) edge (A1)
+      (0,2) edge (A0)
+      (lu) edge (B1)
+      (lm) edge (B0)
+      (1,4) edge (B2)
+      (2,4) edge (C2)
+      (A2) edge (C1)
+      (A1) edge (C0)
+      (B2) edge (rm)
+      (B1) edge (rd)
+      (C2) edge (6,2)
+      (C1) edge (6,1)
+      (C0) edge (6,0)
+      (A0) edge (4,0)
+      (B0) edge (5,0);
+  \end{tikzpicture}
+  \end{center}
+\end{proof}
 
 \subsection{Results in cohomology}
 

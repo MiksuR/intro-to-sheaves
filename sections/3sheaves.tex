@@ -1,6 +1,34 @@
 \section{Sheaves}
+\begin{cat}
+  Suppose $\mathcal{F}: \text{Op}(X)^{\text{op}}\to\mathcal{C}$ is a pre-sheaf.
+  If $\mathcal{C}$ has limits, we can express the sheaf axioms in the
+  language of equalisers. Namely, $\mathcal{F}$ is a sheaf if for every
+  open set $U$ of $X$ and an open cover $U_{i}$ of $U$ the following
+  diagram is an equaliser diagram.
+  \begin{equation}\label{diag:sheaf_eq}\begin{tikzcd}
+      \mathcal{F}(U)\rar
+      & \displaystyle\prod_{i}\mathcal{F}(U_{i})\rar[shift left]\rar[shift right]
+      & \displaystyle\prod_{i,j}\mathcal{F}(U_{i}\cap U_{j})
+    \end{tikzcd},\end{equation}
+  where the first map is the product of the restrictions
+  $\text{res}_{U}^{U_{i}}$ and the pair of maps are products of the
+  restrictions $\text{res}_{U_{i}}^{U_{i}\cap U_{j}}$ and
+  $\text{res}_{U_{j}}^{U_{i}\cap U_{j}}$ respectively.
+\end{cat}
+
 The category of sheaves which takes values in an abelian category is
 itself abelian, so we can do homological algebra in it.
+\begin{cat}
+  Equaliser diagrams in abelian categories can be expressed in terms
+  of exact sequences. Therefore, the diagram \eqref{diag:sheaf_eq}
+  can be expressed as the exact sequence
+  \begin{equation}\label{diag:sheaf_ex}\begin{tikzcd}
+      0\rar & \mathcal{F}(U)\rar & \displaystyle\prod_{i}\mathcal{F}(U_{i})
+      \rar{\text{res}_{U_{i}}^{U_{i}\cap U_{j}}-\text{res}_{U_{j}}^{U_{i}\cap U_{j}}}
+      &[5em] \displaystyle\prod_{i,j}\mathcal{F}(U_{i}\cap U_{j})
+    \end{tikzcd},\end{equation}
+  when the sheaf takes values in an abelian category.
+\end{cat}
 
 \begin{thm}\label{thm:ses_equivalence}
   For a collection $(\mathscr{F}_{i})_{i\in\mathbb{Z}}$ of sheaves on

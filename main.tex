@@ -18,6 +18,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \usepackage{braket}
 
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\res}{Res}
 \DeclareMathOperator{\Div}{Div}
@@ -27,12 +28,13 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \usepackage{tikz-cd}
 
 \usepackage{tcolorbox}
+\tcbuselibrary{breakable}
 \usepackage{emoji}
 
 \linespread{1.1}
 \frenchspacing
 
-%\includeonly{sections/6serre}
+%\includeonly{sections/4cohomology}
 
 \begin{document}
 
@@ -56,6 +58,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 
 \tcbset{beforeafter skip=8pt, toptitle=2pt, bottomtitle=2pt}
 \newtcolorbox{cat}{colback=blue!5!white, colframe=blue!80!white, title=\emoji{warning} Abstract nonsense ahead}
+\newtcolorbox{bcat}{colback=blue!5!white, colframe=blue!80!white, breakable, title=\emoji{warning} Abstract nonsense ahead}
 \newtcolorbox{lnote}{colback=white, colframe=yellow!90!black, center}
 \newtcbox{\note}{colback=white, colframe=yellow!90!black, center}
 
@@ -63,6 +66,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \newcommand{\diffs}[1]{H^0(X,K_X\otimes\mathcal{L}(#1)^{\vee})}
 \newcommand{\dual}[1]{H^1(X,\mathcal{L}(#1))^{\vee}}
 \newcommand{\duals}{H^1(X,\mathcal{L}(\kern.08em\bullet\kern.08em))^{\vee}}
+\renewcommand{\emptyset}{\text{\O}}
 
 \include{sections/1intro}
 \include{sections/2varieties}

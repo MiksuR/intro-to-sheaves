@@ -89,23 +89,30 @@ to skip straight to Definition~\ref{def:cech}, which can be taken as
 
 \subsection{From derived functors to \v Cech cohomology*}
 Let us consider the general problem of extending a left-exact
-functor $\mathcal{F}:\mathcal{A}\to\mathcal{B}$ between abelian categories
-(which one may think of as categories of modules). Thus, for objects
-$A,B,C$ of $\mathcal{A}$, we want to find groups $H^{i}(A),H^{i}(B),H^{i}(C)$
-and connecting morphisms so that the sequence
+functor $F:\mathcal{A}\to\mathcal{B}$ between abelian categories
+(which one may think of as categories of modules) to the right. Thus, for
+objects $A,B,C$ of $\mathcal{A}$ fitting into a SES
+\[\begin{tikzcd}
+    0\rar & A\rar & B\rar & C\rar & 0
+  \end{tikzcd},\]
+we want to find functors $R^{i}F:\mathcal{A}\to\mathcal{B}$ and
+connecting morphisms so that the sequence
 \[
 \begin{tikzcd}
-  0 \rar & \mathcal{F}(A) \rar & \mathcal{F}(B)
-  \rar\dar[phantom, ""{coordinate, name=Z}] & \mathcal{F}(C)
+  0 \rar & F(A) \rar & F(B)
+  \rar\dar[phantom, ""{coordinate, name=Z}] & F(C)
   \arrow[rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east)
     |- (Z) -| ([xshift=-2ex]\tikztotarget.west) -- (\tikztotarget)},
   overlay]{dll} & \\
-    & H^{1}(A) \rar & H^{1}(B)\rar & H^{1}(C) \rar & \cdots \\
-  \cdots \rar& H^{i}(A) \rar & H^{i}(B)\rar & H^{i}(C) \rar & \cdots.
+  & R^{1}F(A)\rar & R^{1}F(B)\rar
+  & R^{1}F(C)\rar & \cdots \\
+  \cdots\rar & R^{i}F(A)\rar & R^{i}F(B)\rar
+  & R^{i}F(C)\rar & \cdots.
 \end{tikzcd}
 \]
-is exact. The following lemma from homological algebra gives a hint of
-what approach we should take to find such groups.
+is exact. The functors $R^{i}F$ will be called the \emph{right
+  derived functors} of $F$. The following lemma from homological
+algebra gives a hint of what approach we should take to find such functors.
 \begin{lemm}[Zig-zag lemma]
   Suppose $A^{\bullet},B^{\bullet},C^{\bullet}$ are cochain complexes in some
   abelian category. If there is a SES
@@ -123,7 +130,7 @@ what approach we should take to find such groups.
     & H^{1}(A^{\bullet}) \rar & H^{1}(B^{\bullet})\rar
     & H^{1}(C^{\bullet}) \rar & \cdots \\
     \cdots \rar& H^{i}(A^{\bullet}) \rar & H^{i}(B^{\bullet})\rar
-    & H^{i}(C^{\bullet}) \rar & \cdots.
+    & H^{i}(C^{\bullet}) \rar & \cdots
     \end{tikzcd}\]
   is exact.
 \end{lemm}
@@ -131,9 +138,9 @@ what approach we should take to find such groups.
   The maps $H^{i}(A^{\bullet})\to H^{i}(B^{\bullet})$ and $H^{i}(B^{\bullet})
   \to H^{i}(C^{\bullet})$ are given by functoriality, and the connecting
   morphisms $H^{i}(C^{\bullet})\to H^{i+1}(A^{\bullet})$ are given by the
-  snake lemma. It would be an easy but mundane exercise to check exactness
-  of this sequence. I will instead use a spectral sequence argument (See
-  below for more discussion on spectral sequences).
+  snake lemma. Working out the details of this diagram chasing argument
+  is a good exercise for the reader. I will instead use a spectral sequence
+  argument (See below for more discussion on spectral sequences).
 
   Define the zeroth page of a spectral sequence to be the following
   double complex given by the SES of complexes.
@@ -145,8 +152,8 @@ what approach we should take to find such groups.
       & 0\uar & 0\uar & 0\uar &
     \end{tikzcd}\]
   Since the rows are exact the first page is zero when we use the rightward
-  orientation. Now, compute the first page using upward orientation.
-  We get the following
+  orientation. Now, let us compute the first page using upward orientation.
+  We get the following.
   \[\begin{tikzcd}
       & \vdots & \vdots & \vdots & \\
       0\rar & H^{2}(A^{\bullet})\rar{\alpha_{2}}
@@ -156,20 +163,20 @@ what approach we should take to find such groups.
       0\rar & H^{0}(A^{\bullet})\rar{\alpha_{0}}
       & H^{0}(B^{\bullet})\rar{\beta_{0}} & H^{0}(C^{\bullet})\rar & 0 \\
     \end{tikzcd}\]
-  Finally, the second page we will have
+  Finally, in the second page we will have
 
   \begin{center}
   \begin{tikzpicture}[commutative diagrams/every diagram, x=2.2cm, y=1.7cm]
     \clip (0.8,0.5) rectangle (5.2,3.5);
-    \node (A0) at (2,1) {$H^{0}(A^{\bullet})$};
-    \node (B0) at (3,1) {$H^{0}(B^{\bullet})$};
-    \node (C0) at (4,1) {$H^{0}(C^{\bullet})$};
-    \node (A1) at (2,2) {$H^{1}(A^{\bullet})$};
-    \node (B1) at (3,2) {$H^{1}(B^{\bullet})$};
-    \node (C1) at (4,2) {$H^{1}(C^{\bullet})$};
-    \node (A2) at (2,3) {$H^{2}(A^{\bullet})$};
-    \node (B2) at (3,3) {$H^{2}(B^{\bullet})$};
-    \node (C2) at (4,3) {$H^{2}(C^{\bullet})$};
+    \node (A0) at (2,1) {$\ker(\alpha_{0})$};
+    \node (B0) at (3,1) {$\frac{\ker(\beta_{0})}{\im(\alpha_{0})}$};
+    \node (C0) at (4,1) {$\coker(\beta_{0})$};
+    \node (A1) at (2,2) {$\ker(\alpha_{1})$};
+    \node (B1) at (3,2) {$\frac{\ker(\beta_{1})}{\im(\alpha_{1})}$};
+    \node (C1) at (4,2) {$\coker(\beta_{1})$};
+    \node (A2) at (2,3) {$\ker(\alpha_{2})$};
+    \node (B2) at (3,3) {$\frac{\ker(\beta_{2})}{\im(\alpha_{2})}$};
+    \node (C2) at (4,3) {$\coker(\beta_{2})$};
     \node (lu) at (1,3) {$0$};
     \node (lm) at (1,2) {$0$};
     \node (rd) at (5,1) {$0$};
@@ -194,7 +201,353 @@ what approach we should take to find such groups.
       (B0) edge (5,0);
   \end{tikzpicture}
   \end{center}
+  One can see that the spectral sequence will converge on the third
+  page. Since the sequence converges to zero, the sequences
+  \[\begin{tikzcd}
+      0\rar & \ker(\alpha_{i+1})\rar & \coker(\beta_{i})\rar & 0,
+    \end{tikzcd}\]
+  given by the differentials on the second page must be exact.
+  These isomorphisms induce maps
+  \[\delta_{i}:H^{i}(C^{\bullet})\to H^{i+1}(A^{\bullet}).\]
+  The convergence of the spectral sequence also implies that
+  $\ker(\beta_{i})/\im(\alpha_{i})=0$. Putting these results together,
+  we see that the sequence
+  \[\begin{tikzcd}
+    & H^{0}(A^{\bullet})\rar{\alpha_{0}} & H^{0}(B^{\bullet})
+    \rar{\beta_{0}}\dar[phantom, ""{coordinate, name=Z}] & H^{0}(C^{\bullet})
+    \arrow[rounded corners, to path={[pos=0] --
+      ([xshift=2ex]\tikztostart.east) |- (Z) -|
+      ([xshift=-2ex]\tikztotarget.west)\tikztonodes -- (\tikztotarget)},
+    "\delta_{0}"']{dll} & \\
+    & H^{1}(A^{\bullet})\rar{\alpha_{1}} & H^{1}(B^{\bullet})\rar{\beta_{1}}
+    & H^{1}(C^{\bullet})\rar{\delta_{1}} & \cdots \\
+    \cdots \rar{\delta_{i-1}}& H^{i}(A^{\bullet})\rar{\alpha_{i}}
+    & H^{i}(B^{\bullet})\rar{\beta_{i}} & H^{i}(C^{\bullet})\rar{\delta_{i}}
+    & \cdots
+    \end{tikzcd}\]
+  is exact.
 \end{proof}
+
+Therefore, in order to extend the sequence
+\[\begin{tikzcd}
+    0\rar & F(A)\rar & F(B)\rar & F(C)
+  \end{tikzcd},\]
+we wish to find cocomplexes $A^{\bullet}, B^{\bullet}, C^{\bullet}$
+associated to $A, B, C$ such that
+\begin{enumerate}
+  \item The cochain complexes $A^{\bullet}, B^{\bullet}, C^{\bullet}$ fit into a
+        SES
+        \[\begin{tikzcd}
+            0\rar & A^{\bullet}\rar & B^{\bullet}\rar & C^{\bullet}\rar & 0
+          \end{tikzcd}\]
+  \item The zeroth cohomology coincides with $F$:
+        \[H^{0}(A^{\bullet})=F(A),
+        \quad H^{0}(B^{\bullet})=F(B),
+        \quad H^{0}(C^{\bullet})=F(C).\]
+\end{enumerate}
+
+One way of associating a cochain complex to an object $A$ is to take its
+\emph{resolution}. In other words, by finding objects $A^{i}$ and
+morphisms such that the sequence
+\[\begin{tikzcd}
+    0\rar & A\rar{\alpha} & A^{0}\rar{\alpha_{0}} & A^{1}\rar{\alpha_{1}}
+    & A^{2}\rar{\alpha_{2}} & \cdots
+  \end{tikzcd}\]
+is exact. Let us concentrate on the first few terms of this sequence.
+\[\begin{tikzcd}
+    0\rar & A\rar{\alpha} & A^{0}\rar{\alpha_{0}} & A^{1}
+  \end{tikzcd}.\]
+Since $F$ is left-exact, we get an another exact sequence:
+\[\begin{tikzcd}
+    0\rar & F(A)\rar{\alpha^{\ast}}
+    & F(A^{0})\rar{\alpha_{0}^{\ast}} & F(A^{1})
+  \end{tikzcd}.\]
+Now, exactness implies that $\ker(\alpha_{0}^{\ast})=\im(\alpha^{\ast})
+=F(A)$. Therefore, if I were to replace $F(A)$ by $0$,
+then the cohomology at $F(A^{0})$ would be $F(A)$!
+Thus, considering the cochain complex
+\[\begin{tikzcd}
+    0\rar & F(A^{0})\rar{\alpha_{0}^{\ast}}
+    & F(A^{1})\rar{\alpha_{1}^{\ast}}
+    & F(A^{2})\rar{\alpha_{2}^{\ast}} & \cdots
+  \end{tikzcd},\]
+we see that taking the cohomology of this complex will give
+\[H^{0}(F(A^{\bullet}))=F(A).\]
+Hence, if I construct the cochain complexes $A^{\bullet},B^{\bullet},
+C^{\bullet}$ from resolutions of $A,B,C$ as above, then the resulting
+cohomolgy will satisfy the second requirement. Next, I want to find the right
+type of resolution so that the cochain complexes satisfy the first
+requirement above.
+
+What we have currently is the following picture.
+\[\begin{tikzcd}
+    & \vdots & \vdots & \vdots & \\
+    & A^{1}\uar{\alpha_{1}} & B^{1}\uar{\beta_{1}} & C^{1}\uar{\gamma_{1}} & \\
+    & A^{0}\uar{\alpha_{0}} & B^{0}\uar{\beta_{0}} & C^{0}\uar{\gamma_{0}} & \\
+    0\rar& A\rar{f}\uar{\alpha} & B\rar{g}\uar{\beta} & C\rar\uar{\gamma}&0\\
+    & 0\uar & 0\uar & 0\uar &
+  \end{tikzcd}\]
+If I use \emph{injective resolutions}, the diagram can be filled in with
+approprate morphisms so that it gives a SES of complexes.
+\begin{defin}
+  An object $I$ of an abelian category $\mathcal{A}$ is injective,
+  if for every injection $f:A\hookrightarrow B$ and every morphism
+  $g:A\to I$, there is a morphism $B\to I$ such that the following
+  diagram commutes.
+  % TODO: Orient the diagram so that it lines up with the diagram
+  %       in the proof of Prop. 3.4.
+  \[\begin{tikzcd}
+      B\rar[dashed] & I \\
+      A\uar[hook]{f}\arrow["g"']{ur}
+    \end{tikzcd}\]
+\end{defin}
+Then, an injective resolution of an object $A$ is a long exact sequence
+\[\begin{tikzcd}
+    0\rar & A\rar & I^{0}\rar & I^{1}\rar & \cdots
+  \end{tikzcd}\]
+where the $I^{i}$ are injective. Note that it is not obvious that an object
+of an abelian category should have an injective resolution. Thus, we assume
+that the category $\mathcal{A}$ has \emph{enough injectives} meaning that
+for every object $A$ of $\mathcal{A}$, there is an injection
+$A\hookrightarrow I$ into some injective object $I$. Then, for every object
+$A$ we can construct an injective resolution inductively. The first object
+$I^{0}$ is given directly by the assumption. Then suppose we have constructed
+an exact sequence
+\[\begin{tikzcd}
+    0\rar & A\rar & I^{0}\rar{\iota_{0}} & \cdots\rar
+    & I^{n-1}\rar{\iota_{n-1}} & I^{n}
+  \end{tikzcd}.\]
+Let us take $I^{n+1}$ to be an injective object such that there is
+an injection $\coker(\iota_{n-1})\hookrightarrow I^{n+1}$. Then we have
+\[\begin{tikzcd}
+    0\rar & A\rar & I^{0}\rar{\iota_{0}} & \cdots\rar
+    & I^{n-1}\rar{\iota_{n-1}} & I^{n}\rar[two heads]
+    & \coker(\iota_{n-1})\rar[hook] & I^{n+1}
+  \end{tikzcd}.\]
+When the injection is composed with the projection, we get the exact sequence
+\[\begin{tikzcd}
+    0\rar & A\rar & I^{0}\rar{\iota_{0}} & \cdots\rar
+    & I^{n-1}\rar{\iota_{n-1}} & I^{n}\rar{\iota_{n}} & I^{n+1}
+  \end{tikzcd}.\]
+
+Now, it follows directly from the definitions that any SES can
+be lifted along an injective resolution:
+\begin{prop}
+  If $A, B, C$ are objects of an abelian category $\mathcal{A}$ with enough
+  injectives fitting into a SES
+  \[\begin{tikzcd}
+      0\rar & A\rar{f} & B\rar{g} & C\rar & 0
+    \end{tikzcd},\]
+  and $A$ and $C$ have injective resolutions $A^{\bullet}$ and $C^{\bullet}$,
+  then there is an injective resolution $B^{\bullet}$ of $B$ and maps
+  $f^{i}:A^{i}\to B^{i}$ and $g^{i}:B^{i}\to C^{i}$ such that the following
+  commutative diagram has exact rows.
+\[\begin{tikzcd}
+    & \vdots & \vdots & \vdots & \\
+    0\rar & A^{1}\rar{f^{1}}\uar{\alpha_{1}} & B^{1}\rar{g^{1}}\uar{\beta_{1}}
+    & C^{1}\rar\uar{\gamma_{1}} & 0 \\
+    0\rar & A^{0}\rar{f^{0}}\uar{\alpha_{0}} & B^{0}\rar{g^{0}}\uar{\beta_{0}}
+    & C^{0}\rar\uar{\gamma_{0}} & 0 \\
+    0\rar& A\rar{f}\uar{\alpha} & B\rar{g}\uar{\beta} & C\rar\uar{\gamma}&0\\
+    & 0\uar & 0\uar & 0\uar &
+  \end{tikzcd}\]
+\end{prop}
+\begin{proof}
+  TODO.
+\end{proof}
+Now I only need to apply the functor $F$ on this double complex
+and remove the bottom row. The only worry is that the rows don't stay
+exact. Thus, I will need to prove one more small result.
+\begin{prop}
+  A left-exact functor $F:\mathcal{A}\to\mathcal{B}$ between
+  abelian categories is exact on short exact sequences of injective objects.
+\end{prop}
+\begin{proof}
+  Suppose $I_{1}, I_{2}, I_{3}$ are injective objects in $\mathcal{A}$
+  such that there is a SES
+  \[\begin{tikzcd}
+      0\rar & I_{1}\rar & I_{2}\rar & I_{3}\rar & 0
+    \end{tikzcd}.\]
+
+  TODO.
+\end{proof}
+
+In summary, given a left-exact functor $F:\mathcal{A}\to
+\mathcal{B}$ and an object $A$ of $\mathcal{A}$, one constructs the $i$th
+right derived functor of $F$ at $A$ in the following way:
+\begin{enumerate}
+  \item Find an injective resolution $0\to A\to I^{\bullet}$ of $A$
+  \item Apply $F$ on the cochain complex $0\to I^{\bullet}$
+  \item Take the $i$th cohomology of this cochain complex
+        \[\begin{tikzcd}
+            0\rar & F(I^{0})\rar & F(I^{1})\rar
+            & F(I^{2})\rar & \cdots
+          \end{tikzcd}\]
+\end{enumerate}
+We denote $R^{i}F(A)=H^{i}(F(I^{\bullet}))$ for the
+derived functor.
+\begin{bcat}
+  One could ask: ``How do we know that derived functors give the `right'
+  way of extending the left-exact functor to the right?'' This can be
+  formalised by considering so-called (cohomological) $\delta$-functors,
+  which consist of pairs $(T^{i},\delta^{i})$, where
+  \begin{enumerate}
+    \item The $T^{i}:\mathcal{A}\to\mathcal{B}$ are functors between abelian
+          categories with $T^{i}=0$ for $i<0$, and
+    \item $\delta^{i}:T^{i}(C)\to T^{i+1}(A)$ are morphisms in $\mathcal{B}$,
+  \end{enumerate}
+  such that for every SES
+  \[\begin{tikzcd}
+      0\rar & A\rar & B\rar & C\rar & 0
+    \end{tikzcd}\]
+  in $\mathcal{A}$, we have a long exact sequence
+  \[\begin{tikzcd}
+      0\rar & T^{0}(A)\rar & T^{0}(B)\rar\dar[phantom, ""{coordinate, name=Z}]
+      & T^{0}(C)\arrow[rounded corners, to path={[pos=0] --
+      ([xshift=2ex]\tikztostart.east) |- (Z) -|
+      ([xshift=-2ex]\tikztotarget.west)\tikztonodes -- (\tikztotarget)},
+    "\delta_{0}"']{dll} & \\
+    & T^{1}(A)\rar & T^{1}(B)\rar & T^{1}(C)\rar{\delta_{1}} & \cdots \\
+    \cdots \rar{\delta_{i-1}}& T^{i}(A)\rar & T^{i}(B)\rar
+    & T^{i}(C)\rar{\delta_{i}} & \cdots
+    \end{tikzcd}\]
+  In addition, we require functoriality of this construction: If
+  \[\begin{tikzcd}
+      0\rar & A\rar\dar & B\rar\dar & C\rar\dar & 0 \\
+      0\rar & A^{\prime}\rar & B^{\prime}\rar & C^{\prime}\rar & 0
+    \end{tikzcd}\]
+  is a morphism of short exact sequences in $\mathcal{A}$, then the
+  squares
+  \[\begin{tikzcd}
+      T^{i}(C)\rar{\delta^{i}}\dar & T^{i+1}(A)\dar \\
+      T^{i}(C^{\prime})\arrow["\delta^{i}"']{r} & T^{i+1}(A^{\prime})
+    \end{tikzcd}\]
+  commute.
+
+  One can then define morphisms of $\delta$-functors so that they form
+  a category. Then, one can define the concept of a \emph{universal}
+  $\delta$\emph{-functor} in this category: A $\delta$-functor
+  $(T^{i},\delta^{i})$ is universal if for every other $\delta$-functor
+  $(S^{i},\gamma^{i})$ with a natural transformation
+  $\alpha: T^{0}\Rightarrow S^{0}$, there is a unique morphism of
+  $\delta$-functors $(T^{i},\delta^{i})\to (S^{i},\gamma^{i})$ extending
+  $\alpha$. Then, one can prove that derived functors define a universal
+  $\delta$-functor. I will not spell out the details here, but further
+  information on $\delta$-functors can be found in \cite{vakil}.
+\end{bcat}
+Now, consider an $\mathcal{O}_{X}$-module $\mathcal{F}$ on a space $X$.
+Its \emph{sheaf cohomology} is then defined as the right derived functor of
+the global sections functor:
+\[
+  H^{i}(X, \mathcal{F}) := R^{i}\Gamma.
+\]
+This definition relies on the assumption that the category of sheaves of
+$\mathcal{O}_{X}$-modules has enough injectives.
+\begin{prop}
+  The category $\mathcal{O}_{X}$\textup{\textbf{-Mod}} has enough injectives.
+\end{prop}
+\begin{proof}
+  TODO.
+\end{proof}
+Derived functors provide a good framework for the cohomology theory of
+sheaves, but working with injective resolutions is difficult in practise.
+% TODO: Expand on reason behind this
+Therefore, we need an alternative way of constructing the cohomology groups.
+
+I will do this by replacing injective resolutions by \emph{acyclic
+  resolutions}. If $F:\mathcal{A}\to\mathcal{B}$ is a left-exact
+functor between abelian categories, then an object $A$ of $\mathcal{A}$ is
+acyclic if $R^{i}F(A)=0$ for $i>0$. I will justify this in the
+next proposition.
+\begin{prop}
+  Let $F:\mathcal{A}\to\mathcal{B}$ be a left-exact functor
+  between abelian categories, where $\mathcal{A}$ has enough injectives.
+  Suppose $A$ is an object of $\mathcal{A}$ with acyclic resolution
+  \[\begin{tikzcd}
+      0\rar & A\rar & A^{0}\rar & A^{1}\rar & \cdots
+    \end{tikzcd}.\]
+  Then, computing the cohomology of the cochain complex
+  \[\begin{tikzcd}
+      0\rar & F(A^{0})\rar & F(A^{1})\rar & \cdots
+    \end{tikzcd}\]
+  agrees with the right derived functor of $F$ at $A$.
+\end{prop}
+\begin{proof}
+  TODO.
+\end{proof}
+Next, I want to find an acyclic resolution for a given sheaf so that I can
+calculate its sheaf cohomology. First I will make the following observation.
+\begin{prop}\label{prop:affine_cohom_vanishes}
+  If $X$ is an affine variety and $\mathcal{F}$ is a sheaf of
+  $\mathcal{O}_{X}$-modules, then $H^{i}(X, \mathcal{F})=0$ for all $i>0$.
+\end{prop}
+\begin{proof}
+  TODO.
+\end{proof}
+Now, recall the exact sequence \eqref{diag:sheaf_ex}. It looks awfully like
+a beginning of an acyclic resolution if we take $U_{i}$ to be an affine
+open cover of $X$. I should first check that intersections of affine
+sets are affine. Then I will try to find sheaves whose global sections
+agree with the objects in the exact sequence \eqref{diag:shea_ex}.
+I hope to then extend the exact sequence in some natural way and check
+that the resulting sheaves are in fact acyclic.
+
+Let us begin by first introducing the following notation. Suppose $U_{i}$
+is an affine open cover of some variety $X$. Then, denote
+\[
+  U_{i_{0},\ldots, i_{k}}=U_{i_{0}}\cap U_{i_{1}}\cap\cdots\cap U_{i_{k}}.
+\]
+Now I will check that intersections of affine sets are affine
+\begin{prop}
+  Given an affine cover $U_{i}$ of $X$, the intersections
+  $U_{i_{0},\ldots,i_{k}}$ are affine and open.
+\end{prop}
+\begin{proof}
+  TODO.
+\end{proof}
+Next I want to find a sheaf on $X$ whose global sections equal
+$\mathcal{F}(U_{i_{0},\ldots,i_{k}})$. I simply take the sheaf
+$i_{\ast}\mathcal{F}\vert_{U_{i_{0},\ldots,i_{k}}}$ defined by
+\[
+  i_{\ast}\mathcal{F}\vert_{U_{i_{0},\ldots,i_{k}}}(V)=\mathcal{F}
+  (V\cap U_{i_{0},\ldots,i_{k}}).
+\]
+% TODO: Explain how we get the maps and continue the exact sequence
+%       naturally.
+We get a resolution
+\[\begin{tikzcd}
+    0\rar & \mathcal{F}\rar
+    & \displaystyle\prod_{i_{0}}i_{\ast}\mathcal{F}\vert_{U_{i_{0}}}\rar
+    & \displaystyle\prod_{i_{0},i_{1}}i_{\ast}\mathcal{F}\vert_{U_{i_{0},i_{1}}}\rar
+    & \displaystyle\prod_{i_{0},i_{1},i_{2}}i_{\ast}\mathcal{F}\vert_{U_{i_{0},i_{1},i_{2}}}\rar
+    & \cdots
+  \end{tikzcd},\]
+and I will finally check that the resolution is acyclic.
+\begin{prop}
+  The sheaves $\displaystyle\prod_{i_{0},\ldots,i_{k}}i_{\ast}\mathcal{F}
+  \vert_{U_{i_{0},\ldots,i_{k}}}$ are $\Gamma$-acyclic.
+\end{prop}
+\begin{proof}
+  TODO.
+\end{proof}
+Thus, we finally arrive at the definition of \v Cech cohomology.
+\begin{defin}\label{def:cech}
+  The \v Cech cohomology of a sheaf $\mathcal{F}$ of
+  $\mathscr{O}_{X}$-modules is the cohomology of the cochain complex
+  \[\begin{tikzcd}
+      \mathcal{F}(U_{i_{0}})\rar{d^{0}} & \mathcal{F}(U_{i_{0},i_{1}})\rar{d^{1}}
+      & \mathcal{F}(U_{i_{0},i_{1},i_{2}})\rar{d^{2}} & \cdots
+    \end{tikzcd},\]
+  where the differentials are defined as the product of the maps
+  \[d_{i_{0},\ldots,i_{k+1}}^{k}:\displaystyle\prod_{j_{0},\ldots,j_{k}}
+  \mathcal{F}(U_{j_{0},\ldots,j_{k}})\to \mathcal{F}(U_{i_{0},\ldots,i_{k+1}})\]
+  given by
+  \[
+    d_{i_{0},\ldots,i_{k+1}}^{k}(\alpha)
+    =\sum_{j=0}^{k+1}(-1)^{j}\alpha_{i_{0},\ldots,\hat{i}_{j},\ldots,i_{k+1}}
+    \vert_{U_{i_{0},\ldots,i_{k+1}}}.
+  \]
+\end{defin}
 
 \subsection{Results in cohomology}
 

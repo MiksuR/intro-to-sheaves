@@ -18,9 +18,9 @@ which will give us the isomorphism.
 \subsection{Concrete representation of $H^{1}(X,\mathcal{L}(D))$}
 To prove the Serre duality, we do not want to directly work with the \v Cech
 cohomology definition of $H^{1}(X,\mathcal{L}(D))$.
-Instead we want to find some SES involving $\mathcal{L}(D)$,
-take the cohomology sequence of the SES, and then use it to simplify
-the definition of $H^{1}(X,\mathcal{L}(D))$. Since $\mathcal{L}(D)$ is
+Instead we want to give a more concrete description of
+$H^{1}(X,\mathcal{L}(D))$ by finding some SES involving $\mathcal{L}(D)$
+and then taking the cohomology sequence of the SES. Since $\mathcal{L}(D)$ is
 a subsheaf of the constant sheaf $\underline{k(X)}$, we can simply consider
 the following SES.
 \[
@@ -50,113 +50,92 @@ Let us first try to understand the space
 $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$. An element of the space
 is of the form $([f_{P}])_{P\in X}$, where $[f_{P}]$ is the equivalence
 class of some $f_{P}\in k(X)$ modulo $\mathcal{L}(D)_{P}$.
-Note that the $f_{P}$ must be related together so that the sections
-satisfy sheaf axioms, and it would be easier if we didn't need to worry about
-this condition. We can in fact construct an isomorphic vector space, which is
-similar, but where we don't need to worry about the sheaf axioms. To see
-this, first make the following observation.
-\begin{prop}
-  If $(f_{P})_{P\in X}\in \Gamma(\underline{k(X)})$,
-  $f_{P}\in\mathscr{O}_{X,P}$ for almost all $P\in X$.
-\end{prop}
-Note, $f_{P}\in k(X)$ and $\mathscr{O}_{X,P}$ is a space of germs. Thus,
-when I write $f_{P}\in\mathscr{O}_{X,P}$, I actually mean $(f_{P})_{P}
-\in\mathscr{O}_{X,P}$. I will continue using the simpler notation through out
-the paper.
-\begin{proof}
-  % TODO: This proof doesn't need to be this complicated since X
-  %       is assumed to be irreducible -> replace it by a shorter argument.
-  Fix an arbitrary $P\in X$. Since $\underline{k(X)}$ is obtained by
-  sheafification of the constant presheaf, there must be an open
-  neighbourhood $U\subseteq X$ of $P$ and $g\in k(X)$ such that
-  $\forall Q\in U,\ [f_{Q}]=[g]$. Next we note that $g$
-  is defined for almost all points of $U$ so that $g_{Q}
-  \in\mathscr{O}_{X,Q}$ for almost all $Q\in V$.
-
-  Thus, there is an open neighbourhood for every point
-  of $X$ where the statement holds. Next we extend this to the whole of $X$.
-  Let us construct a sequence of open sets inductively:
-  \begin{enumerate}
-    \item Choose an arbitrary point $P_{0}\in X$
-    \item Let $U_{0}$ be the neighbourhood of $P_{0}$ constructed as above
-    \item Assume we have constructed the set $U_{n}$
-    \item Choose an arbitrary point $P_{n+1}$ of $X\setminus U_{n}$
-    \item Let $U_{n+1}$ be the union of $U_{n}$ with the
-          neighbourhood of $P_{n+1}$ constructed as above
-  \end{enumerate}
-  % Insert picture with X, P_0, U_0, and P_1
-  Since $X$ is Noetherian, there must be $N\in\mathbb{N}$
-  such that $\forall k\geq N, U_{k+1}=U_{k}$. Moreover, these sets must
-  cover $X$, because otherwise the chain wouldn't end at $U_{N}$.
-  Therefore, $X$ can be covered by finitely many sets where the statement
-  holds.
-\end{proof}
-\begin{rem}
-  This proposition implies that
-  \[
-    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\cong \bigoplus_{P\in X}
-    k(X)/\mathcal{L}(D)_{P},
-  \]
-  which might be a helpful way of thinking this space of global sections.
-  % TODO: Justify this remark
-\end{rem}
-Now, we define a vector space of families $\{r_{P}\}_{P\in X}$, where we don't
-impose any other requirement on $r_{P}$ other than that $r_{P}\in k(X)$ and
-$r_{P}\in\mathscr{O}_{X,P}$ for almost all $P\in X$ (Serre calls such a
-family a \emph{r\'epartition} in \cite{serre}).
-Now, I claim that there is a subspace
-$S\leq R$ such that $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\cong R/S$.
-This isomorphism will be given by the trivial map
-\[
-  \varphi: H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\to R/S
-  :([f_{P}])_{P\in X}\mapsto [\{f_{P}\}_{P\in X}].
-\]
-For this map to be well-defined, $([f_{P}])_{P\in X}$ needs to be
-mapped to $[0]$ whenever $f_{P}\in\mathcal{L}(D)_{P}$. Since I want
-$\varphi$ also to be injective, such elements $(f_{P})_{P\in X}$ should be
-the \emph{only} elements that get mapped to $[0]$. Thus, I define $S$
-to be the subspace such that $\set{\{r_{P}\}_{P\in X}\mid \ord_{P}(r_{P})
-  \geq -D(P)}=:R(D)$, and I claim that this is the right choice of $S$.
-
+These elements are actually quite simple, because one can show that the
+components $[f_{P}]$ are zero almost everywhere.
+% TODO: Add picture with curve X and section f \in H^0(X,k(X)/L(D)) above it.
+In other words, we can write $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ as a
+direct sum of stalks.
 \begin{lemm}
-  For a divisor $D$ on a curve $X$, we have the following isomorphism:
+  For a divisor $D$ on a curve $X$, the following equality holds.
   \[
-    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\cong R/R(D).
+    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))=\bigoplus_{P\in X}
+    k(X)/\mathcal{L}(D)_{P}.
   \]
 \end{lemm}
 \begin{proof}
-  The map $\varphi$ is a well-defined injection by construction,
-  so we only need to show it is surjective. Thus,
-  suppose $[\{r_{P}\}_{P\in X}]\in R/R(D)$. I want to show that equivalence
-  classes $[r_{P}]$ of the components form a global section of the sheaf
-  $\underline{k(X)}/\mathcal{L}(D)$. First, let $P_{1},\ldots,P_{r}$
-  be the points where $D$ is non-zero and $Q_{1},\ldots,Q_{s}$ be the
-  points where $r_{Q_{i}}\not\in \mathscr{O}_{X,Q_{i}}$. Then, let $P\in X$
-  be an arbitrary point. We want to find an open neighbourhood $U\ni P$
-  and a section $g\in k(X)$ such that $\forall Q\in U,\ [r_{Q}]=[g]$.
-  There are two cases:
+  I will first show the inclusion in forward direction:
+  \[
+    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\subseteq\bigoplus_{P\in X}
+    k(X)/\mathcal{L}(D)_{P}.
+  \]
+  In other words, I need to check that the components $[f_{P}]$ of some
+  $([f_{P}])_{P\in X}\in H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ are non-zero
+  for only finitely many $P\in X$. Thus, suppose $([f_{P}])_{P\in X}\in
+  H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$. Firstly, the divisor $D$ is
+  non-zero only at finitely many points. The components $[f_{P}]$ may or may
+  not be zero at those points, but I can ignore those points in any case
+  since there are finitely many of them. Thus, assume $P$ is a point where
+  $D(P)=0$. At such a point, the stalk $\mathcal{L}(D)_{P}$ is equal to the
+  ring of germs with non-negative order at $P$, which is of course the ring
+  $\mathscr{O}_{X,P}$. Now, it is a basic result in algebraic geometry that
+  a rational function $f\in k(X)$ on a curve $X$ has negative order only
+  at finitely many points so that $f_{P}\in\mathscr{O}_{X,P}$ for almost
+  all points $P$. Therefore, we see that $[f_{P}]=0$ for almost all points
+  $P$.
+  % TODO: Insert a picture of the plane with points where the section
+  %       might be non-zero.
+
+  Next I show the inclusion in the reverse direction:
+  \[
+    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\supseteq\bigoplus_{P\in X}
+    k(X)/\mathcal{L}(D)_{P}.
+  \]
+  Thus, let $([f_{P}]_{P\in X})\in\displaystyle\bigoplus
+  k(X)/\mathcal{L}(D)_{P}$. I want to show that the components $[f_{P}]$
+  form a global section of $\underline{k(X)}/\mathcal{L}(D)$. Let us
+  fix an arbitrary point $P\in X$. I want to find an open neighbourhood
+  $U\ni P$ and a section $g\in k(X)$ such that $\forall Q\in U,\ [f_{Q}]=[g]$.
+  If I denote by $P_{1},\ldots,P_{r}$ the points where $D$ is non-zero
+  and by $Q_{1},\ldots,Q_{s}$ the points where the $f_{Q_{i}}$ have negative
+  order, then there are two cases:
   \begin{description}[style=nextline]
     \item[$P\not\in\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}\big)$]
           Since $P$ is none of the points $P_{1},\ldots,P_{r}$,
           $\mathcal{L}(D)_{P}$ consists of all functions $f\in k(X)$
           with non-negative order at $P$: $\ord_{P}(f)\geq 0$.
           Since $P$ is non of the points $Q_{1},\ldots,Q_{s}$,
-          $r_{P}\in\mathscr{Q}_{X,P}$. Therefore, $r_{P}\in\mathcal{L}(D)_{P}$
-          so that $[r_{P}]=[0]$. Now, if we let $U$ be the complement of
+          $f_{P}\in\mathscr{O}_{X,P}$. Therefore, $f_{P}\in\mathcal{L}(D)_{P}$
+          so that $[f_{P}]=[0]$. Now, if we let $U$ be the complement of
           the set $\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}$, we see
-          that $[r_{Q}]=[0]$ for every $r_{Q}$ on $U$ so that we can simply
+          that $[f_{Q}]=[0]$ for every $r_{Q}$ on $U$ so that we can simply
           choose $0\in k(X)$ as the section on the open neighbourhood $U$.
     \item[$P\in\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}\big)$]
           First, denote $Y=\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}
-          \setminus \set{P}$ and $g=r_{P}\in k(X)$. Next, let
-          $S_{1},\ldots,S_{t}$ be the points where
-          $g_{S_{i}}\not\in\mathscr{O}_{X,S_{i}}$. Then, let $U$ be
-          the complement of $Y\cup \set{S_{1},\ldots,S_{t}}$. As above,
-          $[r_{Q}]=[0]$ for all $Q\in U$ except for $Q=P$. But since
-          the points $S_{i}$ are also included in the complement, we have
-          that $[g]=[0]$ away from $P$. Thus, $[r_{Q}]=[g]$ on $U$.
+          \setminus \set{P}$ and $g=f_{P}\in k(X)$. Next, let
+          $S_{1},\ldots,S_{t}$ be the points where the $g_{S_{i}}$ have
+          negative order. Then, let $U$ be the complement of
+          $Y\cup \set{S_{1},\ldots,S_{t}}$. As above, $[f_{Q}]=[0]$ for all
+          $Q\in U$ except for $Q=P$. But since the points $S_{i}$ are also
+          included in the complement, we have that $[g]=[0]$ away from $P$.
+          Thus, $[f_{Q}]=[g]$ on $U$.
   \end{description}
 \end{proof}
+Now, we can express this direct sum in the following way. Consider the
+vector space $R$ of families $\{r_{P}\}_{P\in X}$, where $r_{P}\in k(X)$ and
+$r_{P}\in\mathscr{O}_{X,P}$ for almost all points $P\in X$.
+(Serre calls such a family a \emph{r\'epartition} in \cite{serre}).
+Then, define $R(D)=\set{\{r_{P}\}_{P\in X}\mid \ord_{P}(r_{P})\geq -D(P)}$.
+It is clear that we have the following isomorphism.
+\[
+  \bigoplus_{P\in X}k(X)/\mathcal{L}(D)_{P}\cong R/R(D).
+\]
+Note that r\'epartitions are easier to work with, because the components
+$f_{P}$ of some section $(f_{P})_{P\in X}$ of
+$\underline{k(X)}/\mathcal{L}(D)$ must be related together so that the
+sections satisfy sheaf axioms, whereas there is no such requirement for
+r\'epartitions. Therefore, I will make use of r\'epartitions in the rest
+of the section.
+
 Now we can return to the SES \eqref{eq:repartition_ses} derived above and
 replace $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ by $R/R(D)$:
 \[
@@ -194,31 +173,32 @@ Now, define the bilinear form as follows.
 \[
   \langle\omega,r\rangle=\sum_{P\in X}\res_{P}(r_{P}\omega),
 \]
-where $r=[\{r_{P}\}_{P\in X}]\in R\,/\left(R(D)+k(X)\right)$. The sum is
-well-defined, because the term $\res_{P}(r_{P}\omega)$ can be non-zero only
-when $P$ is a point such that $D(P)\neq 0$ or $r_{P}\not\in\mathscr{O}_{X,P}$.
-Otherwise, $r_{P},f\in\mathscr{O}_{X,P}$, if we write $\omega=f\,dt$
-where $t$ is a local uniformiser at $P$. This clearly implies that the
-coefficients of the negative terms in the serier expansion of $r_{P}f$
-are all zero.
-% TODO: Explain why we choose this bilinear form
+where $r=[\{r_{P}\}_{P\in X}]\in R\,/\left(R(D)+k(X)\right)$. I must check
+that the map is well-defined: only finitely many terms of the sum can be
+non-zero, and its value must be independent of the representation modulo
+$R(D)+k(X)$.
+
+Firstly, $\res_{P}(r_{P}\omega)$ can be non-zero only when $P$ is a point
+such that $D(P)\neq 0$ or $r_{P}\not\in\mathscr{O}_{X,P}$. Otherwise,
+$r_{P},f\in\mathscr{O}_{X,P}$, if we write $\omega=f\,dt$ where $t$ is a
+local uniformiser at $P$. This clearly implies that the coefficients of the
+terms of negative degree in the series expansion of $r_{P}f$ are all zero.
+Secondly, given a repartition $r\in R(D)$, we have $(r_{P}\omega)
+=(r_{P})+(\omega) \geq -D+D=0$ and thus $\res_{P}(r_{P}\omega)=0$ by the same
+% TODO: Make this part more clear.
+argument as above. Also, if $r\in k(X)$, then $\langle \omega,r\rangle=0$ by
+the residue theorem (Thm.~\ref{thm:residue}).
 
 Now, Serre duality will follow if we can show that the map
 \[
   \iota_{D}:\diffs{D}\to \dual{D}
   :\omega\mapsto\langle\omega,-\rangle
 \]
-is a bijection. But first we need to confirm that $\iota_{D}$ actually maps
-differentials to elements of $\dual{D}$. For a
-differential $\omega\in\diffs{D}$, $\iota_{D}(\omega)$ is of course a linear
-functional on $R$, but we need to check that it vanishes on $R(D)$ and
-$k(X)$. If $r\in R(D)$, then $(r_{P}\omega)=(r_{P})+(\omega)\geq -D+D=0$
-and thus $\res_{P}(r_{P}\omega)=0$ by the same argument as in the last
-paragraph. And if $r\in k(X)$, then $\langle r,\omega\rangle=0$ by the
-residue theorem (Thm.~\ref{thm:residue}). Thus, $\iota_{D}(\omega)\in
-\dual{D}$ for every $\omega\in\diffs{D}$.
+is a bijection. Every differential $\omega\in\diffs{D}$ is indeed mapped
+to elements of $\dual{D}$ since they vanish on $R(D)$ and $k(X)$ by the
+arguments in the previous pragraph.
 
-Now I can proceed to prove the bijectivity of $\iota_{D}$. The proof relies
+I will proceed to prove the bijectivity of $\iota_{D}$. The proof relies
 on the observation that the spaces $\dual{D}$ and $\diffs{D}$ form so called
 \emph{filtered families}, which are tied together by $\iota_{D}$. In the
 proofs of injectivity and surjectivity we will ``move through the
@@ -397,7 +377,7 @@ let us prove the surjectivity of $\iota_{D}$.
   Of course, I can also apply Riemann-Roch to $\mathcal{L}(D-\Delta)$
   to get $h^{0}(X,\mathcal{L}(D-\Delta))-h^{1}(X,\mathcal{L}(D-\Delta))
   =\deg(D-\Delta)-g+1$. Since $\Delta$ was an arbitrary divisor, I can
-  choose it so that $\deg\Delta\geq\deg D$. Then the zeroth cohomology
+  choose it so that $\deg\Delta >\deg D$. Then the zeroth cohomology
   group vanishes and we are left with
   \begin{equation}\label{eq:fst_dimension}
     h^{1}(X,\mathcal{L}(D-\Delta))=\deg(\Delta)-\deg D+g-1.

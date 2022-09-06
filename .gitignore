@@ -9,10 +9,9 @@ main.bbl
 main.blg
 main.out
 sections/1intro.aux
-sections/2varieties.aux
-sections/3sheaves.aux
-sections/4cohomology.aux
-sections/5riemann_roch.aux
-sections/6serre.aux
+sections/2sheaves.aux
+sections/3cohomology.aux
+sections/4riemann_roch.aux
+sections/5serre.aux
 sections/.auctex-auto
 sections/make

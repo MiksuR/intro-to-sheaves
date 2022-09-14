@@ -496,23 +496,12 @@ on a ringed space $(X,\mathscr{O}_{X})$.
   \]
   for all scalars $\lambda\in\mathscr{O}_{X}$.
 \end{defin}
-\begin{rem}
-  In algebraic geometry, one usually restricts to a smaller class of sheaves
-  called (quasi-)coherent sheaves. But since sheaf cohomolgy works perfectly
-  well with sheaves of $\mathscr{O}_{X}$-modules, I will not introduce these
-  additional definitions.
-\end{rem}
-\begin{lnote}
-  Since the rest of the paper will be concentrated on the algebraic study of
-  sheaves, I will make the following convention: sheaves will always be
-  sheaves of $\mathscr{O}_{X}$-modules by default.
-\end{lnote}
-We can now define the usual algebraic operations for sheaves of
+I can now define the usual algebraic operations for sheaves of
 $\mathscr{O}_{X}$-modules.
 \begin{defin}
-  Suppose $\mathscr{F}_{1}$ and $\mathscr{F}_{2}$ are sheaves and
-  $f:\mathscr{F}_{1}\to\mathscr{F}_{2}$ is a morphism of sheaves. Then the
-  sheaves $\ker f$, $\coker f$,$\im f$,
+  Suppose $\mathscr{F}_{1}$ and $\mathscr{F}_{2}$ are sheaves of
+  $\mathscr{O}_{X}$-modules and $f:\mathscr{F}_{1}\to\mathscr{F}_{2}$ is a
+  morphism of sheaves. Then the sheaves $\ker f$, $\coker f$,$\im f$,
   $\mathscr{F}_{1}\oplus\mathscr{F}_{2}$, $\mathscr{F}_{1}\otimes
   \mathscr{F}_{2}$, and $\mathscr{F}_{1}^{\vee}$ are defined as the
   sheafifications of the corresponding pre-sheaves given by the following:
@@ -573,10 +562,10 @@ usual definitions.
   in the category $\mathscr{O}_{X}$\textbf{-Mod}.
 \end{cat}
 
-As a final result, I will show that the exactness of sequences of sheaves
+Next I will show that the exactness of sequences of sheaves
 is a local property. To see this, one should first note that a morphism
-$f:\mathscr{F}_{1}\to\mathscr{F}_{2}$ of sheaves induces an
-$\mathscr{O}_{X,P}$-module homomorphism
+$f:\mathscr{F}_{1}\to\mathscr{F}_{2}$ of sheaves of
+$\mathscr{O}_{X}$-modules induces an $\mathscr{O}_{X,P}$-module homomorphism
 \[
   f_{P}:\left(\mathscr{F}_{1}\right)_{P}\to\left(\mathscr{F}_{2}\right)_{P}
   :[(s,U)]\mapsto [(f_{U}(s),U)]
@@ -638,12 +627,84 @@ on the stalks. Then one can show the following theorem.
 \end{proof}
 One can prove the following results as an immediate corollary.
 \begin{cor}
-  Suppose $f:\mathscr{F}\to\mathscr{G}$ is a morphism of sheaves, and
-  let $f_{P}:\mathscr{F}_{P}\to\mathscr{G}_{P}$ be the induced homomorphism.
-  Then,
+  Suppose $f:\mathscr{F}\to\mathscr{G}$ is a morphism of sheaves of
+  $\mathscr{O}_{X}$-modules, and let $f_{P}:\mathscr{F}_{P}\to\mathscr{G}_{P}$
+  be the induced homomorphism. Then,
   \begin{enumerate}
     \item $f$ is an injection iff $f_{P}$ is an injection,
     \item $f$ is a surjection iff $f_{P}$ is a surjection,
     \item $f$ is an isomorphism iff $f_{P}$ is an isomorphism.
   \end{enumerate}
 \end{cor}
+
+In algebraic geometry, one usually restricts attention to a certain class of
+sheaves of $\mathscr{O}_{X}$-modules called \emph{quasi-coherent sheaves}.
+These have even nicer algebraic properties, and they include most sheaves
+one encounters in algebraic geometry. To define quasi-coherent sheaves,
+I need to first make the following definition, which generalises the
+definition of the structure sheaf on an affine variety.
+\begin{defin}
+  Suppose $X$ is an affine variety and $M$ is a module over the coordinate
+  ring $k[X]$. Then, the sheaf $\cm$ associated with the module $M$ is
+  defined as follows.
+  \begin{align*}
+    \cm(U)=\big\{\,
+    & (\phi_{P})_{P\in U}\,\big\vert\, \phi_{P}\in M_{\mathfrak{m}_{P}}
+      \text{ such that} \\
+    & \forall P\in U\,
+      \exists U_{P}\subseteq U\text{ an open neighbourhood of }P \\
+    & \exists m\in M\,\exists g\in k[X]\,
+    \forall Q\in U_{P},\ \phi_{Q}=\frac{m}g\text{ and } g(Q)\neq 0\,\big\},
+  \end{align*}
+  where $M_{\mathfrak{m}_{P}}$ is the localisation of $M$ at the maximal ideal
+  $\mathfrak{m}_{P}$ of the point $P$.
+\end{defin}
+Now, this definition implies the following result.
+\begin{lemm}\label{lemm:qcoh_local_global}
+  If $\cm$ is the sheaf on an affine variety $X$ associated to the module
+  $M$ over $k[X]$, then
+  \begin{enumerate}[label=\normalfont(\alph*)]
+    \item $\forall P\in X, \left(\cm\right)_{P}=M_{\mathfrak{m}_{P}}$, and
+    \item $\Gamma\left(\cm\right)=M$.
+  \end{enumerate}
+\end{lemm}
+\begin{proof}
+  TODO.
+\end{proof}
+Quasi-coherent sheaves are then constructed from such sheaves.
+\begin{defin}
+  A sheaf $\mathscr{F}$ of $\mathscr{O}_{X}$-modules is quasi-coherent, if
+  for everey affine open set $U\subseteq X$, the sheaf $\mathscr{F}\vert_{U}$
+  is a sheaf associated to some module $M$ over the coordinate ring $k[U]$.
+\end{defin}
+Quasi-coherent sheaves have the following nice property, which will be very
+important later.
+\begin{prop}[Lemma 7.2.7 in \cite{gathmann}]\label{prop:qcoh_gsec_exact}
+  Given an affine variety $X$ and a SES
+  \[\begin{tikzcd}
+      0\rar & \cm_{1}\rar & \cm_{2}\rar & \cm_{3}\rar & 0
+    \end{tikzcd}\]
+  of quasi-coherent sheaves on $X$, the induced sequence
+  \[\begin{tikzcd}
+      0\rar & \Gamma(\cm_{1})\rar & \Gamma(\cm_{2})\rar
+      & \Gamma(\cm_{3})\rar & 0
+    \end{tikzcd}\]
+  is exact.
+\end{prop}
+\begin{proof}
+  By Lemma~\ref{lemm:qcoh_local_global}, I need to check the exactness of the
+  sequence
+  \[\begin{tikzcd}
+      0\rar & M_{1}\rar & M_{2}\rar & M_{3}\rar & 0
+    \end{tikzcd}.\]
+  By a result in commutative algebra, this sequence is exact if the sequences
+  \[\begin{tikzcd}
+      0\rar & \left(M_{1}\right)_{\mathfrak{m}}\rar
+      & \left(M_{2}\right)_{\mathfrak{m}}\rar
+      & \left(M_{3}\right)_{\mathfrak{m}}\rar & 0
+    \end{tikzcd}\]
+  are exact for all maximal ideals $\mathfrak{m}$ of $k[X]$
+  (see Proposition 6.27 of \cite{gathmann_comm}). Finally, combining
+  Thm.~\ref{thm:ses_equivalence} with Lemma~\ref{lemm:qcoh_local_global},
+  we see that the sequences of the localisations are exact.
+\end{proof}

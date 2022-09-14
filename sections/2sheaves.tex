@@ -443,6 +443,14 @@ of a variety.
   pair of morphisms $f_{1}, f_{2}: Y\to X$, the set
   $\set{P\in Y\mid f_{1}(P)=f_{2}(P)}$ is closed in $Y$.
 \end{defin}
+Let me prove a small lemma about affine subsets of a variety.
+\begin{lemm}\label{lemm:affine_intersection}
+  Suppose $X$ is a variety and $U, V\subseteq X$ are two affine subsets.
+  Then, the intersection $U\cap V$ is affine.
+\end{lemm}
+\begin{proof}
+  TODO.
+\end{proof}
 
 \subsection{Algebraic constructions with sheaves}\label{ss:sheaf_alg}
 The aim of this subsection is to define algebraic constructions for
@@ -498,7 +506,7 @@ on a ringed space $(X,\mathscr{O}_{X})$.
 \end{defin}
 I can now define the usual algebraic operations for sheaves of
 $\mathscr{O}_{X}$-modules.
-\begin{defin}
+\begin{defin}\label{def:sheaf_algebra}
   Suppose $\mathscr{F}_{1}$ and $\mathscr{F}_{2}$ are sheaves of
   $\mathscr{O}_{X}$-modules and $f:\mathscr{F}_{1}\to\mathscr{F}_{2}$ is a
   morphism of sheaves. Then the sheaves $\ker f$, $\coker f$,$\im f$,
@@ -556,7 +564,7 @@ usual definitions.
   \eqref{diag:sheaf_eq} can be expressed as the exact sequence
   \begin{equation}\label{diag:sheaf_ex}\begin{tikzcd}
       0\rar & \mathscr{F}(U)\rar & \displaystyle\prod_{i}\mathscr{F}(U_{i})
-      \rar{\text{res}_{U_{i}\cap U_{j}}^{U_{i}}-\text{res}_{U_{i}\cap U_{j}}^{ U_{j}}}
+      \rar{\text{res}_{U_{i}\cap U_{j}}^{U_{j}}-\text{res}_{U_{i}\cap U_{j}}^{ U_{i}}}
       &[5em] \displaystyle\prod_{i,j}\mathscr{F}(U_{i}\cap U_{j})
     \end{tikzcd}\end{equation}
   in the category $\mathscr{O}_{X}$\textbf{-Mod}.
@@ -677,10 +685,17 @@ Quasi-coherent sheaves are then constructed from such sheaves.
   for everey affine open set $U\subseteq X$, the sheaf $\mathscr{F}\vert_{U}$
   is a sheaf associated to some module $M$ over the coordinate ring $k[U]$.
 \end{defin}
+\begin{rem}
+  Quasi-coherence can be checked locally, see \cite{gathmann}.
+\end{rem}
+\begin{rem}
+  The constructios in Def.~\ref{def:sheaf_algebra} are quasi-coherent
+  for quasi-coherent sheaves, see \cite{gathmann}.
+\end{rem}
 Quasi-coherent sheaves have the following nice property, which will be very
 important later.
 \begin{prop}[Lemma 7.2.7 in \cite{gathmann}]\label{prop:qcoh_gsec_exact}
-  Given an affine variety $X$ and a SES
+  Given an affine variety $X$ and a short exact sequence
   \[\begin{tikzcd}
       0\rar & \cm_{1}\rar & \cm_{2}\rar & \cm_{3}\rar & 0
     \end{tikzcd}\]
@@ -692,8 +707,8 @@ important later.
   is exact.
 \end{prop}
 \begin{proof}
-  By Lemma~\ref{lemm:qcoh_local_global}, I need to check the exactness of the
-  sequence
+  By Lemma~\ref{lemm:qcoh_local_global}(b), I need to check the exactness of
+  the sequence
   \[\begin{tikzcd}
       0\rar & M_{1}\rar & M_{2}\rar & M_{3}\rar & 0
     \end{tikzcd}.\]
@@ -705,6 +720,6 @@ important later.
     \end{tikzcd}\]
   are exact for all maximal ideals $\mathfrak{m}$ of $k[X]$
   (see Proposition 6.27 of \cite{gathmann_comm}). Finally, combining
-  Thm.~\ref{thm:ses_equivalence} with Lemma~\ref{lemm:qcoh_local_global},
+  Thm.~\ref{thm:ses_equivalence} with Lemma~\ref{lemm:qcoh_local_global}(a),
   we see that the sequences of the localisations are exact.
 \end{proof}

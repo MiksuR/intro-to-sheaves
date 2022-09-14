@@ -1,6 +1,7 @@
 \section{Sheaf cohomology}
 Studying sheaves using homological algebra turns out to be surprisingly
-useful in many situations. For example, knowing that there is a SES
+useful in many situations. For example, knowing that there is a
+short exact sequence (SES)
 \[
   \begin{tikzcd}
     0 \rar & \mathscr{F} \rar & \mathscr{G} \rar &
@@ -8,9 +9,9 @@ useful in many situations. For example, knowing that there is a SES
   \end{tikzcd}
 \]
 lets us relate the three sheaves together. By Thm.~\ref{thm:ses_equivalence}
-this information is inherently \emph{local} since this sequence is exact
+this information is inherently \textbf{local} since this sequence is exact
 if and only if the corresponding sequences on stalks are exact.
-Then the question is: Can we get \emph{global} information from
+Then the question is: Can we get \textbf{global} information from
 such exact sequences? We would hope that just as the sequence is exact
 on stalks, it would also be exact on global sections:
 \[
@@ -21,26 +22,30 @@ on stalks, it would also be exact on global sections:
 \]
 Unfortunately, this is not the case. For example, let
 $X=\mathbb{P}^{1}_{\mathbb{C}}$ and consider the sheaf morphism
-\[f:\mathscr{O}_{X}\to\mathbb{C}_{P_{0}}\oplus\mathbb{C}_{P_{1}},\]
-which evaluates $f$ at some points $P_{0},P_{1}\in X$. Then, the
-morphism is clearly surjective on the stalks. But it is not surjective
-on global sections, since the global sections of $\mathscr{O}_{X}$ are
-the constant functions. In other words, the exact sequence
-\[\mathscr{O}_{X}\to\mathbb{C}_{P_{0}}\oplus\mathbb{C}_{P_{1}}\to 0\]
-does not give an exact sequence on global sections.
-
-However, we have the following.
+$\mathscr{O}_{X}\to\mathbb{C}_{P_{0}}\oplus\mathbb{C}_{P_{1}}$,
+which evaluates a section of $\mathscr{O}_{X}$ at some points $P_{0},P_{1}
+\in X$. Then, the morphism is clearly surjective on the stalks. But it is
+not surjective on global sections, since the global sections of
+$\mathscr{O}_{X}$ are the constant functions. In other words, the exact
+sequence
+\[\begin{tikzcd}
+    \mathscr{O}_{X}\rar & \mathbb{C}_{P_{0}}\oplus\mathbb{C}_{P_{1}}\rar & 0
+  \end{tikzcd}\]
+does not yield an exact sequence on global sections. However, we have the
+following.
 \begin{prop}
   If the sequence
   \[
   \begin{tikzcd}
-    0\rar & \mathscr{F}\rar & \mathscr{G}\rar & \mathscr{H}\rar & 0
+    0\rar & \mathscr{F}\rar{\alpha} & \mathscr{G}\rar{\beta}
+    & \mathscr{H}\rar & 0
   \end{tikzcd}
   \]
   is exact, then the sequence
   \[
   \begin{tikzcd}
-    0\rar & \Gamma(\mathscr{F})\rar{\alpha} & \Gamma(\mathscr{G})\rar{\beta}
+    0\rar & \Gamma(\mathscr{F})\rar{\Gamma\alpha}
+    & \Gamma(\mathscr{G})\rar{\Gamma\beta}
     & \Gamma(\mathscr{H})
   \end{tikzcd}
   \]
@@ -49,16 +54,32 @@ However, we have the following.
 \begin{proof}\hfill
   \begin{description}[style=nextline]
     \item[Exactness at $\Gamma(\mathscr{F})$]
-          Suppose $\phi\in\ker(\alpha)$ % TODO
+          Suppose $s\in\ker(\Gamma\alpha)$, which is to say that $s$ is in
+          the kernel of the component $\alpha_{X}$ of the morphism $\alpha$.
+          Since $\ker(\alpha)=\im(0\to\mathscr{F})$, we have
+          $s\in\im(0\to\mathscr{F})(X)$. But $\im(0\to\mathscr{F})$ is
+          clearly the zero sheaf so that $s=0$. Also,
+          $\im(0\to\Gamma(\mathscr{F}))$ is clearly the zero module.
+          Therefore, $\ker(\Gamma\alpha)=0=\im(0\to\Gamma(\mathscr{F}))$.
+    \item[Exactness at $\Gamma(\mathscr{G})$]
+          Since $\alpha$ is injective, $\im(\alpha)$ can be identified with
+          the sheaf $\mathscr{F}$. Therefore $\ker(\beta)=\mathscr{F}$ and so
+          $\Gamma\left(\mathscr{F}\right)=\ker(\beta)(X)=\ker(\beta_{X})
+          =\ker(\Gamma\beta)$. Since the second sequence is exact at
+          $\Gamma\left(\mathscr{F}\right)$, the image $\im(\Gamma\alpha)$
+          can also be identified with $\Gamma\left(\mathscr{F}\right)$.
+          Therefore, $\im(\Gamma\alpha)=\Gamma(\mathscr{F})
+          =\ker(\Gamma\beta)$.
   \end{description}
 
 \end{proof}
 \begin{cat}
-  We say that the global sections functor $\Gamma: \text{Sh}(X)\to \textbf{Ab}$ is left-exact but not right-exact.
+  We say that the global sections functor $\Gamma: \text{Sh}(X)\to
+  k[X]$\textbf{-Mod} is left-exact but not right-exact.
 \end{cat}
 
 Although exact sequences are not completely preserved under taking
-global sections, we won't give up! There might still be \emph{a way of
+global sections, we won't give up! There might still be \textbf{a way of
 measuring how much exactness fails}. We could measure the
 \emph{obstruction} to exactness by continuing the sequence to the right
 so that the following sequence is exact.
@@ -85,17 +106,36 @@ In the next subsection I will introduce derived functors and deduce the
 definition of \v Cech cohomology. The contents of the subsection will be
 more technical than the rest of the paper, and it is probably a good idea
 to skip straight to Definition~\ref{def:cech}, which can be taken as
-\emph{the} definition of sheaf cohomology.
+\textbf{the} definition of sheaf cohomology. The primary source in the
+next subsection is \cite{vakil}.
 
 \subsection{From derived functors to \v Cech cohomology*}
 Let us consider the general problem of extending a left-exact
 functor $F:\mathcal{A}\to\mathcal{B}$ between abelian categories
-(which one may think of as categories of modules) to the right. Thus, for
-objects $A,B,C$ of $\mathcal{A}$ fitting into a SES
+(which one may think of as categories of modules) to the right.
+First, I will clarify what exactly I mean by a left-exact functor.
+\begin{defin}
+  Consider a functor $F:\mathcal{A}\to\mathcal{B}$ between abelian
+  categories. The functor is said to be left-exact if
+  \begin{enumerate}
+    \item it is additive: if $A$, $B$ are objects of $\mathcal{A}$
+          and $f, g\in\text{Hom}(A, B)$, then $F(f+g)=F(f)+F(g)$.
+    \item given a SES
+          \[\begin{tikzcd}
+              0\rar & A\rar & B\rar & C\rar & 0
+            \end{tikzcd}\]
+          of objects of $\mathcal{A}$, the sequence
+          \[\begin{tikzcd}
+              0\rar & F(A)\rar & F(B)\rar & F(C)
+            \end{tikzcd}\]
+          is exact.
+  \end{enumerate}
+\end{defin}
+Now, for objects $A,B,C$ of $\mathcal{A}$ fitting into a SES
 \[\begin{tikzcd}
     0\rar & A\rar & B\rar & C\rar & 0
   \end{tikzcd},\]
-we want to find functors $R^{i}F:\mathcal{A}\to\mathcal{B}$ and
+I want to find functors $R^{i}F:\mathcal{A}\to\mathcal{B}$ and
 connecting morphisms so that the sequence
 \[
 \begin{tikzcd}
@@ -113,7 +153,7 @@ connecting morphisms so that the sequence
 is exact. The functors $R^{i}F$ will be called the \emph{right
   derived functors} of $F$. The following lemma from homological
 algebra gives a hint of what approach we should take to find such functors.
-\begin{lemm}[Zig-zag lemma]
+\begin{lemm}[Zig-zag lemma] % TODO: Cite this?
   Suppose $A^{\bullet},B^{\bullet},C^{\bullet}$ are cochain complexes in some
   abelian category. If there is a SES
   \[\begin{tikzcd}
@@ -134,14 +174,16 @@ algebra gives a hint of what approach we should take to find such functors.
     \end{tikzcd}\]
   is exact.
 \end{lemm}
+This lemma can be shown using a typical diagram chasing argument: The maps
+$H^{i}(A^{\bullet})\to H^{i}(B^{\bullet})$ and
+$H^{i}(B^{\bullet})\to H^{i}(C^{\bullet})$ are given by functoriality, and the
+connecting morphisms $H^{i}(C^{\bullet})\to H^{i+1}(A^{\bullet})$ are given by
+the snake lemma. Working out the details of this diagram chasing argument is
+a good exercise for the reader, but I will instead prove the statement using
+specrtal sequences. Explaining the theory of spectral sequences is beyond
+the scope of this paper and I will refer the reader to the section 1.7 of
+\cite{vakil}.
 \begin{proof}
-  The maps $H^{i}(A^{\bullet})\to H^{i}(B^{\bullet})$ and $H^{i}(B^{\bullet})
-  \to H^{i}(C^{\bullet})$ are given by functoriality, and the connecting
-  morphisms $H^{i}(C^{\bullet})\to H^{i+1}(A^{\bullet})$ are given by the
-  snake lemma. Working out the details of this diagram chasing argument
-  is a good exercise for the reader. I will instead use a spectral sequence
-  argument (See below for more discussion on spectral sequences).
-
   Define the zeroth page of a spectral sequence to be the following
   double complex given by the SES of complexes.
   \[\begin{tikzcd}
@@ -294,11 +336,8 @@ approprate morphisms so that it gives a SES of complexes.
   if for every injection $f:A\hookrightarrow B$ and every morphism
   $g:A\to I$, there is a morphism $B\to I$ such that the following
   diagram commutes.
-  % TODO: Orient the diagram so that it lines up with the diagram
-  %       in the proof of Prop. 3.4.
-  \[\begin{tikzcd}
-      B\rar[dashed] & I \\
-      A\uar[hook]{f}\arrow["g"']{ur}
+  \[\begin{tikzcd}[row sep=large]
+      I & \\ A\uar{g}\arrow[r, hook, "f"'] & B\ular[dashed]
     \end{tikzcd}\]
 \end{defin}
 Then, an injective resolution of an object $A$ is a long exact sequence
@@ -330,14 +369,54 @@ When the injection is composed with the projection, we get the exact sequence
     & I^{n-1}\rar{\iota_{n-1}} & I^{n}\rar{\iota_{n}} & I^{n+1}
   \end{tikzcd}.\]
 
-Now, it follows directly from the definitions that any SES can
-be lifted along an injective resolution:
-\begin{prop}
+Now I will quickly prove a useful lemma about injective objects:
+\begin{lemm}\label{lemm:product_injectives}
+  A product of injective objects is injective.
+\end{lemm}
+\begin{proof}
+  Suppose $(J_{i})_{i\in I}$ is a collection of injective objects in an
+  abelian category, and denote
+  \[
+    J=\bigoplus_{i\in I} J_{i}.
+  \]
+  Then, suppose we have a morphism $g: X\to J$ and an injection
+  $f:X\hookrightarrow Y$. Recall that $J$ is injective if we can lift $g$
+  along $f$ so that the following diagram commutes.
+  \[\begin{tikzcd}[row sep=large, column sep=large]
+      J & \\ X\uar{g}\arrow[r, hook, "f"'] & Y\ular[dashed]
+    \end{tikzcd}\]
+  We can compose $g$ with the projection morphisms
+  $\pi_{J_{i}}:J\to J_{i}$, and then we can lift the compositions along $f$
+  since the $J_{i}$ are injective by assumption:
+  \[\begin{tikzcd}[row sep=large, column sep=large]
+        J_{i} & \\ X\uar{\pi_{J_{i}}\circ g}\arrow[r, hook, "f"']
+        & Y\arrow[ul, dashed, "\ell_{J_{i}}"']
+    \end{tikzcd}\]
+  Now, by the universal property of the product $J$, there is a morphism
+  $\ell: Y\to J$, such that the following diagrams commute for all $i\in I$.
+  \[\begin{tikzcd}[row sep=large, column sep=large]
+      J\arrow[d, "\pi_{J_{i}}"'] & Y\arrow[l, dashed, "\ell"']
+      \dlar{\ell_{J_{i}}} & X\arrow[l, hook, "f"']
+      \arrow[dll, bend left=20, "\pi_{J_{i}\circ g}"] \\ J_{i} &&
+    \end{tikzcd}\]
+  By the universal property of the product $J$, we also have that $g$ is the
+  unique morphism making the triangles
+  \[\begin{tikzcd}[row sep = large, column sep=large]
+      J\arrow[d, "\pi_{J_{i}}"'] & X\arrow[l, "g"']\dlar{\pi_{J_{i}\circ g}} \\
+      J_{i} &
+    \end{tikzcd}\]
+  commute for all $i\in I$. Since these triangles are the same as the ones
+  we get by composing $\ell$ with $f$, we must have $\ell\circ f=g$
+  and therefore, $\ell$ is a lift of $g$ along $f$.
+\end{proof}
+Now, the definition of injective objects gives a way of constructing a SES
+of injective resolutions given a SES of objects in an abelian category.
+\begin{lemm}\label{lemm:ses_of_resolutions}
   If $A, B, C$ are objects of an abelian category $\mathcal{A}$ with enough
   injectives fitting into a SES
   \[\begin{tikzcd}
-      0\rar & A\rar{f} & B\rar{g} & C\rar & 0
-    \end{tikzcd},\]
+      0\rar & A\rar{f} & B\rar{g} & C\rar & 0 \\
+    \end{tikzcd}\]
   and $A$ and $C$ have injective resolutions $A^{\bullet}$ and $C^{\bullet}$,
   then there is an injective resolution $B^{\bullet}$ of $B$ and maps
   $f^{i}:A^{i}\to B^{i}$ and $g^{i}:B^{i}\to C^{i}$ such that the following
@@ -351,25 +430,73 @@ be lifted along an injective resolution:
     0\rar& A\rar{f}\uar{\alpha} & B\rar{g}\uar{\beta} & C\rar\uar{\gamma}&0\\
     & 0\uar & 0\uar & 0\uar &
   \end{tikzcd}\]
-\end{prop}
+\end{lemm}
 \begin{proof}
-  TODO.
+  One can take $B^{i}=A^{i}\oplus C^{i}$, and then the rows
+  \[\begin{tikzcd}[row sep=0]
+      0\rar & A^{i}\rar & A^{i}\oplus C^{i}\rar & C^{i}\rar & 0 \\
+      & a\rar[mapsto] & (a, 0) && \\
+      && (a, c)\rar[mapsto] & c &
+    \end{tikzcd}\]
+  are clearly exact. Moreover, the $B^{i}$ are injective by
+  Lemma~\ref{lemm:product_injectives}, so I only need to find maps
+  $\beta:B\to B^{0}$ and $\beta^{i}:B^{i}\to B^{i+1}$ making the diagram
+  commute so that the $B^{i}$ form an injective resolution of $B$.
+
+  The morphism $\beta:B\to B^{0}$ making the below diagram commute is
+  constructed as follows.
+  \[\begin{tikzcd}
+      0\rar & A^{0}\rar{f^{0}} & A^{0}\oplus C^{0}\rar{g^{0}} & C^{0}\rar & 0 \\
+      0\rar & A\rar{f}\uar{\alpha} & B\rar{g}\uar{\beta}
+      & C\rar\uar{\gamma} & 0 \\ & 0\uar & 0\uar & 0\uar &
+    \end{tikzcd}\]
+  commutes. Since $A^{0}$ is injective, we can lift $\alpha$ along the
+  injection $f$:
+  \[\begin{tikzcd}
+      A^{0} & \\ A\arrow[r, "f"']\uar{\alpha}
+      & B\arrow[ul, dashed, "\alpha^{\prime}"']
+    \end{tikzcd}\]
+  Then, we get the diagram
+  \[\begin{tikzcd}[row sep=large, column sep=large]
+      A^{0} & A^{0}\oplus C^{0}\arrow[l, "\pi_{A^{0}}"']\rar{\pi_{C^{0}}}
+      & C^{0} \\ & B\ular{\alpha^{\prime}}\uar[dashed]{\beta}
+      \arrow[ur, "\gamma\circ g"']
+    \end{tikzcd},\]
+  where $\beta$ is given by the universal property of the product.
+  The morphisms $\beta_{i}$ are constructed in exactly the same way.
+
+  Finally, I need to check the exactness of the sequence
+  \[\begin{tikzcd}
+      0\rar & B\rar{\beta} & B^{0}\rar{\beta_{0}} & B^{1}\rar{\beta_{1}} & \cdots
+    \end{tikzcd},\]
+  but this follows by nearly trivial spectral sequence argument.
+  Define a specral sequence where the 0th page is the double complex we have
+  constructed. Computing the 1st page using rightward orientation yields 0,
+  since all rows are exact. Thus, the spectral sequence converges to 0.
+  One can see that the spectral sequence must converge on the 1st page
+  also when using the upward orientation. Therefore, the column corresponding
+  to the injective resolution of $B$ must be exact.
 \end{proof}
 Now I only need to apply the functor $F$ on this double complex
 and remove the bottom row. The only worry is that the rows don't stay
 exact. Thus, I will need to prove one more small result.
-\begin{prop}
-  A left-exact functor $F:\mathcal{A}\to\mathcal{B}$ between
-  abelian categories is exact on short exact sequences of injective objects.
-\end{prop}
-\begin{proof}
-  Suppose $I_{1}, I_{2}, I_{3}$ are injective objects in $\mathcal{A}$
-  such that there is a SES
+\begin{lemm}
+  Suppose $F:\mathcal{A}\to\mathcal{B}$ is a left-exact functor between
+  abelian categories. If $I$ and $J$ are injective objects of $\mathcal{A}$,
+  then $F$ is exact on the SES
   \[\begin{tikzcd}
-      0\rar & I_{1}\rar & I_{2}\rar & I_{3}\rar & 0
+      0\rar & I\rar & I\oplus J\rar & J\rar & 0
     \end{tikzcd}.\]
-
-  TODO.
+\end{lemm}
+\begin{proof}
+  In abelian categories, the object $I\oplus J$ is both a product and
+  a coproduct. It follows that additive functors preserve these products.
+  The result follows directly from this remark, because applying the functor
+  $F$ on the SES yields
+  \[\begin{tikzcd}
+      0\rar & F(I)\rar & F(I)\oplus F(J)\rar & F(J)\rar & 0
+    \end{tikzcd},\]
+  which is clearly exact.
 \end{proof}
 
 In summary, given a left-exact functor $F:\mathcal{A}\to
@@ -378,22 +505,27 @@ right derived functor of $F$ at $A$ in the following way:
 \begin{enumerate}
   \item Find an injective resolution $0\to A\to I^{\bullet}$ of $A$
   \item Apply $F$ on the cochain complex $0\to I^{\bullet}$
-  \item Take the $i$th cohomology of this cochain complex
+  \item Take the $i$th cohomology of the resulting cochain complex
         \[\begin{tikzcd}
             0\rar & F(I^{0})\rar & F(I^{1})\rar
             & F(I^{2})\rar & \cdots
           \end{tikzcd}\]
 \end{enumerate}
-We denote $R^{i}F(A)=H^{i}(F(I^{\bullet}))$ for the
+We denote $R^{i}F(A)=H^{i}(F(I^{\bullet}))$ for the value of the
 derived functor.
+\begin{lwarn}
+  The alert reader might have noticed that this definition depends a-priori
+  on the injective resolution we choose. However, one can show that this is
+  not the case, see \cite{vakil}.
+\end{lwarn}
 \begin{bcat}
   One could ask: ``How do we know that derived functors give the `right'
   way of extending the left-exact functor to the right?'' This can be
   formalised by considering so-called (cohomological) $\delta$-functors,
   which consist of pairs $(T^{i},\delta^{i})$, where
   \begin{enumerate}
-    \item The $T^{i}:\mathcal{A}\to\mathcal{B}$ are functors between abelian
-          categories with $T^{i}=0$ for $i<0$, and
+    \item The $T^{i}:\mathcal{A}\to\mathcal{B}$ are additive functors between
+          abelian categories with $T^{i}=0$ for $i<0$, and
     \item $\delta^{i}:T^{i}(C)\to T^{i+1}(A)$ are morphisms in $\mathcal{B}$,
   \end{enumerate}
   such that for every SES
@@ -435,31 +567,31 @@ derived functor.
   $\delta$-functor. I will not spell out the details here, but further
   information on $\delta$-functors can be found in \cite{vakil}.
 \end{bcat}
-Now, consider an $\mathcal{O}_{X}$-module $\mathcal{F}$ on a space $X$.
+Now, consider a sheaf $\mathscr{F}$ of $\mathscr{O}_{X}$-modules.
 Its \emph{sheaf cohomology} is then defined as the right derived functor of
 the global sections functor:
 \[
-  H^{i}(X, \mathcal{F}) := R^{i}\Gamma.
+  H^{i}(X, \mathscr{F}) := R^{i}\Gamma\left(\mathscr{F}\right).
 \]
 This definition relies on the assumption that the category of sheaves of
-$\mathcal{O}_{X}$-modules has enough injectives.
-\begin{prop}
-  The category $\mathcal{O}_{X}$\textup{\textbf{-Mod}} has enough injectives.
-\end{prop}
+$\mathscr{O}_{X}$-modules has enough injectives.
+\begin{thm}\label{thm:enough_injectives}
+  The category $\mathscr{O}_{X}$\textup{\textbf{-Mod}} has enough injectives.
+\end{thm}
 \begin{proof}
-  TODO.
+  The proof of this theorem is given as a series of exercises in
+  \cite{vakil}.
 \end{proof}
-Derived functors provide a good framework for the cohomology theory of
-sheaves, but working with injective resolutions is difficult in practise.
-% TODO: Expand on reason behind this
-Therefore, we need an alternative way of constructing the cohomology groups.
 
+Derived functors provide the framework for the cohomology theory of
+sheaves, but working with injective resolutions is difficult in practise.
+Thus, we need an alternative way of constructing the cohomology groups.
 I will do this by replacing injective resolutions by \emph{acyclic
   resolutions}. If $F:\mathcal{A}\to\mathcal{B}$ is a left-exact
 functor between abelian categories, then an object $A$ of $\mathcal{A}$ is
 acyclic if $R^{i}F(A)=0$ for $i>0$. I will justify this in the
-next proposition.
-\begin{prop}
+next lemma.
+\begin{lemm}
   Let $F:\mathcal{A}\to\mathcal{B}$ be a left-exact functor
   between abelian categories, where $\mathcal{A}$ has enough injectives.
   Suppose $A$ is an object of $\mathcal{A}$ with acyclic resolution
@@ -471,91 +603,394 @@ next proposition.
       0\rar & F(A^{0})\rar & F(A^{1})\rar & \cdots
     \end{tikzcd}\]
   agrees with the right derived functor of $F$ at $A$.
-\end{prop}
+\end{lemm}
 \begin{proof}
-  TODO.
-\end{proof}
-Next, I want to find an acyclic resolution for a given sheaf so that I can
-calculate its sheaf cohomology. First I will make the following observation.
-\begin{prop}\label{prop:affine_cohom_vanishes}
-  If $X$ is an affine variety and $\mathcal{F}$ is a sheaf of
-  $\mathcal{O}_{X}$-modules, then $H^{i}(X, \mathcal{F})=0$ for all $i>0$.
-\end{prop}
-\begin{proof}
-  TODO.
-\end{proof}
-Now, recall the exact sequence \eqref{diag:sheaf_ex}. It looks awfully like
-a beginning of an acyclic resolution if we take $U_{i}$ to be an affine
-open cover of $X$. I should first check that intersections of affine
-sets are affine. Then I will try to find sheaves whose global sections
-agree with the objects in the exact sequence \eqref{diag:shea_ex}.
-I hope to then extend the exact sequence in some natural way and check
-that the resulting sheaves are in fact acyclic.
+  I will prove the statement using a spectral sequence argument.
+  Thus, I need to set up a double complex, which will be the 0th page
+  of the sequence. First note that the long exact sequence
+  \[\begin{tikzcd}
+      0\rar & A\rar{\alpha} & A^{0}\rar{\alpha_{0}} & A^{1}\rar{\alpha_{1}}
+      & \cdots
+    \end{tikzcd}\]
+  can be broken into short exact sequences
+  \[\begin{tikzcd}
+      0\rar & A\rar{\alpha} & \im\alpha\rar & 0
+    \end{tikzcd}\]
+  \begin{center}
+    and
+  \end{center}
+  \[\begin{tikzcd}
+      0\rar & \ker\alpha_{i}\rar & A^{i}\rar{\alpha_{i}} & \im\alpha_{i}\rar
+      & 0
+    \end{tikzcd}.\]
+  Lemma~\ref{lemm:ses_of_resolutions} can now be used to construct short
+  exact sequences of resolutions, which can be combined to form a double
+  complex.
+  \[\begin{tikzcd}
+      & \vdots & \vdots & \vdots & \vdots & \\
+      0\rar & I^{2}\uar\rar & I^{0, 2}\uar\rar & I^{1, 2}\uar\rar
+      & I^{2, 2}\uar\rar & \cdots \\
+      0\rar & I^{1}\uar\rar & I^{0, 1}\uar\rar & I^{1, 1}\uar\rar
+      & I^{2, 1}\uar\rar & \cdots \\
+      0\rar & I^{0}\uar\rar & I^{0, 0}\uar\rar & I^{1, 0}\uar\rar
+      & I^{2, 0}\uar\rar & \cdots \\
+      0\rar & A\uar\rar & A^{0}\uar\rar & A^{1}\uar\rar & A^{2}\uar\rar
+      & \cdots \\
+      & 0\uar & 0\uar & 0\uar & 0\uar &
+    \end{tikzcd}\]
+  Removing the bottom row and left-most column and applying the functor
+  $F$ gives the following double complex.
+  \[\begin{tikzcd}
+      & \vdots & \vdots & \vdots & \\
+      0\rar & F(I^{0,2})\uar\rar & F(I^{1, 2})\uar\rar
+      & F(I^{2, 2})\uar\rar & \cdots \\
+      0\rar & F(I^{0,1})\uar\rar & F(I^{1, 1})\uar\rar
+      & F(I^{2, 1})\uar\rar & \cdots \\
+      0\rar & F(I^{0,0})\uar\rar & F(I^{1, 0})\uar\rar
+      & F(I^{2, 0})\uar\rar & \cdots \\
+      & 0\uar & 0\uar & 0\uar &
+    \end{tikzcd}\]
+  Now, I take this double complex to be the 0th page of the spectral
+  sequence. Note that computing the cohomology groups of the rows and columns
+  is the same as computing the values of the right derived functors of
+  $F$; The cohomology groups of the rows correspond to the values
+  of the right derived functor at the objects $I^{i}$ and the cohomology
+  groups of the columns correspond to the values at $A^{i}$. Note also that
+  injective objects are acyclic, because an injective object $I$ has the
+  trivial resolution $0\to I\to I\to 0$. Thus, when one computes the first
+  page of the sequence starting with the rightward orientation, the only
+  non-zero column will be the first column:
+  \[\begin{tikzcd}
+      \vdots \\ F(I^{1})\uar \\ F(I^{0})\uar \\ 0\uar
+    \end{tikzcd}\]
+  Then, the entries on the second page will be equal to the values of the
+  right derived functors $R^{i}F$ at the object $A$.
+  \begin{center}
+  \begin{tikzpicture}[commutative diagrams/every diagram, x=2cm, y=1.2cm]
+    \clip (0.8,0.5) rectangle (3.2,3.5);
+    \node (R) at (2,0) {$R^{-1}F(A)$};
+    \node (R0) at (2,1) {$R^{0}F(A)$};
+    \node (R1) at (2,2) {$R^{1}F(A)$};
+    \node (R2) at (2,3) {$R^{2}F(A)$};
+    \node (R3) at (2,4) {$R^{3}F(A)$};
+    \node (ld) at (1,1) {$0$};
+    \node (lu) at (1,3) {$0$};
+    \node (lm) at (1,2) {$0$};
+    \node (rd) at (3,1) {$0$};
+    \node (rm) at (3,2) {$0$};
+    \node (ru) at (3,3) {$0$};
 
-Let us begin by first introducing the following notation. Suppose $U_{i}$
-is an affine open cover of some variety $X$. Then, denote
-\[
-  U_{i_{0},\ldots, i_{k}}=U_{i_{0}}\cap U_{i_{1}}\cap\cdots\cap U_{i_{k}}.
-\]
-Now I will check that intersections of affine sets are affine
-\begin{prop}
-  Given an affine cover $U_{i}$ of $X$, the intersections
-  $U_{i_{0},\ldots,i_{k}}$ are affine and open.
-\end{prop}
-\begin{proof}
-  TODO.
+    \path[commutative diagrams/.cd, every arrow, every label]
+    (R) edge (lm)
+    (R0) edge (lu)
+    (rd) edge (R2)
+    (rm) edge (R3)
+    (R1) edge (1,4)
+    (3,0) edge (R1);
+  \end{tikzpicture}
+  \end{center}
+  The sequence collapses at the 2nd step and one can see that the total
+  cohomology of the complex corresponds to the values of the right
+  derived functor at $A$. Similarly, computing the first page starting with
+  the upward orientation gives only one non-zero row, since the $A^{i}$
+  are acyclic:
+  \[\begin{tikzcd}
+      0\rar & F(A^{0})\rar & F(A^{1})\rar
+      & F(A^{2})\rar & \cdots
+    \end{tikzcd}\]
+  Computing the second page gives the cohomology groups of this complex.
+  Again, the sequence collapses and therefore the values of the right
+  derived functor agree with the cohomology groups of the complex.
 \end{proof}
-Next I want to find a sheaf on $X$ whose global sections equal
-$\mathcal{F}(U_{i_{0},\ldots,i_{k}})$. I simply take the sheaf
-$i_{\ast}\mathcal{F}\vert_{U_{i_{0},\ldots,i_{k}}}$ defined by
-\[
-  i_{\ast}\mathcal{F}\vert_{U_{i_{0},\ldots,i_{k}}}(V)=\mathcal{F}
-  (V\cap U_{i_{0},\ldots,i_{k}}).
-\]
-% TODO: Explain how we get the maps and continue the exact sequence
-%       naturally.
-We get a resolution
+Let me quickly prove a lemma about products of acyclic objects.
+\begin{lemm}\label{lemm:acyclic_prod}
+  Suppose $F:\mathcal{A}\to\mathcal{B}$ is a left-exact functor between
+  abelian categories. If $A_{1}$ and $A_{2}$ are $F$-acyclic objects of
+  $\mathcal{A}$, then the product $A_{1}\oplus A_{2}$ is $F$-acyclic.
+\end{lemm}
+\begin{proof}
+  Suppose $A_{1}$ and $A_{2}$ have injective resolutions
+  \begin{center}
+    \begin{tikzcd}
+      0\rar & A_1\rar & I_1^0\rar{d_1^0} & I_1^1\rar{d_1^1} &
+      I_1^2\rar{d_1^2} & \cdots
+    \end{tikzcd}
+
+    and
+
+    \begin{tikzcd}
+      0\rar & A_2\rar & I_2^0\rar{d_2^0} & I_2^1\rar{d_2^1}
+      & I_2^2\rar{d_2^2} & \cdots
+    \end{tikzcd}.
+  \end{center}
+
+  Then,
+  \[\begin{tikzcd}
+      0\rar & A_{1}\oplus A_{2}\rar & I_{1}^{0}\oplus I_{2}^{0}
+      \rar{d_{1}^{0}\oplus d_{2}^{0}} & I_{1}^{1}\oplus I_{2}^{1}
+      \rar{d_{1}^{1}\oplus d_{2}^{1}} & \cdots
+    \end{tikzcd}\]
+  is an injective resolution of $A_{1}\oplus A_{2}$ by
+  Lemma~\ref{lemm:product_injectives}. Applying the functor $F$ to the
+  cochain complex $0\to I_{1}^{\bullet}\oplus I_{2}^{\bullet}$ yields
+  \begin{equation}\label{comp:prod_resolution}
+    \begin{tikzcd}[column sep=large]
+      0\rar & F(I_{1}^{0})\oplus F(I_{2}^{0})
+      \rar{F(d_{1}^{0})\oplus F(d_{2}^{0})} & F(I_{1}^{1})\oplus F(I_{2}^{1})
+      \rar{F(d_{1}^{1})\oplus F(d_{2}^{1})} & \cdots
+    \end{tikzcd},
+  \end{equation}
+  since additive functors preserve finite products. Since $A_{1}$ and $A_{2}$
+  are $F$-acyclic, the cochain complexes $0\to F\left(I_{1}^{\bullet}\right)$
+  and $0\to F\left(I_{2}^{\bullet}\right)$ are exact at
+  $F\left(I_{1}^{i}\right)$ and $F\left(I_{2}^{i}\right)$ for $i>0$.
+  Therefore, one can immediately see that the cochain complex
+  \eqref{comp:prod_resolution} is exact at
+  $F\left(I_{1}^{i}\right)\oplus F\left(I_{2}^{i}\right)$ for $i>0$.
+\end{proof}
+
+Next, I want to find an acyclic resolution for a given sheaf so that I can
+calculate its sheaf cohomology. Recall Prop.~\ref{prop:qcoh_gsec_exact},
+which states that if we have a SES of quasi-coherent sheaves on an affine
+variety, then the global sections functor is exact on this SES. This leads us
+to suspect that quasi-coherent sheaves on affine varieties are acyclic,
+which is indeed the case. The proof of this statement relies on the theory
+of flasque sheaves, which I have not covered.
+\begin{lemm}[Thm. 3.5 in \cite{hartshorne}]\label{lemm:affine_cohom_vanishes}
+  If $X$ is an affine variety and $\mathscr{F}$ is a quasi-coherent
+  sheaf, then $H^{i}(X, \mathscr{F})=0$ for all $i>0$.
+\end{lemm}
+\begin{proof}
+  If I denote $M=\Gamma(\mathscr{F})$, then $\mathscr{F}=\cm$. Now, the
+  module $M$ has an injective resolution $0\to M\to I^{\bullet}$.
+  This gives an exact sequence $0\to \cm\to\widetilde{I}^{\bullet}$.
+  The sheaves $\widetilde{I}^{i}$ are acyclic by Prop. 3.4 and Prop. 2.5
+  in \cite{hartshorne} (they are flasque and flasque sheaves are acyclic).
+  Therefore, the sequence $0\to \cm\to\widetilde{I}^{\bullet}$ is an
+  acyclic resolution of $\cm=\mathscr{F}$. Applying the global sections
+  functor to this resolution returns the original sequence
+  $0\to M\to I^{\bullet}$, which is exact. After removing the $M$ term, the
+  cohomology groups at $I^{0}$ is $\Gamma(\mathscr{F})$, but the cohomolgy
+  groups at $I^{i}$ are still zero for $i>0$.
+\end{proof}
+Now, consider a quasi-coherent sheaf $\mathscr{F}$ on a general variety $X$
+and recall the exact sequence \eqref{diag:sheaf_ex}. If we take $U=X$
+and the $U_{i}$ form an affine open cover of $X$, then the sequence reads
 \[\begin{tikzcd}
-    0\rar & \mathcal{F}\rar
-    & \displaystyle\prod_{i_{0}}i_{\ast}\mathcal{F}\vert_{U_{i_{0}}}\rar
-    & \displaystyle\prod_{i_{0},i_{1}}i_{\ast}\mathcal{F}\vert_{U_{i_{0},i_{1}}}\rar
-    & \displaystyle\prod_{i_{0},i_{1},i_{2}}i_{\ast}\mathcal{F}\vert_{U_{i_{0},i_{1},i_{2}}}\rar
+    0\rar & \mathscr{F}(X)\rar
+    & \displaystyle\prod_{i_{0}}\mathscr{F}(U_{i_{0}})\rar
+    & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}(U_{i_{0}}\cap U_{i_{1}})
+  \end{tikzcd},\]
+which looks awfully like a beginning of an acyclic resolution in light of
+Lemma~\ref{lemm:affine_cohom_vanishes}. Thus, I would like to find sheaves
+with global sections that match the ones in the exact sequence. But this is
+quite simple in fact; I simply take the sheaves
+$\mathscr{F}_{i_{0},\ldots,i_{k}}$ defined by
+\[
+  \mathscr{F}_{i_{0},\ldots,i_{k}}(V)=\mathscr{F}(V\cap
+  U_{i_{0},\ldots,i_{k}}),
+\]
+where $U_{i_{0},\ldots, i_{k}}=U_{i_{0}}\cap\cdots\cap U_{i_{k}}$.
+Then, I can define an exact sequence of these sheaves following the sequence
+\eqref{diag:sheaf_ex}:
+\[\begin{tikzcd}
+    0\rar & \mathscr{F}\rar
+    & \displaystyle\prod_{i_{0}}\mathscr{F}_{i_{0}}\rar{d^{0}}
+    & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}
+  \end{tikzcd}.\]
+Now, how should this sequence be continued? Supposedly we would want to
+find a map
+\[
+  d^{1}: \prod_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}
+  \to\prod_{i_{0},i_{1},i_{2}}\mathscr{F}_{i_{0},i_{1},i_{2}}
+\]
+such that $\ker d^{1}=\im d^{0}$. Let us first try to understand the sheaf
+$\im d^{0}$. Suppose $\phi$ is a section in
+$\displaystyle\prod\mathscr{F}_{i_{0}}(V)$. Then, the image $\psi$ under
+$d^{0}$ consists of components, where the component at the index $i_{0},i_{1}$
+is the difference of the component of $\phi$ at $i_{0}$ and the component of
+$\phi$ at $i_{1}$ restricted to $V\cap U_{i_{0},i_{1}}$:
+\[
+  \psi_{i_{0},i_{1}}=\phi_{1}\vert_{V\cap U_{i_{0},i_{1}}}
+  -\phi_{0}\vert_{V\cap U_{i_{0},i_{1}}},
+\]
+where $\phi_{0}\in\mathscr{F}(V\cap U_{i_{0}})$ and
+$\phi_{1}\in\mathscr{F}(V\cap U_{i_{1}})$. Fixing one more index $i_{2}$, we
+can take an alternating sum of sections restricted to
+$V\cap U_{i_{0},i_{1},i_{2}}$ with these indeces to get zero. For
+conciseness, I omit the restriction symbols in the following computation,
+because every section is restricted to a common set.
+\begin{align*}
+  \psi_{i_{1},i_{2}}-\psi_{i_{0},i_{2}}+\psi_{i_{0},i_{1}}
+  &=(\phi_{2}-\phi_{1})-(\phi_{2}-\phi_{0})+(\phi_{1}-\phi_{0}) \\
+  &=(\phi_{2}-\phi_{2})+(\phi_{1}-\phi_{1})+(\phi_{0}-\phi_{0})=0.
+\end{align*}
+Thus, $\psi\in\ker(d_{V}^{1})$. Conversely, suppose $\psi\in\ker(d_{V}^{1})$
+implying
+\[\psi_{i_{1},i_{2}}\vert_{V\cap U_{i_{0},i_{1},i_{2}}}
+-\psi_{i_{0},i_{2}}\vert_{V\cap U_{i_{0},i_{1},i_{2}}}
++\psi_{i_{0},i_{1}}\vert_{V\cap U_{i_{0},i_{1},i_{2}}}=0.\]
+Take two arbitrary sections $\phi_{0}\in\mathscr{F}(V\cap U_{i_{0}})$
+and $\phi_{1}\in\mathscr{F}(V\cap U_{i_{1}})$ with
+$\phi_{1}\vert_{V\cap U_{i_{0},i_{1}}}-\phi_{0}\vert_{V\cap U_{i_{0},i_{1}}}
+=\psi_{i_{0}, i_{1}}$. One can find two more sections (TODO)
+$\phi_{2},\phi_{2}^{\prime}\in\mathscr{F}(V\cap U_{i_{2}})$ with
+$\phi_{2}\vert_{V\cap U_{i_{0},i_{2}}}-\phi_{0}\vert_{V\cap U_{i_{0},i_{2}}}
+=\psi_{i_{0}, i_{2}}$ and $\phi_{2}^{\prime}\vert_{V\cap U_{i_{1}, i_{2}}}
+-\phi_{1}\vert_{V\cap U_{i_{1},i_{2}}}=\psi_{i_{1},i_{2}}$. Then,
+\begin{align*}
+  0 &= \psi_{i_{1},i_{2}}-\psi_{i_{0},i_{2}}+\psi_{i_{0},i_{1}} \\
+    &= (\phi_{2}^{\prime}-\phi_{1})-(\phi_{2}-\phi_{0})+(\phi_{1}-\phi_{0}) \\
+    &= \phi_{2}^{\prime}-\phi_{2}.
+\end{align*}
+Therefore, we have $\psi\in\im(d_{V}^{0})$. One can continue this sequence
+in the same fashion by taking alternating sums of sections, thus obtaining
+a resolution
+\[\begin{tikzcd}
+    0\rar & \mathscr{F}\rar
+    & \displaystyle\prod_{i_{0}}\mathscr{F}_{i_{0}}\rar
+    & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}\rar
+    & \displaystyle\prod_{i_{0},i_{1},i_{2}}\mathscr{F}_{i_{0},i_{1},i_{2}}\rar
     & \cdots
   \end{tikzcd},\]
-and I will finally check that the resolution is acyclic.
-\begin{prop}
-  The sheaves $\displaystyle\prod_{i_{0},\ldots,i_{k}}i_{\ast}\mathcal{F}
-  \vert_{U_{i_{0},\ldots,i_{k}}}$ are $\Gamma$-acyclic.
-\end{prop}
+\begin{rem}
+  The above computations might seem familiar if you have seen homology
+  or cohomology before. Infact, \v Cech cohomology can be seen as a singular
+  cohomology of the \textbf{nerve} of the open covering $(U_{i})$ of the space
+  \cite{hatcher}. The nerve of a covering is a simplicial complex, where the
+  sets $U_{i}$ are the points and a non-empty intersection of $k$ of the sets
+  is a $k$-simplex.
+\end{rem}
+The last thing I need to show is that the resolution is acyclic.
+\begin{lemm}
+  The sheaves
+  $\displaystyle\prod_{i_{0},\ldots,i_{k}}\mathscr{F}_{i_{0},\ldots,i_{k}}$ are
+  acyclic.
+\end{lemm}
 \begin{proof}
-  TODO.
+  By Lemma~\ref{lemm:acyclic_prod}, I only need to check that the sheaf
+  $\mathscr{F}_{i_{0},\ldots,i_{k}}$ is acyclic for an arbitrary index
+  $i_{0},\ldots,i_{k}$. Thus, fix an index and denote $V=U_{i_{0},\ldots,i_{k}}$
+  for short. Then, consider the quasi-coherent sheaf $\mathscr{F}\vert_{V}$.
+  The set $V$ is an affine open set by Lemma~\ref{lemm:affine_intersection}
+  so the sheaf $\mathscr{F}\vert_{V}$ is acyclic by
+  Lemma~\ref{lemm:affine_cohom_vanishes} above. Now, suppose
+  $\mathscr{F}\vert_{V}$ has an injective resolution
+  \[\begin{tikzcd}
+      0\rar & \mathscr{F}\vert_{V}\rar & \mathscr{I}^{0}\rar
+      & \mathscr{I}^{1}\rar & \mathscr{I}^{2}\rar & \cdots
+    \end{tikzcd}.\]
+  This is now a sequence of sheaves on $V$, and we would like to
+  ``push them forward'' from $V$ to $X$ and get an injective resolution of
+  $\mathscr{F}_{i_{0},\ldots,i_{k}}$. Thus, I will extend the sheaves
+  $\mathscr{I}^{i}$ to $X$ by defining sheaves $\mathscr{I}_{+}^{i}$ as follows
+  \[
+    \mathscr{I}_{+}^{i}(U)=\mathscr{I}^{i}(V\cap U).
+  \]
+  Next I show that the sheaves $\mathscr{I}_{+}^{i}$ have the properties
+  one would expect.
+  \begin{claim}
+    The sheaves $\mathscr{I}_{+}^{i}$ are quasi-coherent and injective.
+  \end{claim}
+  {\renewcommand{\qedsymbol}{$\blacksquare$}
+    \begin{proof}
+      First I show that the $\mathscr{I}_{+}^{i}$ are quasi-coherent.
+      Thus, suppose $U\subseteq X$ is an affine open set. I want to show
+      that $\mathscr{I}_{+}^{i}\vert_{U}$ is the sheaf associated to some
+      $k[U]$-module $N$. Note that since the sheaf $\mathscr{I}^{i}$ is a
+      quasi-coherent sheaf, there is a $k[V\cap U]$-module $M$ such that
+      $\mathscr{I}^{i}\vert_{V\cap U}\cong\cm$. Since $\mathscr{I}_{+}^{i}(U)
+      =\mathscr{I}^{i}(V\cap U)$ by definition, $N$ should consist of the same
+      elements as $M$, and only difference between them is the ring that
+      acts on them. In other words, we expect to be able to define $N$ as
+      the restriction of scalars of $M$. This is indeed possible, since
+      the inclusion $V\cap U\hookrightarrow U$ induces a ring homomorphism
+      $k[U]\to k[V\cap U]$. We can the define $N$ as the restriction of
+      scalars of $M$ along this homomorphism, and then
+      $\mathscr{I}_{+}^{i}\vert_{U}=\widetilde{N}$.
+
+      Let us now check injectivity. Suppose there is an injection
+      $\mathscr{A}\hookrightarrow\mathscr{B}$ of sheaves on $X$ and a
+      morphism $g:\mathscr{A}\to\mathscr{I}_{+}^{i}$. We get corresponding
+      morphisms when restricting to $V$, and we can lift the restriction of
+      $g$ because of the injectivity of $\mathscr{I}^{i}$.
+      \[\begin{tikzcd}[row sep=large]
+          \mathscr{I}^{i} & \\ \mathscr{A}\vert_{V}\uar{g\vert_{V}}\rar[hook]
+          & \mathscr{B}\vert_{V}\arrow[ul, dashed, "u"']
+        \end{tikzcd}\]
+      Now it is easy to construct a lift $u^{+}$ of $g$ by defining it on the
+      stalks. Thus, fix a point $P\in X$. If $P\in V$, then the we should
+      take $u^{+}_{P}=u_{P}$. If on the other hand $P\not\in V$, then
+      $u^{+}_{P}=0$, since $\left(\mathscr{I}_{+}^{i}\right)_{P}=0$. Then,
+      the following triangle commutes.
+      \[\begin{tikzcd}[row sep=large, column sep=large]
+          \mathscr{I}_{+}^{i} & \\ \mathscr{A}\uar{g}\rar[hook]
+          & \mathscr{B}\arrow[ul, "u^{+}"']
+        \end{tikzcd}\]
+    \end{proof}
+  }
+  Therefore, the sequence
+  \[\begin{tikzcd}
+      0\rar & \mathscr{F}_{i_{0},\ldots,i_{k}}\rar & \mathscr{I}_{+}^{0}\rar
+      & \mathscr{I}_{+}^{1}\rar & \mathscr{I}_{+}^{2}\rar & \cdots
+    \end{tikzcd}\]
+  is an injective resolution of $\mathscr{F}_{i_{0},\ldots,i_{k}}$,
+  and hence the cohomology of $\mathscr{F}_{i_{0},\ldots,i_{k}}$ can
+  be computed by computing the cohomology of the sequence
+  \[\begin{tikzcd}
+    0\rar & \Gamma\left(\mathscr{I}_{+}^{0}\right)\rar
+    & \Gamma\left(\mathscr{I}_{+}^{1}\right)\rar
+    & \Gamma\left(\mathscr{I}_{+}^{2}\right)\rar & \cdots,
+    \end{tikzcd}\]
+  By the construction of the sheaves $\mathscr{I}_{+}^{i}$, this sequence is
+  equal to
+  \[\begin{tikzcd}
+      0\rar & \Gamma\left(\mathscr{I}^{0}\right)\rar
+      & \Gamma\left(\mathscr{I}^{1}\right)\rar
+      & \Gamma\left(\mathscr{I}^{2}\right)\rar & \cdots
+    \end{tikzcd},\]
+  so the statement follows since $\mathscr{F}\vert_{V}$ is acyclic.
 \end{proof}
 Thus, we finally arrive at the definition of \v Cech cohomology.
 \begin{defin}\label{def:cech}
-  The \v Cech cohomology of a sheaf $\mathcal{F}$ of
-  $\mathscr{O}_{X}$-modules is the cohomology of the cochain complex
+  The \v Cech cohomology of a quasi-coherent sheaf $\mathscr{F}$ the
+  cohomology of the cochain complex
   \[\begin{tikzcd}
-      \mathcal{F}(U_{i_{0}})\rar{d^{0}} & \mathcal{F}(U_{i_{0},i_{1}})\rar{d^{1}}
-      & \mathcal{F}(U_{i_{0},i_{1},i_{2}})\rar{d^{2}} & \cdots
+      \displaystyle\prod_{i_{0}}\mathscr{F}(U_{i_{0}})\rar{d^{0}}
+      & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}(U_{i_{0},i_{1}})\rar{d^{1}}
+      & \displaystyle\prod_{i_{0},i_{1},i_{2}}\mathscr{F}(U_{i_{0},i_{1},i_{2}})\rar{d^{2}}
+      & \cdots
     \end{tikzcd},\]
   where the differentials are defined as the product of the maps
   \[d_{i_{0},\ldots,i_{k+1}}^{k}:\displaystyle\prod_{j_{0},\ldots,j_{k}}
-  \mathcal{F}(U_{j_{0},\ldots,j_{k}})\to \mathcal{F}(U_{i_{0},\ldots,i_{k+1}})\]
+  \mathscr{F}(U_{j_{0},\ldots,j_{k}})\to \mathscr{F}(U_{i_{0},\ldots,i_{k+1}})\]
   given by
   \[
     d_{i_{0},\ldots,i_{k+1}}^{k}(\alpha)
     =\sum_{j=0}^{k+1}(-1)^{j}\alpha_{i_{0},\ldots,\hat{i}_{j},\ldots,i_{k+1}}
     \vert_{U_{i_{0},\ldots,i_{k+1}}}.
   \]
+  More specifically, the $i$th cohomology group $H^{i}(X,\mathscr{F})$
+  is defined as the $k$-vector space $\ker(d^{i})/\im(d^{i-1})$ if we
+  take $d^{-1}$ to be the zero-morphism.
 \end{defin}
 
 \subsection{Results in cohomology}
 
 \begin{prop}\label{prop:const_sheaf}
-  If $X$ is an irreducible variety, and $A$ is an abelian group,
+  If $X$ is an irreducible variety and $A$ is an abelian group,
   then for the constant sheaf $\underline{A}$,
   \begin{enumerate}[(a)]
     \item $H^{0}(X,\underline{A}) = A$,
     \item $H^{1}(X,\underline{A})=0$.
   \end{enumerate}
 \end{prop}
+
+\begin{prop}\label{prop:sky_cohom}
+  If $X$ is an irreducible variety and $A$ is an abelian group,
+  then the cohomology groups $H^{i}(X,A_{P})$ of the skyscraper sheaf
+  $A_{P}$ are zero for $i>0$.
+\end{prop}
+\begin{proof}
+  TODO.
+\end{proof}

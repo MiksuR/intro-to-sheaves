@@ -22,6 +22,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\res}{Res}
 \DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Pic}{Pic}
 
 \usepackage{float}
 \usepackage{tikz}
@@ -34,7 +35,7 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \linespread{1.1}
 \frenchspacing
 
-%\includeonly{sections/3cohomology}
+%\includeonly{sections/4riemann_roch}
 
 \begin{document}
 
@@ -65,8 +66,9 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \newtcbox{\warn}{colback=white, colframe=red!90!black, center}
 
 \renewcommand{\phi}{\varphi}
-\newcommand{\diffs}[1]{H^0(X,K_X\otimes\mathcal{L}(#1)^{\vee})}
-\newcommand{\dual}[1]{H^1(X,\mathcal{L}(#1))^{\vee}}
+%\newcommand{\diffs}[1]{H^0(X,K_X\otimes\mathcal{L}(#1)^{\vee})}
+\newcommand{\diffs}[1]{\Omega\left(#1\right)}
+\newcommand{\dual}[1]{H^1(X,\mathcal{L}\left(#1\right))^{\vee}}
 \newcommand{\duals}{H^1(X,\mathcal{L}(\kern.08em\bullet\kern.08em))^{\vee}}
 \renewcommand{\emptyset}{\text{\O}}
 \newcommand{\cm}{\widetilde{M}}

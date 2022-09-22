@@ -5,14 +5,13 @@ The rest of this paper is devoted to proving the Serre duality:
   If $X$ is an algebraic curve as in the previous section
   and $D$ is a divisor on $X$, there is an isomorphism
   \[
-    \dual{D}\cong H^{0}(X, K_{X}
-    \otimes \mathcal{L}(D)^{\vee}).
+    \dual{D}\cong \diffs{D}.
   \]
-  of $k$-vector spaces, where $K_{X}$ is the canonical divisor of $X$.
+  of $k$-vector spaces.
 \end{thm:serre}
 I will prove the theorem by first finding a more concrete representation of
 $H^{1}(X,\mathcal{L}(D))$ and then constructing a perfect pairing between
-$H^{1}(X,\mathcal{L}(D))$ and $H^{0}(X,K_{X}\otimes\mathcal{L}(D)^{\vee})$,
+$H^{1}(X,\mathcal{L}(D))$ and $\diffs{D}$,
 which will give us the isomorphism.
 
 \subsection{Concrete representation of $H^{1}(X,\mathcal{L}(D))$}
@@ -116,8 +115,8 @@ direct sum of stalks.
           negative order. Then, let $U$ be the complement of
           $Y\cup \set{S_{1},\ldots,S_{t}}$. As above, $[f_{Q}]=[0]$ for all
           $Q\in U$ except for $Q=P$. But since the points $S_{i}$ are also
-          included in the complement, we have that $[g]=[0]$ away from $P$.
-          Thus, $[f_{Q}]=[g]$ on $U$.
+          included in the complement, $[g]=[0]$ away from $P$. Thus,
+          $[f_{Q}]=[g]$ on $U$.
   \end{description}
 \end{proof}
 Now, we can express this direct sum in the following way. Consider the
@@ -187,7 +186,7 @@ Secondly, given a repartition $r\in R(D)$, we have $(r_{P}\omega)
 =(r_{P})+(\omega) \geq -D+D=0$ and thus $\res_{P}(r_{P}\omega)=0$ by the same
 % TODO: Make this part more clear.
 argument as above. Also, if $r\in k(X)$, then $\langle \omega,r\rangle=0$ by
-the residue theorem (Thm.~\ref{thm:residue}).
+the residue theorem (Thm.~\ref{thm:residue_theorem}).
 
 Now, Serre duality will follow if we can show that the map
 \[
@@ -437,8 +436,7 @@ We finally arrive at the Serre Duality theorem!
   If $X$ is an algebraic curve as in the previous section
   and $D$ is a divisor on $X$, there is an isomorphism
   \[
-    H^{1}(X, \mathcal{L}(D))^{\vee}\cong H^{0}(X, K_{X}
-    \otimes \mathcal{L}(D)^{\vee}).
+    \dual{D}\cong\diffs{D}
   \]
   of $k$-vector spaces, where $K_{X}$ is the canonical divisor of $X$.
 \end{thm}

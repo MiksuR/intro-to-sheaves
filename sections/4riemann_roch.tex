@@ -25,11 +25,14 @@ Then, we can represent the divisor as a formal linear combination
   D=\sum_{P\in X}n_{P}P,
 \]
 where the integer $n_{P}$ is the value associated to the point $P$.
-% TODO: Picture of a divisor
 Now, two divisors can be added component by component so that divisors on
 $X$ form an abelian group $\Div X$. Given a divisor $D$, I write $D(P)$
 for the value $n_{P}$ associated to the point $P\in X$.
-% TODO: Picture of a sum of divisors
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{divisors}
+  \caption{Visualising divisors and their sums}
+\end{figure}
 I will now define the \emph{degree} of a divisor and an order relation on
 the group of divisors. The degree of a divisor $D$ is simply the integer
 \[
@@ -93,6 +96,11 @@ sheaf $\mathcal{L}(D)$ of such functions:
   \left(\mathcal{L}(D)\right)(U)=\Set{f\in k(X)\mid
   \forall P\in U,\ \ord_{P}(f)\geq -D(P)}
 \]
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.6\textwidth]{divisor_section}
+  \caption{A section of the sheaf $\mathcal{L}(D)$}
+\end{figure}
 \begin{prop}
   The sheaves $\mathcal{L}(D)$ are quasi-coherent for every divisor $D$.
 \end{prop}

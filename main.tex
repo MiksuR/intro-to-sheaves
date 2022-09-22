@@ -26,6 +26,10 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \DeclareMathOperator{\tr}{Tr}
 
 \usepackage{float}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{mwe}
 \usepackage{tikz}
 \usepackage{tikz-cd}
 
@@ -44,6 +48,11 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \author{Miika Rankaviita\\Imperial College London}
 \date{\today}
 \maketitle
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{cover}
+\end{figure}
+\newpage
 \tableofcontents
 
 \theoremstyle{plain}
@@ -80,10 +89,12 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \include{sections/5serre}
 
 \section*{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements and references}
 I want to thank my supervisor Johannes Nicaise without whom this project
 would not have happened. His guidance through out the project was always
 valuable, and he patiently answered my numerous questions. I also want to
-thank the Department of Mathematics for funding this project.
+thank the Department of Mathematics at Imperial College London for funding
+this project.
 
 \bibliographystyle{alpha}
 \bibliography{refs}

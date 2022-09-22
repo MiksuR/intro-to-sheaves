@@ -20,14 +20,23 @@ homeomorphic to some fibre space $F$. But not only that, we also require
 that one can find an open neighbourhood $U$ for every point of $B$ and a
 homeomorphism $h:\pi^{-1}(U)\to U\times F$ such that the following diagram
 commutes.
-\[\begin{tikzcd}[row sep=large, column sep=small]
-    {\pi^{-1}(U)} && {U\times F} \\
-    & U
-    \arrow["\pi"', from=1-1, to=2-2]
-    \arrow["{\text{proj}_1}", from=1-3, to=2-2]
-    \arrow["h", leftrightarrow, from=1-1, to=1-3]
-  \end{tikzcd}\]
-% TODO: Picture of this diagram
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{.45\textwidth}
+    \centering
+    \begin{tikzcd}[row sep=large, column sep=small]
+      {\pi^{-1}(U)} && {U\times F} \\
+      & U
+      \arrow["\pi"', from=1-1, to=2-2]
+      \arrow["{\text{proj}_1}", from=1-3, to=2-2]
+      \arrow["h", leftrightarrow, from=1-1, to=1-3]
+    \end{tikzcd}
+  \end{minipage}%
+  \begin{minipage}{.45\textwidth}
+    \centering
+    \includegraphics[width=.7\textwidth]{fibre_bundle}
+  \end{minipage}
+\end{figure}
 Thus, when we attach the fibres to points of $B$, they should be gathered
 so that the total space looks locally like a product space.
 
@@ -37,11 +46,21 @@ speaking a line. An example of such a \emph{line bundle} is the cylinder.
 The cylinder is a \emph{trivial bundle}, because the whole space can
 be written as a product: $S^{1}\times [-1,1]$. An example of a
 \emph{non-trivial line bundle} over $S^{1}$ is the \emph{Möbius strip}.
-% TODO: Pictrue of the two line bundles over S^1
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{.45\textwidth}
+    \centering
+    \includegraphics[height=4cm]{cylinder}
+  \end{minipage}%
+  \begin{minipage}{.45\textwidth}
+    \centering
+    \includegraphics[height=4cm]{mobius}
+  \end{minipage}
+  \caption{The two line bundles over $S^{1}$}
+\end{figure}
 Similarly, we can consider \emph{circle bundles} over $S^{1}$. A trivial
 circle bundle over $S^{1}$ is the torus and a non-trivial example is given
 by the \emph{Klein bottle}.
-% TODO: Picture of the two circle bundles over S^1
 An important example showing up in differential and algebraic geometry
 is the concept of the \emph{tangent bundle}, where the fibres are the
 tangent spaces at the points of the base space. Consider for example the
@@ -55,16 +74,19 @@ This condition ensures that $s$ maps every point of the base space to the
 corresponding fibre. A useful analogy is to think of a river, which can
 be represented by a curve $C$ on the Euclidean plane. One could measure the
 temperature of the river at different points and get a temperature reading
-in $\mathbb{R}^{+}$ (assuming the measurement is taken in Kelvins).
+in $\mathbb{R}^{+}$ (assuming the
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \centering
+  \includegraphics[width=0.3\textwidth]{vector_field}
+  \caption{A section of the tangent bundle on $S^{1}$}
+\end{wrapfigure}
+ measurement is taken in Kelvins).
 If one were to collect the temperature readings, one would get a section of
 the $\mathbb{R}^{+}$-bundle over the river $C$. Thus, if fibre bundles are a
 way of attaching data to points of a space, then sections of a fibre bundle
 are continuous collections of data over the base space.
-% TODO: Picture of a river and temperature readings
-One more interesting
-example is a section of a tangent bundle. These are simply vector fields
-on the base space.
-% TODO: Picture of a vector field on S^1
+One more interesting example is a section of a tangent bundle. These are
+simply vector fields on the base space.
 In practise, we also consider sections $s:U\to E$ on some open set
 $U\subseteq B$, because given two sections $s_{1}:U_{1}\to E$ and
 $s_{2}:U_{2}\to E$, we can glue the two sections proveded the sections
@@ -210,12 +232,23 @@ later.
 The stalks of a sheaf are analogous to the fibres of a fibre bundle.
 Just as a section of a fibre bundle takes values in the fibres, a section of
 a sheaf takes values in the stalks.
-\begin{lwarn}
-  Note however that while a stalk at $P$ contains all the data ``above'' $P$
-  just as a fibre at $P$ does, stalks are larger, because they also contain
-  ``infinitesimal'' data \textbf{around} $P$.
-  % TODO: Picture with two sections that have different germs
-\end{lwarn}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \begin{lwarn}
+      Note however that while a stalk at $P$ contains all the data ``above''
+      $P$ just as a fibre at $P$ does, stalks are larger, because they also
+      contain ``infinitesimal'' data \textbf{around} $P$. One can find two
+      sections with equal values at $P$, but which have different germs at
+      $P$.
+    \end{lwarn}
+  \end{minipage}%
+  \begin{minipage}{.45\textwidth}
+    \centering
+    \includegraphics[width=.45\textwidth]{germs}
+  \end{minipage}
+\end{figure}
 Fix a sheaf $\mathscr{F}$ on some space $X$ and choose a section
 $s\in \mathscr{F}(U)$ on some open set $U\subseteq X$. Then, consider
 the totality of germs of $s$ over $U$, namely the collection

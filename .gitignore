@@ -15,3 +15,4 @@ sections/4riemann_roch.aux
 sections/5serre.aux
 sections/.auctex-auto
 sections/make
+graphics/*

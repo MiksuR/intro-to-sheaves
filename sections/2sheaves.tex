@@ -81,18 +81,18 @@ in $\mathbb{R}^{+}$ (assuming the
   \caption{A section of the tangent bundle on $S^{1}$}
 \end{wrapfigure}
  measurement is taken in Kelvins).
-If one were to collect the temperature readings, one would get a section of
-the $\mathbb{R}^{+}$-bundle over the river $C$. Thus, if fibre bundles are a
-way of attaching data to points of a space, then sections of a fibre bundle
-are continuous collections of data over the base space.
-One more interesting example is a section of a tangent bundle. These are
-simply vector fields on the base space.
+If one were to collect the temperature readings across all points of $C$,
+one would get a section of the $\mathbb{R}^{+}$-bundle over the river $C$.
+Thus, if fibre bundles are a way of attaching data to points of a space,
+then sections of a fibre bundle are continuous collections of data over the
+base space. One more interesting example is a section of a tangent bundle.
+These are simply vector fields on the base space.
 In practise, we also consider sections $s:U\to E$ on some open set
 $U\subseteq B$, because given two sections $s_{1}:U_{1}\to E$ and
 $s_{2}:U_{2}\to E$, we can glue the two sections proveded the sections
 agree on $U_{1}\cap U_{2}$ to get a section $s:U_{1}\cup U_{2}\to E$.
 Then, one can piece together larger sections from smaller sections. This
-ability to define sections locally is very useful and important.
+ability to define sections locally is very useful.
 
 \subsection{Defining sheaves}
 To summarise, fibre bundles are a way of attaching geometric data to
@@ -102,27 +102,29 @@ of a fibre bundle, because the requirement that the fibres must be
 topological spaces which form another topological space when bundled
 together is more strict than we want. What if we want to consider, in
 the above analogy, the types of fish living in the different parts of the
-river? The set of types of fish doesn't form a topological space, but we
+river? The set of types of fish does not form a topological space, but we
 can still define a functions $s:U\to F$, where $F$ is the set of types
 of fish and $U\subseteq C$ is an open set.
 
 The notion of a fibre bundle is extended by the notion of a sheaf.
-Since taking sections is really the important part of fibre bundles, the
+Since taking sections is really the interesting part of fibre bundles, the
 definition of a sheaf will not be built with fibres and projection maps
-but with sections. Next I will state the formal definition of a
-\emph{pre-sheaf}. Pay attention to the properties that are motivated by
-fibre bundles.
+but with sections. For the rest of this section, I use \cite{gathmann} as
+my main source for sheaf theoretic results. Next I will state the formal
+definition of a \emph{pre-sheaf}. Pay attention to the properties that are
+motivated by fibre bundles.
 \begin{defin}
   A pre-sheaf $\mathscr{F}$ of sets on a topological space $X$ associates
   to each open set $U\subseteq X$ a set $\mathscr{F}(U)$, which is called
-  the set of sections over $U$. For every pair of open sets $V\subseteq U$,
-  one defines a function $\text{res}_{V}^{U}:\mathscr{F}(U)\to\mathscr{F}(V)$,
+  the set of sections over $U$. For every pair of nested open sets
+  $V\subseteq U$, one defines a function
+  $\text{res}_{V}^{U}:\mathscr{F}(U)\to\mathscr{F}(V)$,
   called the restriction function, such that $\text{res}_{U}^{U}
   =\text{id}_{U}$ and for every triple $W\subseteq V\subseteq U$, we have
   $\text{res}_{W}^{V}\circ\text{res}_{V}^{U}=\text{res}_{W}^{U}$.
   When $s\in\mathscr{F}(U)$, one usually writes $s\vert_{V}$ for
   $\res_{V}^{U}(s)$. Also, the set of global sections $\mathscr{F}(X)$
-  is usually denoted by $\Gamma(\mathscr{F})$.
+  is denoted by $\Gamma(\mathscr{F})$.
 
   One can also define pre-sheaves of rings, for example, where the sets
   $\mathscr{F}(U)$ are rings and the restriction functions are
@@ -140,7 +142,7 @@ Thus, sheaves are defined in the following way.
   and $j$, then there is a unique section $s\in\mathscr{F}(U)$ such that
   $\forall i\in I,\ s\vert_{U_{i}}=s_{i}$.
 \end{defin}
-\begin{cat}
+\begin{bcat}
   Category theoretically speaking, a pre-sheaf $\mathscr{F}$ of sets is
   simply a contravariant functor $\mathscr{F}:\text{Op}(X)^{\text{op}}
   \to\mathbf{Set}$, where $\text{Op}(X)$ is the posetal category of
@@ -162,15 +164,15 @@ Thus, sheaves are defined in the following way.
   $\text{res}_{U_{i}}^{U}$ and the pair of maps are products of the
   restrictions $\text{res}_{U_{i}\cap U_{j}}^{U_{i}}$ and
   $\text{res}_{U_{i}\cap U_{j}}^{U_{j}}$ respectively.
-\end{cat}
+\end{bcat}
 
 Next, suppose $\pi: E\to B$ is a fibre bundle. One can easily check that
 it is possible to define a sheaf $\mathscr{F}$ by
 \[
   \mathscr{F}(U) = \Set{s:U\to E\mid s\text{ a section of }\pi}.
 \]
-Another important example of a sheaf is the structure sheaf $\mathscr{O}_{X}$
-of an affine variety $X$ defined by
+An example of a sheaf showing up in algebraic geometry is the structure
+sheaf $\mathscr{O}_{X}$ of an affine variety $X$ defined by
 \[
   \mathscr{O}_{X}(U)=\Set{f\in k(X)\mid f\text{ regular on } U}.
 \]
@@ -278,7 +280,7 @@ with some section $s\vert_{U_{P}}$ on $U_{P}$. We want to ensure that this is
 the case with the collection $(s_{P})_{P\in X}$ of the proposition so that we
 can glue the germs in the same way as above. This statement will be essential
 for building theory, but it is also useful for manipulating sheaves in
-practise and I will rutinely represent sections of sheaves as collections
+practise and I will routinely represent sections of sheaves as collections
 of germs. Thus, make sure you understand the statement and the proof
 completely.
 \begin{proof}
@@ -322,7 +324,7 @@ on $X$ by
 One may notice that $\mathscr{F}$ is in fact a sheaf. Thus, one can
 associate a sheaf to every pre-sheaf using this construction, which is
 called \emph{sheafification}. And Lemma~\ref{lemm:sheafify_sheaf} is saying
-that sheafifying a sheaf doesn't do anything. One can also see that the
+that sheafifying a sheaf does not do anything. One can also see that the
 pre-sheaf $\mathscr{F}^{\prime}$ and its sheafification $\mathscr{F}$ always
 have the same stalks.
 \begin{rem}
@@ -353,7 +355,7 @@ have the same stalks.
   \mathbf{PSh}(X)$. % TODO: Cite nlab
 \end{cat}
 A typical example illustrating sheafification is to consider the constant
-pre-sheaf and its sheafification. The constant pre-sheaf
+pre-sheaf and its sheafification. The constant pre-sheaf % TODO: Citation?
 $\mathscr{F}^{\prime}$ on a space $X$ is defined as follows
 \[
   \mathscr{F}^{\prime}(U) =\Set{c: U\to\mathbb{R}\mid c
@@ -372,12 +374,12 @@ $d: U_{P}\to\mathbb{R}$ such that $\forall Q\in U_{P},\ c_{Q}=d_{Q}$.
 Hence, the restriction of $(c_{Q})_{Q\in U}$ to $U_{P}$ can be identified
 with the constant function $d$. Therefore, the sheafification of the constant
 pre-sheaf constists of \emph{locally constant functions}. In general, given
-an abelian group $A$, the constant sheaf $\underline{A}$ is defined
-as the sheafification of the constant pre-sheaf with values in $A$.
+a set $A$, the constant sheaf $\underline{A}$ is defined as the sheafification
+of the constant pre-sheaf with values in $A$.
 
-Now is a good time to introduce other sheaves that we will need later.
-First one is the \emph{skyscraper sheaf} of some abelian group $A$ at a point
-$P\in X$. It is defined as follows
+Now is a good time to introduce other sheaves that will be needed later.
+First one is the \emph{skyscraper sheaf} of some set $A$ at a point $P\in X$.
+It is defined as follows
 \[
   A_{P}(U)=\begin{cases}
     A, & \quad P\in U \\
@@ -398,7 +400,7 @@ Now that we have some feel for sheaves, I will briefly go over the
 construction of abstract algebraic varieties, which are built with the help
 of sheaves. Whenever I mention varieties, I refer to the spaces that are
 defined in this subsection. The precise details of the construction are not
-essential for the present paper, and the reader should consult
+essential for the present article, and the reader should consult
 \cite{gathmann} for a more detailed discussion.
 
 In geometry, one is not only interested in the points of the space,
@@ -522,9 +524,10 @@ given by the restriction maps: if $s\vert_{V}=r$, then $\alpha(s)\vert_{V}
 \end{cat}
 
 In order to proceed to define algebraic constructions on sheaves, I must
-restrict to some class of sheaves with an algebraic structure. An important
-class of such sheaves are the \emph{sheaves of $\mathscr{O}_{X}$-modules}
-on a ringed space $(X,\mathscr{O}_{X})$.
+restrict to some class of sheaves with an algebraic structure. The class
+usually considered in algebraic geometry is the class of
+\emph{sheaves of $\mathscr{O}_{X}$-modules} on a ringed space
+$(X,\mathscr{O}_{X})$.
 \begin{defin}
   Given a ringed space $(X,\mathscr{O}_{X})$, a sheaf $\mathscr{F}$ on $X$
   is a sheaf of $\mathscr{O}_{X}$-modules, if the sets $\mathscr{F}(U)$
@@ -665,7 +668,7 @@ on the stalks. Then one can show the following theorem.
           $\ker(f_{i})(U)=\im(f_{i-1})(U)$ for all open sets
           $U\subseteq X$, which implies that the sheaves are equal.
   \end{description}
-\end{proof}
+\end{proof} % TODO: Add a picture to clarify this proof
 One can prove the following results as an immediate corollary.
 \begin{cor}
   Suppose $f:\mathscr{F}\to\mathscr{G}$ is a morphism of sheaves of
@@ -678,7 +681,7 @@ One can prove the following results as an immediate corollary.
   \end{enumerate}
 \end{cor}
 
-In algebraic geometry, one usually restricts attention to a certain class of
+In algebraic geometry, one further restricts attention to a certain class of
 sheaves of $\mathscr{O}_{X}$-modules called \emph{quasi-coherent sheaves}.
 These have even nicer algebraic properties, and they include most sheaves
 one encounters in algebraic geometry. To define quasi-coherent sheaves,
@@ -686,8 +689,8 @@ I need to first make the following definition, which generalises the
 definition of the structure sheaf on an affine variety.
 \begin{defin}
   Suppose $X$ is an affine variety and $M$ is a module over the coordinate
-  ring $k[X]$. Then, the sheaf $\cm$ associated with the module $M$ is
-  defined as follows.
+  ring $\mathscr{O}_{X}(X)$. Then, the sheaf $\cm$ associated with the
+  module $M$ is defined as follows.
   \begin{align*}
     \cm(U)=\big\{\,
     & (\phi_{P})_{P\in U}\,\big\vert\, \phi_{P}\in M_{\mathfrak{m}_{P}}
@@ -703,7 +706,7 @@ definition of the structure sheaf on an affine variety.
 Now, this definition implies the following result.
 \begin{lemm}\label{lemm:qcoh_local_global}
   If $\cm$ is the sheaf on an affine variety $X$ associated to the module
-  $M$ over $k[X]$, then
+  $M$ over $\mathscr{O}_{X}(X)$, then
   \begin{enumerate}[label=\normalfont(\alph*)]
     \item $\forall P\in X, \left(\cm\right)_{P}=M_{\mathfrak{m}_{P}}$, and
     \item $\Gamma\left(\cm\right)=M$.
@@ -716,17 +719,18 @@ Quasi-coherent sheaves are then constructed from such sheaves.
 \begin{defin}
   A sheaf $\mathscr{F}$ of $\mathscr{O}_{X}$-modules is quasi-coherent, if
   for everey affine open set $U\subseteq X$, the sheaf $\mathscr{F}\vert_{U}$
-  is a sheaf associated to some module $M$ over the coordinate ring $k[U]$.
+  is a sheaf associated to some module $M$ over the coordinate ring
+  $\mathscr{O}_{X}(U)$.
 \end{defin}
-\begin{rem}
+\begin{rem} % TODO: Be more precise
   Quasi-coherence can be checked locally, see \cite{gathmann}.
 \end{rem}
 \begin{rem}
   The constructios in Def.~\ref{def:sheaf_algebra} are quasi-coherent
   for quasi-coherent sheaves, see \cite{gathmann}.
 \end{rem}
-Quasi-coherent sheaves have the following nice property, which will be very
-important later.
+Quasi-coherent sheaves have the following nice property, which plays a
+major role in the following section.
 \begin{prop}[Lemma 7.2.7 in \cite{gathmann}]\label{prop:qcoh_gsec_exact}
   Given an affine variety $X$ and a short exact sequence
   \[\begin{tikzcd}

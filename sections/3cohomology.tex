@@ -57,10 +57,10 @@ following.
           Suppose $s\in\ker(\Gamma\alpha)$, which is to say that $s$ is in
           the kernel of the component $\alpha_{X}$ of the morphism $\alpha$.
           Since $\ker(\alpha)=\im(0\to\mathscr{F})$, we have
-          $s\in\im(0\to\mathscr{F})(X)$. But $\im(0\to\mathscr{F})$ is
+          $s\in\im({0\to\mathscr{F}})(X)$. But $\im(0\to\mathscr{F})$ is
           clearly the zero sheaf so that $s=0$. Also,
           $\im(0\to\Gamma(\mathscr{F}))$ is clearly the zero module.
-          Therefore, $\ker(\Gamma\alpha)=0=\im(0\to\Gamma(\mathscr{F}))$.
+          Therefore, $\ker(\Gamma\alpha)=0=\im({0\to\Gamma(\mathscr{F})})$.
     \item[Exactness at $\Gamma(\mathscr{G})$]
           Since $\alpha$ is injective, $\im(\alpha)$ can be identified with
           the sheaf $\mathscr{F}$. Therefore $\ker(\beta)=\mathscr{F}$ and so
@@ -75,7 +75,7 @@ following.
 \end{proof}
 \begin{cat}
   We say that the global sections functor $\Gamma: \text{Sh}(X)\to
-  k[X]$\textbf{-Mod} is left-exact but not right-exact.
+  \mathscr{O}_{X}(X)$\textbf{-Mod} is left-exact but not right-exact.
 \end{cat}
 
 Although exact sequences are not completely preserved under taking
@@ -102,14 +102,14 @@ so-called \emph{derived functors}. These vector spaces $H^{i}(-)$ given by
 derived functors are then called the sheaf cohomology groups. In practise,
 they are difficult to compute, and thus I will define the \emph{\v Cech
   cohomology} which is a tool for computing sheaf cohomology.
-In the next subsection I will introduce derived functors and deduce the
-definition of \v Cech cohomology. The contents of the subsection will be
-more technical than the rest of the paper, and it is probably a good idea
-to skip straight to Definition~\ref{def:cech}, which can be taken as
-\textbf{the} definition of sheaf cohomology. The primary source in the
-next subsection is \cite{vakil}.
+In the next subsections I will introduce derived functors and give a complete
+explanation of how we arrive at \v Cech cohomology. The contents of these
+subsections will be more technical than the rest of the paper, and it is
+probably a good idea to skip straight to Definition~\ref{def:cech},
+which can be taken as \textbf{the} definition of sheaf cohomology. The
+primary source I use is \cite{vakil}.
 
-\subsection{From derived functors to \v Cech cohomology*}
+\subsection{Derived functors*}
 Let us consider the general problem of extending a left-exact
 functor $F:\mathcal{A}\to\mathcal{B}$ between abelian categories
 (which one may think of as categories of modules) to the right.
@@ -119,7 +119,7 @@ First, I will clarify what exactly I mean by a left-exact functor.
   categories. The functor is said to be left-exact if
   \begin{enumerate}
     \item it is additive: if $A$, $B$ are objects of $\mathcal{A}$
-          and $f, g\in\text{Hom}(A, B)$, then $F(f+g)=F(f)+F(g)$.
+          and $f, g\in\text{Hom}(A, B)$, then $F(f+g)=F(f)+F(g)$ and
     \item given a SES
           \[\begin{tikzcd}
               0\rar & A\rar & B\rar & C\rar & 0
@@ -152,7 +152,7 @@ connecting morphisms so that the sequence
 \]
 is exact. The functors $R^{i}F$ will be called the \emph{right
   derived functors} of $F$. The following lemma from homological
-algebra gives a hint of what approach we should take to find such functors.
+algebra gives a hint of what approach one should take to find such functors.
 \begin{lemm}[Zig-zag lemma] % TODO: Cite this?
   Suppose $A^{\bullet},B^{\bullet},C^{\bullet}$ are cochain complexes in some
   abelian category. If there is a SES
@@ -205,7 +205,7 @@ the scope of this paper and I will refer the reader to the section 1.7 of
       0\rar & H^{0}(A^{\bullet})\rar{\alpha_{0}}
       & H^{0}(B^{\bullet})\rar{\beta_{0}} & H^{0}(C^{\bullet})\rar & 0 \\
     \end{tikzcd}\]
-  Finally, in the second page we will have
+  Finally, in the second page we have
 
   \begin{center}
   \begin{tikzpicture}[commutative diagrams/every diagram, x=2.2cm, y=1.7cm]
@@ -345,19 +345,19 @@ Then, an injective resolution of an object $A$ is a long exact sequence
     0\rar & A\rar & I^{0}\rar & I^{1}\rar & \cdots
   \end{tikzcd}\]
 where the $I^{i}$ are injective. Note that it is not obvious that an object
-of an abelian category should have an injective resolution. Thus, we assume
-that the category $\mathcal{A}$ has \emph{enough injectives} meaning that
-for every object $A$ of $\mathcal{A}$, there is an injection
-$A\hookrightarrow I$ into some injective object $I$. Then, for every object
-$A$ we can construct an injective resolution inductively. The first object
-$I^{0}$ is given directly by the assumption. Then suppose we have constructed
-an exact sequence
+of an abelian category should have an injective resolution in the first
+place. Thus, we assume that the category $\mathcal{A}$ has
+\emph{enough injectives} meaning that for every object $A$ of $\mathcal{A}$,
+there is an injection $A\hookrightarrow I$ into some injective object $I$.
+Then, for every object $A$ we can construct an injective resolution
+inductively. The first object $I^{0}$ is given directly by the assumption.
+Then suppose we have constructed an exact sequence
 \[\begin{tikzcd}
     0\rar & A\rar & I^{0}\rar{\iota_{0}} & \cdots\rar
     & I^{n-1}\rar{\iota_{n-1}} & I^{n}
   \end{tikzcd}.\]
 Let us take $I^{n+1}$ to be an injective object such that there is
-an injection $\coker(\iota_{n-1})\hookrightarrow I^{n+1}$. Then we have
+an injection ${\coker(\iota_{n-1})\hookrightarrow I^{n+1}}$. Then we have
 \[\begin{tikzcd}
     0\rar & A\rar & I^{0}\rar{\iota_{0}} & \cdots\rar
     & I^{n-1}\rar{\iota_{n-1}} & I^{n}\rar[two heads]
@@ -368,7 +368,6 @@ When the injection is composed with the projection, we get the exact sequence
     0\rar & A\rar & I^{0}\rar{\iota_{0}} & \cdots\rar
     & I^{n-1}\rar{\iota_{n-1}} & I^{n}\rar{\iota_{n}} & I^{n+1}
   \end{tikzcd}.\]
-
 Now I will quickly prove a useful lemma about injective objects:
 \begin{lemm}\label{lemm:product_injectives}
   A product of injective objects is injective.
@@ -575,6 +574,7 @@ the global sections functor:
 \]
 This definition relies on the assumption that the category of sheaves of
 $\mathscr{O}_{X}$-modules has enough injectives.
+% TODO: Assume enough injectives in R-Mod and derive the theorem from this.
 \begin{thm}\label{thm:enough_injectives}
   The category $\mathscr{O}_{X}$\textup{\textbf{-Mod}} has enough injectives.
 \end{thm}
@@ -583,6 +583,7 @@ $\mathscr{O}_{X}$-modules has enough injectives.
   \cite{vakil}.
 \end{proof}
 
+\subsection{Acyclic resolutions*}
 Derived functors provide the framework for the cohomology theory of
 sheaves, but working with injective resolutions is difficult in practise.
 Thus, we need an alternative way of constructing the cohomology groups.
@@ -710,19 +711,17 @@ Let me quickly prove a lemma about products of acyclic objects.
 \end{lemm}
 \begin{proof}
   Suppose $A_{1}$ and $A_{2}$ have injective resolutions
+  \[\begin{tikzcd}
+    0\rar & A_1\rar & I_1^0\rar{d_1^0} & I_1^1\rar{d_1^1} &
+    I_1^2\rar{d_1^2} & \cdots
+  \end{tikzcd}\]
   \begin{center}
-    \begin{tikzcd}
-      0\rar & A_1\rar & I_1^0\rar{d_1^0} & I_1^1\rar{d_1^1} &
-      I_1^2\rar{d_1^2} & \cdots
-    \end{tikzcd}
-
     and
-
-    \begin{tikzcd}
-      0\rar & A_2\rar & I_2^0\rar{d_2^0} & I_2^1\rar{d_2^1}
-      & I_2^2\rar{d_2^2} & \cdots
-    \end{tikzcd}.
   \end{center}
+  \[\begin{tikzcd}
+    0\rar & A_2\rar & I_2^0\rar{d_2^0} & I_2^1\rar{d_2^1}
+    & I_2^2\rar{d_2^2} & \cdots
+  \end{tikzcd}.\]
 
   Then,
   \[\begin{tikzcd}
@@ -740,7 +739,7 @@ Let me quickly prove a lemma about products of acyclic objects.
       \rar{F(d_{1}^{1})\oplus F(d_{2}^{1})} & \cdots
     \end{tikzcd},
   \end{equation}
-  since additive functors preserve finite products. Since $A_{1}$ and $A_{2}$
+  as additive functors preserve finite products. Since $A_{1}$ and $A_{2}$
   are $F$-acyclic, the cochain complexes $0\to F\left(I_{1}^{\bullet}\right)$
   and $0\to F\left(I_{2}^{\bullet}\right)$ are exact at
   $F\left(I_{1}^{i}\right)$ and $F\left(I_{2}^{i}\right)$ for $i>0$.
@@ -765,13 +764,13 @@ of flasque sheaves, which I have not covered.
   module $M$ has an injective resolution $0\to M\to I^{\bullet}$.
   This gives an exact sequence $0\to \cm\to\widetilde{I}^{\bullet}$.
   The sheaves $\widetilde{I}^{i}$ are acyclic by Prop. 3.4 and Prop. 2.5
-  in \cite{hartshorne} (they are flasque and flasque sheaves are acyclic).
-  Therefore, the sequence $0\to \cm\to\widetilde{I}^{\bullet}$ is an
-  acyclic resolution of $\cm=\mathscr{F}$. Applying the global sections
+  in \cite{hartshorne} (injective sheaves are flasque and flasque sheaves
+  are acyclic). Therefore, the sequence $0\to \cm\to\widetilde{I}^{\bullet}$
+  is an acyclic resolution of $\cm=\mathscr{F}$. Applying the global sections
   functor to this resolution returns the original sequence
   $0\to M\to I^{\bullet}$, which is exact. After removing the $M$ term, the
   cohomology groups at $I^{0}$ is $\Gamma(\mathscr{F})$, but the cohomolgy
-  groups at $I^{i}$ are still zero for $i>0$.
+  groups at $I^{i}$ are zero for $i>0$.
 \end{proof}
 Now, consider a quasi-coherent sheaf $\mathscr{F}$ on a general variety $X$
 and recall the exact sequence \eqref{diag:sheaf_ex}. If we take $U=X$
@@ -781,10 +780,10 @@ and the $U_{i}$ form an affine open cover of $X$, then the sequence reads
     & \displaystyle\prod_{i_{0}}\mathscr{F}(U_{i_{0}})\rar
     & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}(U_{i_{0}}\cap U_{i_{1}})
   \end{tikzcd},\]
-which looks awfully like a beginning of an acyclic resolution in light of
-Lemma~\ref{lemm:affine_cohom_vanishes}. Thus, I would like to find sheaves
-with global sections that match the ones in the exact sequence. But this is
-quite simple in fact; I simply take the sheaves
+which looks awfully like the beginning of an acyclic resolution in light of
+the above lemma. Thus, I would like to find sheaves with global sections
+that match the ones in the exact sequence. But this is quite simple in fact;
+I can take the sheaves
 $\mathscr{F}_{i_{0},\ldots,i_{k}}$ defined by
 \[
   \mathscr{F}_{i_{0},\ldots,i_{k}}(V)=\mathscr{F}(V\cap
@@ -897,17 +896,18 @@ The last thing I need to show is that the resolution is acyclic.
       First I show that the $\mathscr{I}_{+}^{i}$ are quasi-coherent.
       Thus, suppose $U\subseteq X$ is an affine open set. I want to show
       that $\mathscr{I}_{+}^{i}\vert_{U}$ is the sheaf associated to some
-      $k[U]$-module $N$. Note that since the sheaf $\mathscr{I}^{i}$ is a
-      quasi-coherent sheaf, there is a $k[V\cap U]$-module $M$ such that
+      $\mathscr{O}_{X}(U)$-module $N$. Note that since the sheaf
+      $\mathscr{I}^{i}$ is a quasi-coherent sheaf, there is a
+      $\mathscr{O}_{X}(V\cap U)$-module $M$ such that
       $\mathscr{I}^{i}\vert_{V\cap U}\cong\cm$. Since $\mathscr{I}_{+}^{i}(U)
       =\mathscr{I}^{i}(V\cap U)$ by definition, $N$ should consist of the same
       elements as $M$, and only difference between them is the ring that
       acts on them. In other words, we expect to be able to define $N$ as
       the restriction of scalars of $M$. This is indeed possible, since
       the inclusion $V\cap U\hookrightarrow U$ induces a ring homomorphism
-      $k[U]\to k[V\cap U]$. We can the define $N$ as the restriction of
-      scalars of $M$ along this homomorphism, and then
-      $\mathscr{I}_{+}^{i}\vert_{U}=\widetilde{N}$.
+      $\mathscr{O}_{X}(U)\to \mathscr{O}_{X}(V\cap U)$. We can the
+      define $N$ as the restriction of scalars of $M$ along this
+      homomorphism, and then $\mathscr{I}_{+}^{i}\vert_{U}=\widetilde{N}$.
 
       Let us now check injectivity. Suppose there is an injection
       $\mathscr{A}\hookrightarrow\mathscr{B}$ of sheaves on $X$ and a
@@ -951,9 +951,11 @@ The last thing I need to show is that the resolution is acyclic.
     \end{tikzcd},\]
   so the statement follows since $\mathscr{F}\vert_{V}$ is acyclic.
 \end{proof}
+
+\subsection{\v Cech cohomology}
 Thus, we finally arrive at the definition of \v Cech cohomology.
 \begin{defin}\label{def:cech}
-  The \v Cech cohomology of a quasi-coherent sheaf $\mathscr{F}$ the
+  The \v Cech cohomology of a quasi-coherent sheaf $\mathscr{F}$ is the
   cohomology of the cochain complex
   \[\begin{tikzcd}
       \displaystyle\prod_{i_{0}}\mathscr{F}(U_{i_{0}})\rar{d^{0}}
@@ -961,7 +963,9 @@ Thus, we finally arrive at the definition of \v Cech cohomology.
       & \displaystyle\prod_{i_{0},i_{1},i_{2}}\mathscr{F}(U_{i_{0},i_{1},i_{2}})\rar{d^{2}}
       & \cdots
     \end{tikzcd},\]
-  where the differentials are defined as the product of the maps
+  where I denote
+  \[U_{i_{0},\ldots, i_{k}}=U_{i_{0}}\cap\cdots\cap U_{i_{k}}\]
+  and the differentials are defined as the products of the maps
   \[d_{i_{0},\ldots,i_{k+1}}^{k}:\displaystyle\prod_{j_{0},\ldots,j_{k}}
   \mathscr{F}(U_{j_{0},\ldots,j_{k}})\to \mathscr{F}(U_{i_{0},\ldots,i_{k+1}})\]
   given by
@@ -974,11 +978,9 @@ Thus, we finally arrive at the definition of \v Cech cohomology.
   is defined as the $k$-vector space $\ker(d^{i})/\im(d^{i-1})$ if we
   take $d^{-1}$ to be the zero-morphism.
 \end{defin}
-
-\subsection{Results in cohomology}
-
+I will now use this new tool to compute some cohomology groups.
 \begin{prop}\label{prop:const_sheaf}
-  If $X$ is an irreducible variety and $A$ is an abelian group,
+  If $X$ is an irreducible variety and $A$ is some module,
   then for the constant sheaf $\underline{A}$,
   \begin{enumerate}[(a)]
     \item $H^{0}(X,\underline{A}) = A$,
@@ -987,7 +989,7 @@ Thus, we finally arrive at the definition of \v Cech cohomology.
 \end{prop}
 
 \begin{prop}\label{prop:sky_cohom}
-  If $X$ is an irreducible variety and $A$ is an abelian group,
+  If $X$ is an irreducible variety and $A$ is some module,
   then the cohomology groups $H^{i}(X,A_{P})$ of the skyscraper sheaf
   $A_{P}$ are zero for $i>0$.
 \end{prop}

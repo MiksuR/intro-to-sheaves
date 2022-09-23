@@ -156,19 +156,8 @@ Next I will construct a bilinear form
 \[
   \langle -,-\rangle:\diffs{D}\times H^{1}(X,\mathcal{L}(D))\to k.
 \]
-Note that the space $\diffs{D}$ consists of differential forms $\omega$
-such that $(\omega)\geq D$.
-%But first we want to understand the space $H^{0}(X,K_{X}
-%\otimes\mathcal{L}(D)^{\vee})$ better.
-%Consider the stalk of the sheaf
-%$K_{X}\otimes\mathcal{L}(D)^{\vee}$ at a point $P$:
-%\[
-%  \left(K_{X}\otimes\mathcal{L}(D)^{\vee}\right)_{P}
-%  =(K_{X})_{P}\otimes_{\mathscr{O}_{X}}\mathcal{L}(D)^{\vee}_{P}
-%  =D_{k}(\mathscr{O}_{X})\otimes_{\mathscr{O}_{X}}\mathcal{L}(D)^{\vee}_{P}
-%  =D_{k}\left(\mathcal{L}(D)^{\vee}_{P}\right).
-%\]
-Now, define the bilinear form as follows.
+Recall that the space $\diffs{D}$ consists of differential forms $\omega$
+such that $(\omega)\geq D$. Now, define the bilinear form as follows.
 \[
   \langle\omega,r\rangle=\sum_{P\in X}\res_{P}(r_{P}\omega),
 \]
@@ -195,7 +184,9 @@ Now, Serre duality will follow if we can show that the map
 \]
 is a bijection. Every differential $\omega\in\diffs{D}$ is indeed mapped
 to elements of $\dual{D}$ since they vanish on $R(D)$ and $k(X)$ by the
-arguments in the previous pragraph.
+arguments in the previous pragraph. In the proof of the bijectivity of
+$\iota_{D}$, I will diverge little bit from the proof given by Serre, and
+I mix in ideas from the proof given in \cite{forster}.
 
 I will proceed to prove the bijectivity of $\iota_{D}$. The proof relies
 on the observation that the spaces $\dual{D}$ and $\diffs{D}$ form so called

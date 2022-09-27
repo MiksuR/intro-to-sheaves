@@ -153,7 +153,7 @@ connecting morphisms so that the sequence
 is exact. The functors $R^{i}F$ will be called the \emph{right
   derived functors} of $F$. The following lemma from homological
 algebra gives a hint of what approach one should take to find such functors.
-\begin{lemm}[Zig-zag lemma] % TODO: Cite this?
+\begin{lemm}[Zig-zag lemma]
   Suppose $A^{\bullet},B^{\bullet},C^{\bullet}$ are cochain complexes in some
   abelian category. If there is a SES
   \[\begin{tikzcd}
@@ -773,12 +773,12 @@ of flasque sheaves, which I have not covered.
   groups at $I^{i}$ are zero for $i>0$.
 \end{proof}
 Now, consider a quasi-coherent sheaf $\mathscr{F}$ on a general variety $X$
-and recall the exact sequence \eqref{diag:sheaf_ex}. If we take $U=X$
+and recall the exact sequence \eqref{diag:sheaf_ex}. If one substitutes $U=X$
 and the $U_{i}$ form an affine open cover of $X$, then the sequence reads
 \[\begin{tikzcd}
     0\rar & \mathscr{F}(X)\rar
-    & \displaystyle\prod_{i_{0}}\mathscr{F}(U_{i_{0}})\rar
-    & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}(U_{i_{0}}\cap U_{i_{1}})
+    & \displaystyle\bigoplus_{i_{0}}\mathscr{F}(U_{i_{0}})\rar
+    & \displaystyle\bigoplus_{i_{0},i_{1}}\mathscr{F}(U_{i_{0}}\cap U_{i_{1}})
   \end{tikzcd},\]
 which looks awfully like the beginning of an acyclic resolution in light of
 the above lemma. Thus, I would like to find sheaves with global sections
@@ -794,64 +794,75 @@ Then, I can define an exact sequence of these sheaves following the sequence
 \eqref{diag:sheaf_ex}:
 \[\begin{tikzcd}
     0\rar & \mathscr{F}\rar
-    & \displaystyle\prod_{i_{0}}\mathscr{F}_{i_{0}}\rar{d^{0}}
-    & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}
+    & \displaystyle\bigoplus_{i_{0}}\mathscr{F}_{i_{0}}\rar{d^{0}}
+    & \displaystyle\bigoplus_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}
   \end{tikzcd}.\]
-Now, how should this sequence be continued? Supposedly we would want to
-find a map
+Now, I want to continue this sequence to the right by constructing a
+morphism $d^{1}$ from $\displaystyle\bigoplus\mathscr{F}_{i_{0},i_{1}}$
+such that $\ker d^{1}=\im d^{0}$. Thus, fix an open set $V\subseteq X$ and
+consider a section $\psi$ of the pre-sheaf $\im^{\prime} d^{0}(V)$. Such a
+section consists of components
 \[
-  d^{1}: \prod_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}
-  \to\prod_{i_{0},i_{1},i_{2}}\mathscr{F}_{i_{0},i_{1},i_{2}}
-\]
-such that $\ker d^{1}=\im d^{0}$. Let us first try to understand the sheaf
-$\im d^{0}$. Suppose $\phi$ is a section in
-$\displaystyle\prod\mathscr{F}_{i_{0}}(V)$. Then, the image $\psi$ under
-$d^{0}$ consists of components, where the component at the index $i_{0},i_{1}$
-is the difference of the component of $\phi$ at $i_{0}$ and the component of
-$\phi$ at $i_{1}$ restricted to $V\cap U_{i_{0},i_{1}}$:
-\[
-  \psi_{i_{0},i_{1}}=\phi_{1}\vert_{V\cap U_{i_{0},i_{1}}}
-  -\phi_{0}\vert_{V\cap U_{i_{0},i_{1}}},
-\]
-where $\phi_{0}\in\mathscr{F}(V\cap U_{i_{0}})$ and
-$\phi_{1}\in\mathscr{F}(V\cap U_{i_{1}})$. Fixing one more index $i_{2}$, we
-can take an alternating sum of sections restricted to
-$V\cap U_{i_{0},i_{1},i_{2}}$ with these indeces to get zero. For
-conciseness, I omit the restriction symbols in the following computation,
-because every section is restricted to a common set.
+  \psi_{i_{0},i_{1}}=\phi_{i_{1}}\vert_{V\cap U_{i_{0},i_{1}}}
+  -\phi_{i_{0}}\vert_{V\cap U_{i_{0},i_{1}}},
+\] % TODO: Picture of Venn-diagram with sections labelled
+where $\phi$ is a section of $\displaystyle\bigoplus\mathscr{F}_{i_{0}}$ with
+$\phi_{i_{0}}\in\mathscr{F}(V\cap U_{i_{0}})$ and
+$\phi_{i_{1}}\in\mathscr{F}(V\cap U_{i_{1}})$. The aim now is to construct a
+morphism, which sends $\psi$ to zero. This can be done by considering one
+more index $i_{2}$ and taking an alternating sum of sections restricted to
+$V\cap U_{i_{0},i_{1},i_{2}}$. For conciseness, I omit the restriction symbols
+in the following computation, because every section is restricted to a
+common set.
 \begin{align*}
   \psi_{i_{1},i_{2}}-\psi_{i_{0},i_{2}}+\psi_{i_{0},i_{1}}
-  &=(\phi_{2}-\phi_{1})-(\phi_{2}-\phi_{0})+(\phi_{1}-\phi_{0}) \\
-  &=(\phi_{2}-\phi_{2})+(\phi_{1}-\phi_{1})+(\phi_{0}-\phi_{0})=0.
+  &=(\phi_{i_{2}}-\phi_{i_{1}})-(\phi_{i_{2}}-\phi_{i_{0}})
+    +(\phi_{i_{1}}-\phi_{i_{0}}) \\
+  &=(\phi_{i_{2}}-\phi_{i_{2}})+(\phi_{i_{1}}-\phi_{i_{1}})
+    +(\phi_{i_{0}}-\phi_{i_{0}})=0.
 \end{align*}
-Thus, $\psi\in\ker(d_{V}^{1})$. Conversely, suppose $\psi\in\ker(d_{V}^{1})$
-implying
-\[\psi_{i_{1},i_{2}}\vert_{V\cap U_{i_{0},i_{1},i_{2}}}
--\psi_{i_{0},i_{2}}\vert_{V\cap U_{i_{0},i_{1},i_{2}}}
-+\psi_{i_{0},i_{1}}\vert_{V\cap U_{i_{0},i_{1},i_{2}}}=0.\]
-Take two arbitrary sections $\phi_{0}\in\mathscr{F}(V\cap U_{i_{0}})$
-and $\phi_{1}\in\mathscr{F}(V\cap U_{i_{1}})$ with
-$\phi_{1}\vert_{V\cap U_{i_{0},i_{1}}}-\phi_{0}\vert_{V\cap U_{i_{0},i_{1}}}
-=\psi_{i_{0}, i_{1}}$. One can find two more sections (TODO)
-$\phi_{2},\phi_{2}^{\prime}\in\mathscr{F}(V\cap U_{i_{2}})$ with
-$\phi_{2}\vert_{V\cap U_{i_{0},i_{2}}}-\phi_{0}\vert_{V\cap U_{i_{0},i_{2}}}
-=\psi_{i_{0}, i_{2}}$ and $\phi_{2}^{\prime}\vert_{V\cap U_{i_{1}, i_{2}}}
--\phi_{1}\vert_{V\cap U_{i_{1},i_{2}}}=\psi_{i_{1},i_{2}}$. Then,
+Thus, it would be natural to extend the sequence by a morphism
+\[
+  d^{1}:\bigoplus_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}
+  \to\bigoplus_{i_{0},i_{1},i_{2}}\mathscr{F}_{i_{0},i_{1},i_{2}}
+\]
+defined component-wise by
+\[
+  \left(d^{1}_{V}(\psi)\right)_{i_{0},i_{1},i_{2}}=
+  \psi_{i_{1},i_{2}}-\psi_{i_{0},i_{2}}+\psi_{i_{0},i_{1}}.
+\]
+Now, it is an easy task to check the exactness of the sequence
+\[\begin{tikzcd}
+    \displaystyle\bigoplus_{i_{0}}\mathscr{F}_{i_{0}}\rar{d^{0}}
+    & \displaystyle\bigoplus_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}\rar{d^{1}}
+    & \displaystyle\bigoplus_{i_{0},i_{1},i_{2}}\mathscr{F}_{i_{0},i_{1},i_{2}}
+  \end{tikzcd}\]
+by checking exactness on the stalks at points $P\in X$. Note that
+$\im d^{0}_{P}\subseteq\ker d^{1}_{P}$ follows by exactly the same computation
+as above. Thus, I will quickly demonstrate
+$\ker d^{1}_{P}\subseteq\im d^{0}_{P}$. Suppose $\psi\in\ker d^{1}_{P}$ and fix
+an index $i$. Then, take an arbitrary germ $\phi_{i}$
+in $\left(\mathscr{F}_{i}\right)_{P}$. Furthermore, if $j$ is any index,
+define the germ $\phi_{j}$ in $\left(\mathscr{F}_{j}\right)_{P}$ as
+$\psi_{i,j}+\phi_{i}$. Now, for any pair of indecies $i_{0},i_{1}$, we have
 \begin{align*}
-  0 &= \psi_{i_{1},i_{2}}-\psi_{i_{0},i_{2}}+\psi_{i_{0},i_{1}} \\
-    &= (\phi_{2}^{\prime}-\phi_{1})-(\phi_{2}-\phi_{0})+(\phi_{1}-\phi_{0}) \\
-    &= \phi_{2}^{\prime}-\phi_{2}.
+  \psi_{i_{0},i_{1}}
+  &=\psi_{i,i_{1}}-\psi_{i,i_{0}} \\
+  &=\left(\phi_{i_{1}}-\phi_{i}\right)-\left(\phi_{i_{0}}-\phi_{i}\right) \\
+  &=\phi_{i_{1}}-\phi_{i_{0}}.
 \end{align*}
-Therefore, we have $\psi\in\im(d_{V}^{0})$. One can continue this sequence
-in the same fashion by taking alternating sums of sections, thus obtaining
-a resolution
+Therefore, one can see that the germ $\phi$ formed from these components
+$\phi_{j}$ map to $\psi$ under $d^{0}_{P}$.
+
+One can continue this sequence in the same fashion by taking alternating
+sums of sections, thus obtaining a resolution
 \[\begin{tikzcd}
     0\rar & \mathscr{F}\rar
-    & \displaystyle\prod_{i_{0}}\mathscr{F}_{i_{0}}\rar
-    & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}\rar
-    & \displaystyle\prod_{i_{0},i_{1},i_{2}}\mathscr{F}_{i_{0},i_{1},i_{2}}\rar
-    & \cdots
-  \end{tikzcd},\]
+    & \displaystyle\bigoplus_{i_{0}}\mathscr{F}_{i_{0}}\rar
+    & \displaystyle\bigoplus_{i_{0},i_{1}}\mathscr{F}_{i_{0},i_{1}}\rar
+    & \displaystyle\bigoplus_{i_{0},i_{1},i_{2}}\mathscr{F}_{i_{0},i_{1},i_{2}}
+    \rar & \cdots
+  \end{tikzcd}.\]
 \begin{rem}
   The above computations might seem familiar if you have seen homology
   or cohomology before. Infact, \v Cech cohomology can be seen as a singular
@@ -863,10 +874,10 @@ a resolution
 The last thing I need to show is that the resolution is acyclic.
 \begin{lemm}
   The sheaves
-  $\displaystyle\prod_{i_{0},\ldots,i_{k}}\mathscr{F}_{i_{0},\ldots,i_{k}}$ are
-  acyclic.
+  $\displaystyle\bigoplus_{i_{0},\ldots,i_{k}}\mathscr{F}_{i_{0},\ldots,i_{k}}$
+  are acyclic.
 \end{lemm}
-\begin{proof}
+\begin{proof} % TODO: Improve the exposition
   By Lemma~\ref{lemm:acyclic_prod}, I only need to check that the sheaf
   $\mathscr{F}_{i_{0},\ldots,i_{k}}$ is acyclic for an arbitrary index
   $i_{0},\ldots,i_{k}$. Thus, fix an index and denote $V=U_{i_{0},\ldots,i_{k}}$
@@ -958,15 +969,16 @@ Thus, we finally arrive at the definition of \v Cech cohomology.
   The \v Cech cohomology of a quasi-coherent sheaf $\mathscr{F}$ is the
   cohomology of the cochain complex
   \[\begin{tikzcd}
-      \displaystyle\prod_{i_{0}}\mathscr{F}(U_{i_{0}})\rar{d^{0}}
-      & \displaystyle\prod_{i_{0},i_{1}}\mathscr{F}(U_{i_{0},i_{1}})\rar{d^{1}}
-      & \displaystyle\prod_{i_{0},i_{1},i_{2}}\mathscr{F}(U_{i_{0},i_{1},i_{2}})\rar{d^{2}}
-      & \cdots
+      \displaystyle\bigoplus_{i_{0}}\mathscr{F}(U_{i_{0}})\rar{d^{0}}
+      & \displaystyle\bigoplus_{i_{0},i_{1}}\mathscr{F}(U_{i_{0},i_{1}})
+      \rar{d^{1}}
+      & \displaystyle\bigoplus_{i_{0},i_{1},i_{2}}
+      \mathscr{F}(U_{i_{0},i_{1},i_{2}})\rar{d^{2}} & \cdots
     \end{tikzcd},\]
   where I denote
   \[U_{i_{0},\ldots, i_{k}}=U_{i_{0}}\cap\cdots\cap U_{i_{k}}\]
   and the differentials are defined as the products of the maps
-  \[d_{i_{0},\ldots,i_{k+1}}^{k}:\displaystyle\prod_{j_{0},\ldots,j_{k}}
+  \[d_{i_{0},\ldots,i_{k+1}}^{k}:\displaystyle\bigoplus_{j_{0},\ldots,j_{k}}
   \mathscr{F}(U_{j_{0},\ldots,j_{k}})\to \mathscr{F}(U_{i_{0},\ldots,i_{k+1}})\]
   given by
   \[
@@ -980,19 +992,48 @@ Thus, we finally arrive at the definition of \v Cech cohomology.
 \end{defin}
 I will now use this new tool to compute some cohomology groups.
 \begin{prop}\label{prop:const_sheaf}
-  If $X$ is an irreducible variety and $A$ is some module,
-  then for the constant sheaf $\underline{A}$,
-  \begin{enumerate}[(a)]
-    \item $H^{0}(X,\underline{A}) = A$,
-    \item $H^{1}(X,\underline{A})=0$.
-  \end{enumerate}
-\end{prop}
-
-\begin{prop}\label{prop:sky_cohom}
-  If $X$ is an irreducible variety and $A$ is some module,
-  then the cohomology groups $H^{i}(X,A_{P})$ of the skyscraper sheaf
-  $A_{P}$ are zero for $i>0$.
+  If $\underline{A}$ is a constant sheaf that is quasi-coherent on some
+  irreducible variety $X$, then
+  \[
+    H^{0}(X,\underline{A}) = A\quad\text{and}
+    \quad H^{i}(X,\underline{A})=0\text{ for }i>0.
+  \]
 \end{prop}
 \begin{proof}
-  TODO.
+  The statement $H^{0}(X,\underline{A})=A$ follows directly from the purely
+  topological fact that locally constant functions on a connected space
+  are constant. A global section of $\underline{A}$ can be represented
+  by a locally constant function $f:X\to A$. Fix an arbitrary value $a\in A$
+  and consider the inverse image $f^{-1}(a)$. Take any point $P\in f^{-1}(a)$
+  then, $f$ is constant on an open neighbourhood of $P$. This implies that
+  $P$ has an open neighbourhood that is contained in $f^{-1}(a)$. Therefore,
+  $f^{-1}(a)$ is open. But if $f$ is not constant, then we could disconnect
+  $X$ by the inverse images of $f$. Hence, we arrive at a contradiction.
+
+  I will now show $H^{1}(X,\underline{A})=0$, which follows from the
+  exactness of the sequence
+  \[\begin{tikzcd}
+      \displaystyle\bigoplus_{i_{0}}\mathscr{F}(U_{i_{0}})\rar{d^{0}}
+      & \displaystyle\bigoplus_{i_{0},i_{1}}\mathscr{F}(U_{i_{0},i_{1}})
+      \rar{d^{1}}
+      & \displaystyle\bigoplus_{i_{0},i_{1},i_{2}}
+      \mathscr{F}(U_{i_{0},i_{1},i_{2}})
+    \end{tikzcd}.\]
+  Since this is a part of a cochain complex, we know that $\im(d^{0})
+  \subseteq\ker(d^{1})$ and I only need to show $\ker(d^{1})\subseteq
+  \im(d^{0})$. Thus, suppose $b\in\ker(d^{1})$ and fix an index $i$. Then,
+  let $a_{i}$ be an arbitrary constant on $\underline{A}(U_{i})$. Now, for
+  an arbitrary index $j$, one can define a section $a_{j}$ of
+  $\underline{A}(U_{j})$ as $b_{i, j}+a_{i}$ and check that the condition
+  $b\in\ker d^{1}$ implies that the components $a_{j}$ form a section of
+  $\displaystyle\bigoplus\mathscr{F}(U_{i_{0}})$ which is mapped onto $b$
+  by $d^{0}$ and we can conclude that $a\in\im(d^{0})$. The computation for
+  the higher cohomology groups is exactly the same, but there are more
+  indices to juggle.
 \end{proof}
+I leave the following proposition as an exercise for the reader.
+\begin{prop}\label{prop:sky_cohom}
+  If $A_{P}$ is a skyscraper sheaf that is quasi-coherent on some
+  irreducible variety $X$, then cohomology groups $H^{i}(X,A_{P})$ are zero
+  for $i>0$.
+\end{prop}

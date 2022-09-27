@@ -429,11 +429,31 @@ We finally arrive at the Serre Duality theorem!
   \[
     \dual{D}\cong\diffs{D}
   \]
-  of $k$-vector spaces, where $K_{X}$ is the canonical divisor of $X$.
+  of $k$-vector spaces.
 \end{thm}
 \begin{proof}
   Combining Propositions \ref{prop:injectivity} and \ref{prop:surjectivity}
   shows that the linear map
   \[\iota_{D}:\diffs{D}\to \dual{D}\]
   is a bijection so that it defines an isomorphism between the two spaces.
+\end{proof}
+If one is only interested in the dimension of $\dual{D}$, then the dimension
+can be expressed in terms of the canonical divisor.
+\begin{cor}
+  The following equality holds
+  \[
+    h^{1}(X,\mathcal{L}(D))=h^{0}(X,\mathcal{L}(K_{X}-D)).
+  \]
+\end{cor}
+\begin{proof}
+  Write $K_{X}=(\omega_{0})$ with $\omega_{0}=f_{0}\,dt$ and fix a
+  differential $\omega=f\,dt$. Then, $\omega=\frac{f}{f_{0}}\omega_{0}$
+  and we have
+  \[
+    \omega\in\Omega(D)\iff (\omega)\geq D
+    \iff\left(\frac{f}{f_{0}}\right)+(\omega_{0})\geq D\iff
+    \frac{f}{f_{0}}\in H^{0}(X,\mathcal{L}(K_{X}-D)).
+  \]
+  In other words, the elements of $H^{0}(X,\mathcal{L}(K_{X}-D))$ are in
+  bijection with the elements of $\Omega(D)\cong\dual{D}$.
 \end{proof}

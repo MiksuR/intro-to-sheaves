@@ -205,8 +205,8 @@ into sheaves.
 \end{cat}
 Next I will do an example computation with stalks, which will be useful
 later.
-\begin{prop}
-  Let $X$ be an affine variety. The stalk $\mathscr{O}_{X,P}$ of
+\begin{prop}\label{prop:struct_stalk}
+  Let $X$ be a variety. The stalk $\mathscr{O}_{X,P}$ of
   $\mathscr{O}_{X}$ at some point $P\in X$ is given by
   \[
     \mathscr{O}_{X,P}=\Set{\frac{f}g\in k(X)\mid g(P)\neq 0}.
@@ -234,23 +234,23 @@ later.
 The stalks of a sheaf are analogous to the fibres of a fibre bundle.
 Just as a section of a fibre bundle takes values in the fibres, a section of
 a sheaf takes values in the stalks.
-\begin{figure}[H]
-  \centering
-  \begin{minipage}{.5\textwidth}
-    \centering
-    \begin{lwarn}
+\begin{lwarn}
+  \begin{figure}[H]
+    \begin{minipage}[t]{.5\textwidth}
+      \vspace{0pt}
       Note however that while a stalk at $P$ contains all the data ``above''
       $P$ just as a fibre at $P$ does, stalks are larger, because they also
       contain ``infinitesimal'' data \textbf{around} $P$. One can find two
       sections with equal values at $P$, but which have different germs at
       $P$.
-    \end{lwarn}
-  \end{minipage}%
-  \begin{minipage}{.45\textwidth}
-    \centering
-    \includegraphics[width=.45\textwidth]{germs}
-  \end{minipage}
-\end{figure}
+    \end{minipage}%
+    \begin{minipage}[t]{.45\textwidth}
+      \centering
+      \vspace{0pt}
+      \includegraphics[width=.45\textwidth]{germs}
+    \end{minipage}
+  \end{figure}
+\end{lwarn}
 Fix a sheaf $\mathscr{F}$ on some space $X$ and choose a section
 $s\in \mathscr{F}(U)$ on some open set $U\subseteq X$. Then, consider
 the totality of germs of $s$ over $U$, namely the collection
@@ -352,10 +352,10 @@ have the same stalks.
   Also, the sheafification functor $\mathbf{PSh}(X)\to\mathbf{Sh}(X)$
   from the category of pre-sheaves on $X$ to the category of sheaves on $X$
   is the left adjoint to the forgetful functor $\mathbf{Sh}(X)\to
-  \mathbf{PSh}(X)$. % TODO: Cite nlab
+  \mathbf{PSh}(X)$ \cite{vakil}.
 \end{cat}
 A typical example illustrating sheafification is to consider the constant
-pre-sheaf and its sheafification. The constant pre-sheaf % TODO: Citation?
+pre-sheaf and its sheafification. The constant pre-sheaf
 $\mathscr{F}^{\prime}$ on a space $X$ is defined as follows
 \[
   \mathscr{F}^{\prime}(U) =\Set{c: U\to\mathbb{R}\mid c
@@ -472,20 +472,34 @@ The reason why these spaces are not yet varieties, but only pre-varieties
 is because the definition allows the construction of some pathological
 spaces such as the \emph{line with two origins}, see \cite{gathmann}.
 To avoid such spaces, we add one more condition in the final definition
-of a variety.
+of a variety. % TODO: Explain how the projective line is a variety
 \begin{defin}[Def. 2.5.1 in \cite{gathmann}]
   A pre-variety $X$ is a variety, if for every pre-variety $Y$ and any
   pair of morphisms $f_{1}, f_{2}: Y\to X$, the set
   $\set{P\in Y\mid f_{1}(P)=f_{2}(P)}$ is closed in $Y$.
 \end{defin}
-Let me prove a small lemma about affine subsets of a variety.
-\begin{lemm}\label{lemm:affine_intersection}
-  Suppose $X$ is a variety and $U, V\subseteq X$ are two affine subsets.
-  Then, the intersection $U\cap V$ is affine.
+The following lemma will be needed later.
+\begin{lemm}[Prop. 10.1.8 in \cite{vakil}]\label{lemm:affine_intersection}
+  Suppose $X$ is a variety and $U, V\subseteq X$ are two open affine subsets.
+  Then, the intersection $U\cap V$ is an open affine subset of $X$.
 \end{lemm}
 \begin{proof}
-  TODO.
+  Embed $U$ and $V$ in some common affine space $\mathbb{A}^{n}$ as
+  irreducible algebraic sets. Then, one can consider the product $U\times V$
+  as a subset of $\mathbb{A}^{n}\times\mathbb{A}^{n}$. The product
+  $U\times V$ is a irreducible algebraic set of
+  $\mathbb{A}^{n}\times\mathbb{A}^{n}$ (see \cite{gathmann}). Note that the
+  diagonal $\Delta =\set{(x,x)\mid x\in\mathbb{A}^{n}}$ of
+  $\mathbb{A}^{n}\times\mathbb{A}^{n}$ is also closed and irreducible.
+  Therefore, the subset $U\times V\cap\Delta$ of
+  $\mathbb{A}^{n}\times\mathbb{A}^{n}$ is an irreducible algebraic set and
+  hence is an affine variety. Now, I can define the map
+  \[
+    U\cap V\to U\times V\cap\Delta: w\mapsto (w,w).
+  \]
+  It is easy to see that this map is in fact an isomorphism.
 \end{proof}
+% TODO: Add a similar picture as in Vakil pp. 283
 
 \subsection{Algebraic constructions with sheaves}\label{ss:sheaf_alg}
 The aim of this subsection is to define algebraic constructions for
@@ -599,9 +613,10 @@ usual definitions.
   expressed in terms of exact sequences. Therefore, the sheaf axiom in
   \eqref{diag:sheaf_eq} can be expressed as the exact sequence
   \begin{equation}\label{diag:sheaf_ex}\begin{tikzcd}
-      0\rar & \mathscr{F}(U)\rar & \displaystyle\prod_{i}\mathscr{F}(U_{i})
+      0\rar & \mathscr{F}(U)\rar
+      & \displaystyle\bigoplus_{i}\mathscr{F}(U_{i})
       \rar{\text{res}_{U_{i}\cap U_{j}}^{U_{j}}-\text{res}_{U_{i}\cap U_{j}}^{ U_{i}}}
-      &[5em] \displaystyle\prod_{i,j}\mathscr{F}(U_{i}\cap U_{j})
+      &[5em] \displaystyle\bigoplus_{i,j}\mathscr{F}(U_{i}\cap U_{j})
     \end{tikzcd}\end{equation}
   in the category $\mathscr{O}_{X}$\textbf{-Mod}.
 \end{cat}
@@ -668,7 +683,7 @@ on the stalks. Then one can show the following theorem.
           $\ker(f_{i})(U)=\im(f_{i-1})(U)$ for all open sets
           $U\subseteq X$, which implies that the sheaves are equal.
   \end{description}
-\end{proof} % TODO: Add a picture to clarify this proof
+\end{proof}
 One can prove the following results as an immediate corollary.
 \begin{cor}
   Suppose $f:\mathscr{F}\to\mathscr{G}$ is a morphism of sheaves of
@@ -697,7 +712,7 @@ definition of the structure sheaf on an affine variety.
       \text{ such that} \\
     & \forall P\in U\,
       \exists U_{P}\subseteq U\text{ an open neighbourhood of }P \\
-    & \exists m\in M\,\exists g\in k[X]\,
+    & \exists m\in M\,\exists g\in \mathscr{O}_{X}(X)\,
     \forall Q\in U_{P},\ \phi_{Q}=\frac{m}g\text{ and } g(Q)\neq 0\,\big\},
   \end{align*}
   where $M_{\mathfrak{m}_{P}}$ is the localisation of $M$ at the maximal ideal
@@ -713,7 +728,34 @@ Now, this definition implies the following result.
   \end{enumerate}
 \end{lemm}
 \begin{proof}
-  TODO.
+  The proof of part (a) is basically the same as the proof of
+  Prop.~\ref{prop:struct_stalk}. Thus, I will only prove part (b) using
+  ideas from the proof of Proposition 3.8 in \cite{gathmann_new}. Note
+  that $M\subseteq\Gamma\left(\cm\right)$ holds trivially, and thus I
+  only need to show $\Gamma\left(\cm\right)\subseteq M$.
+  Suppose $\phi\in\Gamma\left(\cm\right)$. Then, $\phi$ can be represented
+  as a quotient $m_{P}/g_{P}$ in an open neighbourhood $U_{P}$ of any point
+  $P\in X$. If there is a point $P$, where $g_{P}$ is a unit of
+  $\mathscr{O}_{X}(X)$, then $m_{P}/g_{P}\in M$ and $\phi$ is represented
+  in $U_{P}$ as an element of $M$. But we can actually extend this to the
+  whole of $X$. Let $Q\in X$ be some other point. Then, there is an open
+  neighbourhood $U_{Q}$, where $\phi$ is represented as $m_{Q}/g_{Q}$. Since
+  open sets of a variety are dense, the sets $U_{P}$ and $U_{Q}$ intersect,
+  and we must have $m_{P}/g_{P}=m_{Q}/g_{Q}$. Thus, we must also have that
+  $m_{Q}/g_{Q}\in M$.
+
+  Now, suppose $g_{P}$ is never a unit of $\mathscr{O}_{X}(X)$ for any
+  point $P\in X$. Note that for every point $P$, we have $P\not\in V(g_{P})$.
+  Then, we have
+  \[
+    \emptyset=\bigcap_{P\in X}V(g_{P})=V(\set{g_{P}\mid P\in X}).
+  \]
+  Taking the ideals corresponding to these sets and applying the
+  Nullstellensatz, we get
+  \[
+    (1)=\sqrt{(g_{P}\mid P\in X)}.
+  \]
+  But this is not possible if none of the functions $g_{P}$ is a unit.
 \end{proof}
 Quasi-coherent sheaves are then constructed from such sheaves.
 \begin{defin}
@@ -722,8 +764,10 @@ Quasi-coherent sheaves are then constructed from such sheaves.
   is a sheaf associated to some module $M$ over the coordinate ring
   $\mathscr{O}_{X}(U)$.
 \end{defin}
-\begin{rem} % TODO: Be more precise
-  Quasi-coherence can be checked locally, see \cite{gathmann}.
+\begin{rem}
+  To check quasi-coherence, it is enough to have an affine cover
+  $(U_{i})_{i\in I}$, where $\mathscr{F}\vert_{U_{i}}$ is of the form $\cm$ for
+  all $i\in I$, see \cite{gathmann}.
 \end{rem}
 \begin{rem}
   The constructios in Def.~\ref{def:sheaf_algebra} are quasi-coherent

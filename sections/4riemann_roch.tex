@@ -66,12 +66,45 @@ $\ord_{P}$. Then, the divisor of $f$ is defined as follows.
   The divisor of a rational function should be thought of as counting the
   orders of zeros and poles of the function.
 \end{rem}
-I will now prove a proposition that will be needed later.
-\begin{prop}\label{prop:rational_deg_zero}
-  Suppose $f\in k(X)^{\times}$. Then, $\deg\left((f)\right)=0$.
-\end{prop}
+It is useful to consider a non-constant element $f$ of $k(X)$ as a morphism
+$f:X\to\mathbb{P}^{1}_{k}$. Note that $f$ induces an inclusion
+$k\left(\mathbb{P}^{1}_{k}\right)\subseteq k\left(X\right)$ of function
+fields. This fact can be used to define a homomorphism
+$f^{\ast}:\Div\left(\mathbb{P}^{1}_{k}\right)\to\Div\left(X\right)$ in the
+following way \cite{hartshorne}. Firstly, suppose $Q$ is a point of
+$\mathbb{P}^{1}_{k}$ and let $t$ be a local uniformiser of
+$\mathscr{O}_{\mathbb{P}^{1},Q}$. Then, one defines
+\[
+  f^{\ast}(Q)=\sum_{f(P)=Q}\ord_{P}(t)\,P.
+\]
+This definition is independent of the choise of local uniformiser: Suppose
+$t^{\prime}$ is another local uniformiser of $\mathscr{O}_{\mathbb{P}^{1},Q}$.
+Then, there is a unit $u$ of $\mathscr{O}_{X,Q}$ such that $t^{\prime}=ut$. If
+$P\in X$ is a point such that $f(P)=Q$, then $u$ is a unit of
+$\mathscr{O}_{X,P}$. Thus, $\ord_{P}(t)=\ord_{P}(t^{\prime})$. Furthermore, this
+definition can be linearly extended for an arbitrary divisor
+$D\in\Div(\mathbb{P}^{1}_{k})$. Now, the following lemma will be useful.
+\begin{lemm}\label{lemm:deg_of_induced}
+  If $f\in k(X)$, then for the induced morphism $f^{\ast}:\Div\left(
+    \mathbb{P}^{1}_{k}\right)\to\Div\left(X\right)$ we have
+  \[
+    \deg\left(f^{\ast}(D)\right)=[k(X):k(\mathbb{P}^{1}_{k})]\,\deg(D).
+  \]
+\end{lemm}
 \begin{proof}
-  TODO.
+  See Proposition 6.9 of \cite{hartshorne} chapter II.
+\end{proof}
+\begin{cor}\label{cor:rational_deg_zero}
+  Suppose $f\in k(X)^{\times}$. Then, $\deg\left((f)\right)=0$.
+\end{cor}
+\begin{proof}
+  If $f$ is a constant, then the statement is immediate. Thus, assume
+  $f$ is not a constant. Then, one can write
+  $(f)=f^{\ast}(0)-f^{\ast}(\infty)$ and compute the degree:
+  \[
+    \deg\left((f)\right)=\deg(f^{\ast}(0))-\deg(f^{\ast}(\infty))
+    =[k(X):k(\mathbb{P}^{1}_{k})]-[k(X):k(\mathbb{P}^{1}_{k})]=0.
+  \]
 \end{proof}
 \begin{rem}
   Note that divisors of rational functions form a group since
@@ -130,7 +163,7 @@ The following proposition will also be useful later.
 \begin{proof}
   Suppose $f\in H^{0}(X,\mathcal{L}(D))$. Then, $(f)\geq -D$
   so that $\deg((f))\geq -\deg(D)$, but this implies $\deg(D)\geq 0$
-  by Prop.~\ref{prop:rational_deg_zero}. This contradicts the assumption on
+  by Prop.~\ref{cor:rational_deg_zero}. This contradicts the assumption on
   $D$.
 \end{proof}
 
@@ -185,12 +218,22 @@ $\omega\in\Omega$ as follows. Write $\omega=f\,dt$ for $f\in k(X)$. Then,
 \[
   \ord_{P}(\omega)=\ord_{P}(f).
 \]
-Now, we can define the divisor $(\omega)$ of $\omega$ in the same way as
+Now, one can define the divisor $(\omega)$ of $\omega$ in the same way as
 the divisor of a rational function:
 \[
   (\omega)=\sum_{P\in X}\ord_{P}(\omega)P.
 \]
-We can also define a module of differentials related to a divisor $D$
+It turns out that divisors of this kind are all linearly equivalent: suppose
+$\omega_{1}=f_{1}\,dt$ and $\omega_{2}=f_{2}\,dt$. Then,
+\[
+  \omega_{1}=\frac{f_{1}}{f_{2}}\, f_{2}\,dt=\frac{f_{1}}{f_{2}}\omega_{2}
+  \implies (\omega_{1})=\left(\frac{f_{1}}{f_{2}}\right)(\omega_{2}).
+\]
+Thus, the divisors of differentials lie in the same divisor class called the
+\emph{canonical class}. A representative of the class is called the
+\emph{canonical divisor} $K_{X}$.
+
+Next I define a module of differentials related to a divisor $D$
 on $X$ in the same way as we defined the sheaf $\mathcal{L}(D)$:
 \[
   \Omega(D)=\Set{\omega\in\Omega\mid \forall P\in X,\ \ord_{P}(\omega)
@@ -198,10 +241,9 @@ on $X$ in the same way as we defined the sheaf $\mathcal{L}(D)$:
 \]
 (in the modern literature one requires $\ord_{P}(\omega)\geq -D(P)$
 to match the definition of $\mathcal{L}(D)$, but here I follow \cite{serre}
-with the notation).
-
-Lastly, I will define the \emph{residue} of a differential, which will be
-the main ingredient in the proof of Serre duality in the next section.
+with the notation). Lastly, I will define the \emph{residue} of a
+differential, which will be the main ingredient in the proof of Serre
+duality in the next section.
 \begin{defin}
   Let $\omega=f\,dt\in\Omega$, where $t$ is a local uniformiser of
   $\mathscr{O}_{X,P}$ for some point $P\in X$. Then, $f$ can be embedded
@@ -308,14 +350,12 @@ First I prove the theorem for the case when $X=\mathbb{P}^{1}_{k}$.
           the residue is zero also at $a$ and $\infty$.
   \end{description}
 \end{proof}
-Let $X$ be a curve as before. The strategy now is to consider a non-constant
-function $\phi\in k(X)$. Such a function gives a morphism
-$\phi:X\to\mathbb{P}^{1}_{k}$, which induces an embedding
-$k(\mathbb{P}^{1}_{k})\hookrightarrow k(X)$. I hope to use this embedding
-to use the above lemma in the case of an arbitrary curve $X$.
-Now, one can consider the trace map $\tr_{k(X)/k(\mathbb{P}^{1}_{k})}$ defined
-as follows \cite{milne}. Multiplication by an element $\alpha\in k(X)$
-defines a $k(\mathbb{P}^{1}_{k})$-linear map
+Let $X$ be a curve as before. Again, a non-constant function $\phi\in k(X)$
+induces an embedding $k(\mathbb{P}^{1}_{k})\hookrightarrow k(X)$, and I hope
+to use this embedding to apply the above lemma in the case of an arbitrary
+curve $X$. Now, one can consider the trace map $\tr_{k(X)/k(\mathbb{P}^{1}_{k})}$
+defined as follows \cite{milne}. Multiplication by an element
+$\alpha\in k(X)$ defines a $k(\mathbb{P}^{1}_{k})$-linear map
 $\alpha^{\ast}: E\to E: x\mapsto \alpha x$. Then, we simply define
 $\tr_{k(X)/k(\mathbb{P}^{1}_{k})}(\alpha)$ to be the usual trace of this linear
 transformation $\alpha^{\ast}$. Next I translate this definition to
@@ -339,8 +379,6 @@ is proved in \cite{serre}.
 I am now able to state and prove an ``incomplete'' version of the
 Riemann-Roch theorem, which I will make complete after proving Serre
 duality.
-
-% TODO: Give a proof that the cohomology groups are finite-dimensional.
 
 \begin{thm}[Riemann-Roch, cohomology version]
   \label{thm:riemann_roch_cohomology}
@@ -442,6 +480,10 @@ duality.
           \]
   \end{description}
 \end{proof}
+\begin{rem}
+  One would need to also prove that the cohomology groups are finite
+  dimensional to begin with. The details can be found in \cite{serre}.
+\end{rem}
 
 This form of the theorem is not the most useful one for applications,
 because computing $h^{1}(X,\mathcal{L}(D))$ is not easy. Luckily, the Serre
@@ -494,8 +536,25 @@ Now I can give a classification of curves of genus 0.
     h^{0}(X,\mathcal{L}(D))-h^{0}(X,\mathcal{L}(K_{X}-D))
     =\deg(D)+1=1.
   \]
-  Note that $\deg(K_{X}-D)=-2-0=-2<0$ so $h^{0}(X,\mathcal{L}(K_{X}-D))=0$
-  by Prop.~\ref{prop:global_sec_negative_divisor}. Therefore, the space
-  $H^{0}(X,\mathcal{L}(D))$ is non-empty. Thus, let
-  $f\in H^{0}(X,\mathcal{L}(D))$.
+  Note that $\deg(K_{X}-D)=-2-0=-2<0$ by the above lemma. Thus,
+  \[
+    h^{0}(X,\mathcal{L}(K_{X}-D))=0
+  \]
+  by Prop.~\ref{prop:global_sec_negative_divisor} and hence, the space
+  $H^{0}(X,\mathcal{L}(D))$ is non-empty. Now, let
+  $f\in H^{0}(X,\mathcal{L}(D))$. Then, there is an effective divisor
+  $D^{\prime}$ on $X$ such that $D^{\prime}=(f)+D$. Then, we have
+  $\deg\left(D^{\prime}\right)=\deg\left((f)\right)+\deg\left(D\right)=0$.
+  But the only effective divisor with degree 0 is the zero divisor.
+  Therefore, $(f)=Q-P$. One can see that $f^{\ast}(0)=Q$, where
+  $f^{\ast}$ is the homomorphism induced by $f$. Applying
+  Lemma~\ref{lemm:deg_of_induced}, we get the following.
+  \begin{align*}
+    [k(X):k(\mathbb{P}^{1})]\cdot 1
+    &=\deg\left(f^{\ast}(0)\right) \\
+    &=\deg(Q) = 1.
+  \end{align*}
+  Since the degree of the field extension $k(\mathbb{P}^{1}_{k})
+  \subseteq k(X)$ is 1, the fields are isomorphic which
+  concludes the proof.
 \end{proof}

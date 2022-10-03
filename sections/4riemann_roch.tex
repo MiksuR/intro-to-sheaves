@@ -167,21 +167,20 @@ The following proposition will also be useful later.
   $D$.
 \end{proof}
 
-I will now turn to discussing differentials. Recall the notion of the tangent
-bundle, which is an integral concept in the local study of geometric spaces.
-The typical definition of the tangent bundle given in calculus or
-differential geometry does not translate directly to algebraic geometry.
-Thus, we would need a more algebraic alternative. It turns out that it is
-easier to give an algebraic definition of the \emph{cotangent bundle},
-whose fibres are the dual spaces of the fibres of the tangent bundle. Now, I
-will simply give the abstract definition of the cotangent bundle as a sheaf
-of differentials. Giving geometric motivation for the definitions would take
-us too far from the focus of the paper, and thus I leave it out. For a soft
-exposition of differential forms in analysis, I recommend reading Terence
-Tao's excellent article \cite{tao}.
-
+I will now turn to discussing differentials. In geometry, spaces are often
+studied locally by looking at their tangent spaces. But the notion of
+the tangent space does not translate directly to algebraic geometry,
+and we would like to have a more algebraic alternative. It turns out that it
+is easier to give an algebraic definition of the \emph{cotangent space},
+the dual space of the tangent space. The cotangent space can be defined
+abstractly as a module of differentials, which are nice to work with from
+an algebraic perspective. I will not attempt to make the connection to
+geometry more apparent since giving geometric motivation for the definitions
+would take us too far from the focus of the article, and thus I leave it out.
+For a soft exposition of differential forms in analysis, I recommend reading
+Terence Tao's excellent article \cite{tao}.
 \begin{defin}
-  For a commutative algebra over the field $k$, the module of
+  For a commutative algebra $F$ over the field $k$, the module of
   $k$-differentials of $F$ is the free $F$-module $\Omega(F)$ generated
   by the symbols $df$ for $f\in F$ with the following rules.
   \begin{itemize}
@@ -192,26 +191,56 @@ Tao's excellent article \cite{tao}.
 \end{defin}
 Note that this definition implies that the differential map $d:F\to\Omega(F)$
 is $k$-linear: $d(af)=a\,df+f\,da=a\,df$ for $a\in k$. I will write
-$\Omega$ for the module $\Omega\left(k(X)\right)$. Next, I can form a
-quasi-coherent sheaf $\Omega_{X}$ by considering differentials of sections of
-$\mathscr{O}_{X}$. Namely, by letting
-$\Omega_{X}(U)=\Omega\left(\mathscr{O}_{X}(U)\right)$. One
-immediately sees that this sheaf has the local structure one would expect:
-$\Omega_{X,P}=\Omega\left(\mathscr{O}_{X,P}\right)$. Now, we can take
-advantage of the DVR structure of the germs of the structure sheaf.
+$\Omega$ for the module $\Omega\left(k(X)\right)$.
 \begin{prop}
   Suppose $t$ is a local uniformiser of $\mathscr{O}_{X,P}$ at some
   point $P\in X$. Then, $\Omega$ is spanned by the differential $dt$.
 \end{prop}
 \begin{proof}
-  Suppose $f\in k(X)$ is a rational function. Then it can be expressed as
-  the quotient of two polynomials in $t$: $f=R(t)/S(t)$. One can calculate
-  the differential corresponding to $f$ using the quotient rule:
+  First, consider the $k$-vector space
+  $\Omega\left(\mathscr{O}_{X,P}\right)/\mathfrak{m}_{P}\Omega\left(
+    \mathscr{O}_{X,P}\right)$, where
+  $\mathfrak{m}_{P}$ is the maximal ideal of $\mathscr{O}_{X,P}$. I will show
+  that this space is spanned by the differential $dt$ and then apply
+  Nakayama's lemma. Thus, take an element $\sum f_{i}\,dg_{i}\in\Omega\left(
+    \mathscr{O}_{X,P}\right)$. As $\mathscr{O}_{X,P}/\mathfrak{m}_{P}=k$,
+  one can write
   \[
-    df = \frac{R^{\prime}(t)S(t)-R(t)S^{\prime}(t)}{S^{2}(t)}\,dt.
+    f_{i}=m_{i}+a_{i}\text{ and }g_{i}=m_{i}^{\prime}+a_{i}^{\prime}
+    \text{, where } m_{i}, m_{i}^{\prime}\in\mathfrak{m}_{P}
+    \text{ and } a_{i}, a_{i}^{\prime}\in k.
   \]
-  As the generators $df$ of $\Omega$ are of the form $g\,dt$ for $g\in k(X)$,
-  the statement follows.
+  Then, $f_{i}\,dg_{i}\equiv a_{i}\,dg_{i}$ modulo
+  $\mathfrak{m}_{P}\Omega\left(\mathscr{O}_{X,P}\right)$.
+  Furthermore, since $\mathfrak{m}_{P}=(t)$, there is
+  $r_{i}\in\mathscr{O}_{X,P}$ such that $m_{i}^{\prime}=r_{i}t$. One can again
+  write $r_{i}=m_{i}^{\prime\prime}+a_{i}^{\prime\prime}$ so that
+  $m_{i}^{\prime}=a_{i}^{\prime\prime}t+m_{i}^{\prime\prime}t$. Therefore,
+  \[
+    dg_{i}=d\left(m_{i}^{\prime}+a_{i}^{\prime}\right)=dm_{i}^{\prime}
+    =a_{i}^{\prime\prime}\,dt+m_{i}^{\prime\prime}\,dt+t\,dm_{i}^{\prime\prime}
+    \equiv a_{i}^{\prime\prime}\,dt.
+  \]
+  and thus
+  \[
+    \sum f_{i}\,dg_{i}\equiv \sum a_{i}a_{i}^{\prime\prime}\,dt.
+  \]
+  Since I have shown that $dt$ forms a basis of
+  $\Omega\left(\mathscr{O}_{X,P}\right)/\mathfrak{m}_{P}\Omega\left(
+    \mathscr{O}_{X,P}\right)$, I can apply Nakayama's lemma
+  (see Proposition 2.8 in \cite{am}), which implies that $dt$ also generates
+  $\Omega\left(\mathscr{O}_{X,P}\right)$ as a $\mathscr{O}_{X,P}$-module.
+  Now, suppose $f\in k(X)$. Such a function has an expansion
+  \[
+    f=a_{-n}t^{-n}+a_{-n+1}t^{-n+1}+\cdots +a_{-1}t^{-1}+ut^{n},
+  \]
+  where $a_{i}\in k$, $u$ is a unit in $\mathscr{O}_{X,P}$ and $n\geq 0$.
+  Then,
+  \[
+    df=-na_{-n}t^{-n-1}\,dt+\cdots-a_{-1}t^{-2}\,dt+d\left(ut^{n}\right)
+  \]
+  Since $ut^{n}\in\mathscr{O}_{X,P}$, the differential $df$ is in the span
+  of $dt$. It is easy to see that the statement follows from here.
 \end{proof}
 This proposition lets us to define the order of a differential
 $\omega\in\Omega$ as follows. Write $\omega=f\,dt$ for $f\in k(X)$. Then,
@@ -497,7 +526,7 @@ theorem.
   \[
     h^{0}(X, \mathcal{L}(D))-h^{0}(X, \mathcal{L}(K_{X}-D))=\deg(D)+1-g,
   \]
-  where $g=h^{1}(X, \mathcal{O}_{X})$.
+  where $g=h^{1}(X, \mathscr{O}_{X})$.
 \end{thm}
 
 %\subsection{Applications to the classification of curves}
@@ -554,7 +583,8 @@ Now I can give a classification of curves of genus 0.
     &=\deg\left(f^{\ast}(0)\right) \\
     &=\deg(Q) = 1.
   \end{align*}
-  Since the degree of the field extension $k(\mathbb{P}^{1}_{k})
-  \subseteq k(X)$ is 1, the fields are isomorphic which
-  concludes the proof.
+  Therefore, the function fields $k(X)$ and $k\left(\mathbb{P}^{1}_{k}\right)$
+  are isomorphic. Since $X$ and $\mathbb{P}^{1}_{k}$ are non-singular,
+  it follows by Proposition 6.7 in \cite{hartshorne} that the two curves
+  are isomorphic.
 \end{proof}

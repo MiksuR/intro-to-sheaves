@@ -306,7 +306,7 @@ Since $F$ is left-exact, we get an another exact sequence:
   \end{tikzcd}.\]
 Now, exactness implies that $\ker(\alpha_{0}^{\ast})=\im(\alpha^{\ast})
 =F(A)$. Therefore, if I were to replace $F(A)$ by $0$,
-then the cohomology at $F(A^{0})$ would be $F(A)$!
+then the cohomology at $F(A^{0})$ would be $F(A)$.
 Thus, considering the cochain complex
 \[\begin{tikzcd}
     0\rar & F(A^{0})\rar{\alpha_{0}^{\ast}}
@@ -357,11 +357,12 @@ Then suppose we have constructed an exact sequence
     & I^{n-1}\rar{\iota_{n-1}} & I^{n}
   \end{tikzcd}.\]
 Let us take $I^{n+1}$ to be an injective object such that there is
-an injection ${\coker(\iota_{n-1})\hookrightarrow I^{n+1}}$. Then we have
+an injection
+\[\coker(\iota_{n-1})\hookrightarrow I^{n+1}.\]
+Then we have
 \[\begin{tikzcd}
-    0\rar & A\rar & I^{0}\rar{\iota_{0}} & \cdots\rar
-    & I^{n-1}\rar{\iota_{n-1}} & I^{n}\rar[two heads]
-    & \coker(\iota_{n-1})\rar[hook] & I^{n+1}
+    0\rar & A\rar & I^{0}\rar{\iota_{0}} & \cdots\rar{\iota_{n-1}}
+    & I^{n}\rar[two heads] & \coker(\iota_{n-1})\rar[hook] & I^{n+1}
   \end{tikzcd}.\]
 When the injection is composed with the projection, we get the exact sequence
 \[\begin{tikzcd}

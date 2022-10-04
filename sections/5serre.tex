@@ -1,14 +1,5 @@
 \section{Serre duality}
-The rest of this paper is devoted to proving the Serre duality:
-\newtheorem*{thm:serre}{Theorem~\ref{thm:serre}}
-\begin{thm:serre}[Serre Duality]
-  If $X$ is an algebraic curve as in the previous section
-  and $D$ is a divisor on $X$, there is an isomorphism
-  \[
-    \dual{D}\cong \diffs{D}.
-  \]
-  of $k$-vector spaces.
-\end{thm:serre}
+The rest of this paper is devoted to proving the Serre duality.
 I will prove the theorem by first finding a more concrete representation of
 $H^{1}(X,\mathcal{L}(D))$ and then constructing a perfect pairing between
 $H^{1}(X,\mathcal{L}(D))$ and $\diffs{D}$,
@@ -20,7 +11,7 @@ cohomology definition of $H^{1}(X,\mathcal{L}(D))$.
 Instead we want to give a more concrete description of
 $H^{1}(X,\mathcal{L}(D))$ by finding some SES involving $\mathcal{L}(D)$
 and then taking the cohomology sequence of the SES. Since $\mathcal{L}(D)$ is
-a subsheaf of the constant sheaf $\underline{k(X)}$, we can simply consider
+a subsheaf of the constant sheaf $\underline{k(X)}$, one can simply consider
 the following SES.
 \[
   \begin{tikzcd}
@@ -67,7 +58,7 @@ direct sum of stalks.
     H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\subseteq\bigoplus_{P\in X}
     k(X)/\mathcal{L}(D)_{P}.
   \]
-  In other words, I need to check that the components $[f_{P}]$ of some
+  I need to check that the components $[f_{P}]$ of some
   $([f_{P}])_{P\in X}\in H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ are non-zero
   for only finitely many $P\in X$. Thus, suppose $([f_{P}])_{P\in X}\in
   H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$. Firstly, the divisor $D$ is
@@ -119,7 +110,7 @@ direct sum of stalks.
           $[f_{Q}]=[g]$ on $U$.
   \end{description}
 \end{proof}
-Now, we can express this direct sum in the following way. Consider the
+This direct sum can be expressed in the following way. Consider the
 vector space $R$ of families $\{r_{P}\}_{P\in X}$, where $r_{P}\in k(X)$ and
 $r_{P}\in\mathscr{O}_{X,P}$ for almost all points $P\in X$.
 (Serre calls such a family a \emph{r\'epartition} in \cite{serre}).
@@ -149,7 +140,7 @@ of $R$ and it is thus the kernel of the map. Such a surjection maps $R/R(D)$
 onto the space $R\,/\left(R(D)+k(X)\right)$, and thus we get the isomorphism
 \[H^{1}(X,\mathcal{L}(D))\cong R/\left(R(D)+k(X)\right).\]
 Now, the dual space $\dual{D}$ is simply the space
-of linear functionals on $R$, which vanish on $R(D)$ and $k(X)$!
+of linear functionals on $R$, which vanish on $R(D)$ and $k(X)$.
 
 \subsection{Constructing a pairing}
 Next I will construct a bilinear form
@@ -355,11 +346,11 @@ let us prove the surjectivity of $\iota_{D}$.
     \dim\Lambda\geq \deg{\Delta}-g+1.
   \end{equation}
   Similarly, since $\iota_{D-\Delta}:\diffs{D-\Delta}\to\dual{D-\Delta}$
-  is an injection, $\dim\left(\im(\iota_{D-\Delta})\right)
-  % TODO: change \dim(\diffs) to h^0.
-  =\dim(\diffs{D-\Delta})$. As $\diffs{D-\Delta}$ is isomorphic to
-  $\mathcal{L}((\omega)-D+\Delta)$ by Prop.~\ref{prop:diffs_isomorph},
-  I can apply Riemann-Roch again:
+  is an injection, we have that
+  \[
+    \dim\left(\im(\iota_{D-\Delta})\right) =\dim(\diffs{D-\Delta}).
+  \]
+  Using Lemm.~\ref{lemm:diffs_dim}, I can apply Riemann-Roch again:
   \begin{equation}\label{eq:im_dimension}
     \dim\left(\im(\iota_{D-\Delta})\right)
     =h^{0}(X,\mathcal{L}((\omega)-D+\Delta))\geq \deg((\omega)-D+\Delta)-g+1.
@@ -436,24 +427,4 @@ We finally arrive at the Serre Duality theorem!
   shows that the linear map
   \[\iota_{D}:\diffs{D}\to \dual{D}\]
   is a bijection so that it defines an isomorphism between the two spaces.
-\end{proof}
-If one is only interested in the dimension of $\dual{D}$, then the dimension
-can be expressed in terms of the canonical divisor.
-\begin{cor}
-  The following equality holds
-  \[
-    h^{1}(X,\mathcal{L}(D))=h^{0}(X,\mathcal{L}(K_{X}-D)).
-  \]
-\end{cor}
-\begin{proof}
-  Write $K_{X}=(\omega_{0})$ with $\omega_{0}=f_{0}\,dt$ and fix a
-  differential $\omega=f\,dt$. Then, $\omega=\frac{f}{f_{0}}\omega_{0}$
-  and we have
-  \[
-    \omega\in\Omega(D)\iff (\omega)\geq D
-    \iff\left(\frac{f}{f_{0}}\right)+(\omega_{0})\geq D\iff
-    \frac{f}{f_{0}}\in H^{0}(X,\mathcal{L}(K_{X}-D)).
-  \]
-  In other words, the elements of $H^{0}(X,\mathcal{L}(K_{X}-D))$ are in
-  bijection with the elements of $\Omega(D)\cong\dual{D}$.
 \end{proof}

@@ -509,16 +509,43 @@ duality.
           \]
   \end{description}
 \end{proof}
-\begin{rem}
+\begin{lwarn}
   One would need to also prove that the cohomology groups are finite
   dimensional to begin with. The details can be found in \cite{serre}.
-\end{rem}
+\end{lwarn}
 
 This form of the theorem is not the most useful one for applications,
-because computing $h^{1}(X,\mathcal{L}(D))$ is not easy. Luckily, the Serre
-Duality theorem --- which I will prove in the next section --- gives the
-following equality of dimensions:
-\[h^{1}(X,\mathcal{L}(D))=h^{0}(X,\mathcal{L}(K_{X}-D))\]
+because computing $h^{1}(X,\mathcal{L}(D))$ is not easy. However, one can
+get a nice expression for this space using the Serre Duality theorem, which
+I will prove in the next section:
+\newtheorem*{thm:serre}{Theorem~\ref{thm:serre}}
+\begin{thm:serre}[Serre Duality]
+  If $X$ is an algebraic curve as before
+  and $D$ is a divisor on $X$, there is an isomorphism
+  \[
+    \dual{D}\cong \diffs{D}.
+  \]
+  of $k$-vector spaces.
+\end{thm:serre}
+Since we are only interested in the dimension of $h^{1}(X,\mathcal{L}(D))$,
+I will use the following lemma to give the dimension in terms of the
+canonical divisor.
+\begin{lemm}\label{lemm:diffs_dim}
+  We have the following equality in dimensions.
+  \[\dim\left(\Omega(D)\right)=h^{0}(X,\mathcal{L}(K_{X}-D))\]
+\end{lemm}
+\begin{proof}
+  Write $K_{X}=(\omega_{0})$ with $\omega_{0}=f_{0}\,dt$ and fix a
+  differential $\omega=f\,dt$. Then, $\omega=\frac{f}{f_{0}}\omega_{0}$
+  and we have
+  \[
+    \omega\in\Omega(D)\iff (\omega)\geq D
+    \iff\left(\frac{f}{f_{0}}\right)+(\omega_{0})\geq D\iff
+    \frac{f}{f_{0}}\in H^{0}(X,\mathcal{L}(K_{X}-D)).
+  \]
+  In other words, the elements of $H^{0}(X,\mathcal{L}(K_{X}-D))$ are in
+  bijection with the elements of $\Omega(D)\cong\dual{D}$.
+\end{proof}
 Now, this equality lets us write the ``complete'' form of the Riemann-Roch
 theorem.
 \begin{thm}[Riemann-Roch]\label{thm:riemann_roch}

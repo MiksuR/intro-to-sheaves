@@ -150,11 +150,11 @@ Thus, sheaves are defined in the following way.
   $\mathscr{F}:\text{Op}(X)^{\text{op}}\to \mathbf{Ring}$, and in general,
   a $\mathscr{C}$-valued pre-sheaf is a contravariant functor
   $\mathscr{F}:\text{Op}(X)^{\text{op}}\to\mathscr{C}$, where we define
-  $\mathscr{F}(\emptyset)$ to be the final object of $\mathscr{C}$.
-  If $\mathscr{C}$ has limits, we can also express the sheaf axiom category
-  theoretically. Namely, $\mathscr{F}$ is a sheaf if for every
-  open set $U$ of $X$ and an open cover $U_{i}$ of $U$ the following
-  diagram is an equaliser diagram.
+  $\mathscr{F}(\emptyset)$ to be the final object of $\mathscr{C}$
+  \cite{vakil}. If $\mathscr{C}$ has limits, we can also express the sheaf
+  axiom category theoretically \cite{maclane}. Namely, $\mathscr{F}$ is a
+  sheaf if for every open set $U$ of $X$ and an open cover $U_{i}$ of $U$ the
+  following diagram is an equaliser diagram.
   \begin{equation}\label{diag:sheaf_eq}\begin{tikzcd}
       \mathscr{F}(U)\rar
       & \displaystyle\prod_{i}\mathscr{F}(U_{i})\rar[shift left]\rar[shift right]
@@ -596,7 +596,7 @@ usual definitions.
               \cdots\rar & \mathscr{F}_{i-1}\rar & \mathscr{F}_{i}\rar
               & \mathscr{F}_{i+1}\rar & \cdots
             \end{tikzcd}\]
-          of $\mathscr{O}_{X}$-modules is exact if
+          of sheaves of $\mathscr{O}_{X}$-modules is exact if
           \[
           \ker(\mathscr{F}_{i}\to\mathscr{F}_{i+1})=\im(\mathscr{F}_{i-1}
           \to\mathscr{F}_{i}),\ \forall i.
@@ -609,7 +609,6 @@ usual definitions.
   of $\mathscr{O}_{X}$-modules is an \emph{abelian category}, which means
   that it is the perfect setting for homological algebra (see \cite{vakil}).
 
-  % TODO: Reference for the below result
   Furthermore, note that equaliser diagrams in abelian categories can be
   expressed in terms of exact sequences. Therefore, the sheaf axiom in
   \eqref{diag:sheaf_eq} can be expressed as the exact sequence
@@ -619,7 +618,7 @@ usual definitions.
       \rar{\text{res}_{U_{i}\cap U_{j}}^{U_{j}}-\text{res}_{U_{i}\cap U_{j}}^{ U_{i}}}
       &[5em] \displaystyle\bigoplus_{i,j}\mathscr{F}(U_{i}\cap U_{j})
     \end{tikzcd}\end{equation}
-  in the category $\mathscr{O}_{X}$\textbf{-Mod}.
+  in the category $\mathscr{O}_{X}$\textbf{-Mod} \cite{maclane}.
 \end{cat}
 
 Next I will show that the exactness of sequences of sheaves

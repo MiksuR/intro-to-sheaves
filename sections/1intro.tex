@@ -1,33 +1,33 @@
 \section*{Introduction}
 \addcontentsline{toc}{section}{Introduction}
-In this article, I am introducing sheaf theory and sheaf cohomology
-in the context of algebraic geometry to prove the Riemann-Roch theorem,
-which is one of the most important theorems in the classification
+In this article, I am introducing sheaf theory and the cohomology of
+sheaves in the context of algebraic geometry to prove the Riemann-Roch 
+theorem, which is one of the most important theorems in the classification
 of algebraic curves. This text is aimed at undergraduate students with
 basic knowledge of varieties.
 
-Sheaves are a way of associating algebraic data to a space locally. We
-usually associate data consisting of rational functions, and the
-Riemann-Roch theorem will give global information about certain types of
-functions on a space. In this article, I will use the Riemann-Roch theorem
-to show the existance of a globally defined function on a curve $X$ of genus
-0 that defines an isomorphism with the projective line. Thus, we get a
-complete classification of curves of genus 0. One can use the Riemann-Roch
-theorem to classify curves of higher genera as well.
+Sheaves are formed by attaching algebraic data to \emph{local} patches of 
+a space. We usually associate data about rational functions, and 
+the Riemann-Roch theorem will give \emph{global} information about certain 
+types of functions on a space. I will use the theorem to show the existence 
+of a globally defined function on a curve $X$ of genus 0, which defines 
+an isomorphism with the projective line. Thus, we get a complete 
+classification of curves of genus 0. One can use the Riemann-Roch theorem 
+to classify curves of higher genera as well.
 
 The main ingredient in the proof of the Riemann-Roch theorem is Serre
-duality, which is a more general result. The proof will again
+Duality, which is a more general result. The proof will again
 be cohomological and is usually rather abstract. However, I will
 approach the proof by giving concrete interpretations of
 the cohomology groups by following Serre's exposition in \cite{serre}.
 
-The reader is assumed to be know basic algebraic geometry. An excellent
+The reader is assumed to know basic algebraic geometry. An excellent
 introduction to the topic is \cite{reid}, and a good set of lecture notes
 which goes beyond the basics is \cite{gathmann}. I will use the language
 of discrete valuation rings, which is not explained in this paper. See
-\cite{fulton} for an introduction to this topic. Familiarity with the basic
-constructions of homological algebra is helpful if not necessary. Through
-out the paper, I will also try to point out category theoretical contexts of
+\cite{fulton} for an introduction to this topic. Having familiarity with 
+the basic constructions of homological algebra is desirable. Throughout 
+the paper, I will also try to point out category theoretical contexts of
 the concepts discussed. However, it is not necessary to know any category
 theory to understand this paper, and I will always place a warning for
 people who are not fond of abstract nonsense.

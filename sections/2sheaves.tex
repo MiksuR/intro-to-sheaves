@@ -1,11 +1,11 @@
 \section{Sheaves}
 The central objects of study in this paper are \emph{sheaves}. At first
 glance sheaves might seem complicated and abstract, but in fact they are
-inherently geometric objects. Hence, I will not start by stating the
-definitions of sheaves, but instead I start with a discussion of
-\emph{fibre bundles}, which are more concrete objects that appear through
-out geometry. I hope this discussion gives a good motivation for
-the definition of sheaves and also helps build geometric intuition right
+inherently geometric objects. Hence, I will not start with the
+definition of sheaves, but instead I begin by discussing
+\emph{fibre bundles}, which are more concrete objects that appear throughout 
+geometry. This discussion should give a good motivation for
+the definition of sheaves and also help build geometric intuition right
 away.
 
 \subsection{Motivation: fibre bundles}
@@ -16,7 +16,7 @@ points of $B$, we should get a topological space $E$ called the
 \emph{total space}. More formally, a fibre bundle consists of two spaces $E$
 and $B$ and a continuous surjection (henceforth \emph{a projection})
 $\pi:E\to B$, where the fibres $\pi^{-1}(b)$ of the projection are
-homeomorphic to some fibre space $F$. But not only that, we also require
+homeomorphic to some fixed fibre space $F$. We require in addition
 that one can find an open neighbourhood $U$ for every point of $B$ and a
 homeomorphism $h:\pi^{-1}(U)\to U\times F$ such that the following diagram
 commutes.
@@ -33,7 +33,7 @@ commutes.
     \end{tikzcd}
   \end{minipage}%
   \begin{minipage}{.45\textwidth}
-    \centering
+    \centering % TODO: Redo this picture
     \includegraphics[width=.7\textwidth]{fibre_bundle}
   \end{minipage}
 \end{figure}
@@ -41,10 +41,10 @@ Thus, when we attach the fibres to points of $B$, they should be gathered
 so that the total space looks locally like a product space.
 
 Let us look at some examples. Suppose the base space is the circle $S^{1}$
-and the fibre space is the interval $[-1, 1]$, which is topologically
+and the fibre space is the interval $(-1, 1)$, which is topologically
 speaking a line. An example of such a \emph{line bundle} is the cylinder.
-The cylinder is a \emph{trivial bundle}, because the whole space can
-be written as a product: $S^{1}\times [-1,1]$. An example of a
+The cylinder is a \emph{trivial bundle}, because the total space can
+be written as a product: $S^{1}\times (-1,1)$. An example of a
 \emph{non-trivial line bundle} over $S^{1}$ is the \emph{Möbius strip}.
 \begin{figure}[H]
   \centering
@@ -64,8 +64,8 @@ by the \emph{Klein bottle}.
 An important example showing up in differential and algebraic geometry
 is the concept of the \emph{tangent bundle}, where the fibres are the
 tangent spaces at the points of the base space. Consider for example the
-sphere $S^{2}$, which is a smooth 2-manifold. Then the fibres of the tangent
-bundle of $S^{2}$ are the planes tangent to the sphere.
+sphere $S^{2}$, which is a 2-dimensional manifold. Then the fibres of 
+the tangent bundle of $S^{2}$ are the planes tangent to the sphere.
 
 The things we are usually the most interested in are the \emph{sections} of
 a given fibre bundle. A section $s$ of a fibre bundle $\pi:E\to B$
@@ -75,7 +75,7 @@ corresponding fibre. A useful analogy is to think of a river, which can
 be represented by a curve $C$ on the Euclidean plane. One could measure the
 temperature of the river at different points and get a temperature reading
 in $\mathbb{R}^{+}$ (assuming the
-\begin{wrapfigure}{r}{0.3\textwidth}
+\begin{wrapfigure}{r}{0.3\textwidth} % TODO: Redo this picture
   \centering
   \includegraphics[width=0.3\textwidth]{vector_field}
   \caption{A section of the tangent bundle on $S^{1}$}
@@ -85,11 +85,15 @@ If one were to collect the temperature readings across all points of $C$,
 one would get a section of the $\mathbb{R}^{+}$-bundle over the river $C$.
 Thus, if fibre bundles are a way of attaching data to points of a space,
 then sections of a fibre bundle are continuous collections of data over the
-base space. One more interesting example is a section of a tangent bundle.
-These are simply vector fields on the base space.
-In practise, we also consider sections $s:U\to E$ on some open set
-$U\subseteq B$, because given two sections $s_{1}:U_{1}\to E$ and
-$s_{2}:U_{2}\to E$, we can glue the two sections proveded the sections
+base space. Other interesting classes of examples of sections are vector
+fields and differential forms, which are sections of the tangent bundle
+and the cotangent bundle respectively. These are central objects of study
+in geometry.
+
+We often like to consider sections $s\vert_U:U\to E$ on some open set
+$U\subseteq B$. These have the following property.
+Given two sections $s_{1}:U_{1}\to E$ and $s_{2}:U_{2}\to E$, we can 
+glue the two sections provided the sections
 agree on $U_{1}\cap U_{2}$ to get a section $s:U_{1}\cup U_{2}\to E$.
 Then, one can piece together larger sections from smaller sections. This
 ability to define sections locally is very useful.
@@ -100,11 +104,7 @@ points of a given space, and one can consider sections over the fiber
 bundle, which can be glued from small patches. We wish to extend the notion
 of a fibre bundle, because the requirement that the fibres must be
 topological spaces which form another topological space when bundled
-together is more strict than we want. What if we want to consider, in
-the above analogy, the types of fish living in the different parts of the
-river? The set of types of fish does not form a topological space, but we
-can still define a functions $s:U\to F$, where $F$ is the set of types
-of fish and $U\subseteq C$ is an open set.
+together is more strict than we want.
 
 The notion of a fibre bundle is extended by the notion of a sheaf.
 Since taking sections is really the interesting part of fibre bundles, the
@@ -122,8 +122,8 @@ motivated by fibre bundles.
   called the restriction function, such that $\text{res}_{U}^{U}
   =\text{id}_{U}$ and for every triple $W\subseteq V\subseteq U$, we have
   $\text{res}_{W}^{V}\circ\text{res}_{V}^{U}=\text{res}_{W}^{U}$.
-  When $s\in\mathscr{F}(U)$, one usually writes $s\vert_{V}$ for
-  $\res_{V}^{U}(s)$. Also, the set of global sections $\mathscr{F}(X)$
+  For $s\in\mathscr{F}(U)$, one usually writes $s\vert_{V}$ for
+  $\text{res}_{V}^{U}(s)$. Also, the set $\mathscr{F}(X)$ of global sections
   is denoted by $\Gamma(\mathscr{F})$.
 
   One can also define pre-sheaves of rings, for example, where the sets
@@ -144,11 +144,11 @@ Thus, sheaves are defined in the following way.
 \end{defin}
 \begin{bcat}
   Category theoretically speaking, a pre-sheaf $\mathscr{F}$ of sets is
-  simply a contravariant functor $\mathscr{F}:\text{Op}(X)^{\text{op}}
+  simply a functor $\mathscr{F}:\text{Op}(X)^{\text{op}}
   \to\mathbf{Set}$, where $\text{Op}(X)$ is the posetal category of
-  open sets of $X$. Moreover, a pre-sheaf of rings is a contravariant functor
+  open sets of $X$. Moreover, a pre-sheaf of rings is a functor
   $\mathscr{F}:\text{Op}(X)^{\text{op}}\to \mathbf{Ring}$, and in general,
-  a $\mathscr{C}$-valued pre-sheaf is a contravariant functor
+  a $\mathscr{C}$-valued pre-sheaf is a functor
   $\mathscr{F}:\text{Op}(X)^{\text{op}}\to\mathscr{C}$, where we define
   $\mathscr{F}(\emptyset)$ to be the final object of $\mathscr{C}$
   \cite{vakil}. If $\mathscr{C}$ has limits, we can also express the sheaf
@@ -183,15 +183,25 @@ Now I will introduce two important constructions: stalks, which give a
 zoomed-in picture of a sheaf, and sheafification, which turns pre-sheaves
 into sheaves.
 
+Suppose $\mathscr{F}$ is a pre-sheaf on some space $X$.
+We would like to understand, what the structure of $\mathscr{F}$
+is at some point $P$ by associating to the point a set $\mathscr{F}_P$ that describes this structure.
+Since the only information specifying a pre-sheaf are the sections, we could define $\mathscr{F}_P$ to be
+the set of sections over open sets containing $P$. However,
+this is most often an unimaginably large a set. Thus,
+we say that $\mathscr{F}_P$ is the set of equivalence classes
+of such sections, where two sections are equivalent if they
+agree on some sufficiently small open neighbourhood of $P$.
+More formally:
 \begin{defin}
   Given a pre-sheaf $\mathscr{F}$ on $X$ and a point $P\in X$, the stalk
   $\mathscr{F}_{P}$ at $P$ is defined as the set
   \[
-    \mathscr{F}_{P}=\Set{(s, U)\mid U\subseteq X\text{ open}, s\in
+    \mathscr{F}_{P}=\Set{(s, U)\mid U\subseteq X\text{ open}, P\in U, s\in
     \mathscr{F}(U)}/\sim,
   \]
   where two pairs $(s_{1}, U_{1})$ and $(s_{2}, U_{2})$ are equivalent
-  if there is an open set $V\subseteq U_{1}, U_{2}$ such that
+  if there is an open set $V\subseteq U_{1}, U_{2}$ containing $P$ such that
   \[
     s_{1}\vert_{V}=s_{2}\vert_{V}.
   \]
@@ -209,7 +219,7 @@ later.
   Let $X$ be a variety. The stalk $\mathscr{O}_{X,P}$ of
   $\mathscr{O}_{X}$ at some point $P\in X$ is given by
   \[
-    \mathscr{O}_{X,P}=\Set{\frac{f}g\in k(X)\mid g(P)\neq 0}.
+    \mathscr{O}_{X,P}=\Set{\frac{f}g\in k(X)\mid f,g\in k[X],g(P)\neq 0}.
   \]
 \end{prop}
 \begin{proof}
@@ -240,7 +250,7 @@ a sheaf takes values in the stalks.
       \vspace{0pt}
       Note however that while a stalk at $P$ contains all the data ``above''
       $P$ just as a fibre at $P$ does, stalks are larger, because they also
-      contain ``infinitesimal'' data \textbf{around} $P$. One can find two
+      contain local information \textbf{around} $P$. One can find two
       sections with equal values at $P$, but which have different germs at
       $P$.
     \end{minipage}%
@@ -251,6 +261,8 @@ a sheaf takes values in the stalks.
     \end{minipage}
   \end{figure}
 \end{lwarn}
+Next, we will study properties of germs that leads to the
+construction of the sheafification of a pre-sheaf.
 Fix a sheaf $\mathscr{F}$ on some space $X$ and choose a section
 $s\in \mathscr{F}(U)$ on some open set $U\subseteq X$. Then, consider
 the totality of germs of $s$ over $U$, namely the collection
@@ -281,7 +293,7 @@ the case with the collection $(s_{P})_{P\in X}$ of the proposition so that we
 can glue the germs in the same way as above. This statement will be essential
 for building theory, but it is also useful for manipulating sheaves in
 practise and I will routinely represent sections of sheaves as collections
-of germs. Thus, make sure you understand the statement and the proof
+of germs. Therefore, make sure you understand the statement and the proof
 completely.
 \begin{proof}
   I will again break up the proof into cases.
@@ -321,38 +333,27 @@ on $X$ by
   & \exists r\in\mathscr{F}^{\prime}(U_{P})\,\forall Q\in U_{P},
     \ r_{Q}=s_{Q}\,\big\}.
 \end{align*}
-One may notice that $\mathscr{F}$ is in fact a sheaf. Thus, one can
+Now, I leave it as an exercise for the reader to check that
+$\mathscr{F}$ is in fact a sheaf. Thus, one can
 associate a sheaf to every pre-sheaf using this construction, which is
-called \emph{sheafification}. And Lemma~\ref{lemm:sheafify_sheaf} is saying
-that sheafifying a sheaf does not do anything. One can also see that the
-pre-sheaf $\mathscr{F}^{\prime}$ and its sheafification $\mathscr{F}$ always
-have the same stalks.
+called \emph{sheafification}.
 \begin{rem}
-  One might also notice that this construction preserves the stalks of
-  $\mathscr{F}^{\prime}$. In other words, $\mathscr{F}^{\prime}_{P}
-  =\mathscr{F}_{P}$ for every $P\in X$. This is true, because every
-  element $(s, U)$ of $\mathscr{F}^{\prime}_{P}$ can be associated to
-  the element $(s_{Q})_{Q\in U}$ of $\mathscr{F}(U)$, which in turn has
-  a stalk at $P$ in $\mathscr{F}_{P}$ and an element $((s_{Q})_{Q\in U},
-  U)$ of $\mathscr{F}_{P}$ can be associated to $s_{P}\in
-  \mathscr{F}^{\prime}_{P}$.
+  Note that Lemma~\ref{lemm:sheafify_sheaf} is saying that sheafifying a sheaf does 
+  not do anything. One might also notice that this construction preserves 
+  the stalks of $\mathscr{F}^{\prime}$, in other words, 
+  $\mathscr{F}^{\prime}_{P}=\mathscr{F}_{P}$ for every $P\in X$. 
+  This is true, because every element $(s, U)$ of $\mathscr{F}^{\prime}_{P}$ 
+  can be associated to the element $(s_{Q})_{Q\in U}$ of $\mathscr{F}(U)$, 
+  which in turn has a stalk at $P$ in $\mathscr{F}_{P}$ and an element 
+  $((s_{Q})_{Q\in U},U)$ of $\mathscr{F}_{P}$ can be associated to 
+  $s_{P}\in \mathscr{F}^{\prime}_{P}$.
 \end{rem}
 \begin{cat}
-  If $\mathscr{F}^{\prime}$ is a pre-sheaf on $X$, then its sheafification
-  $\mathscr{F}$ satisfies the following universal property: for every sheaf
-  $\mathscr{G}$ and mophism $g:\mathscr{F}^{\prime}\to\mathscr{G}$, there
-  exists a unique morphism $f:\mathscr{F}\to\mathscr{G}$ making the following
-  diagram commute.
-  \[\begin{tikzcd}
-      \mathscr{F}^{\prime}\rar\arrow[dr, "g"'] & \mathscr{F}
-      \arrow[d, dashed, "f"] \\ & \mathscr{G}
-    \end{tikzcd}\]
-  (Morphisms of sheaves will be defined in subsection~\ref{ss:sheaf_alg})
-
-  Also, the sheafification functor $\mathbf{PSh}(X)\to\mathbf{Sh}(X)$
+  The sheafification functor $\mathbf{PSh}(X)\to\mathbf{Sh}(X)$
   from the category of pre-sheaves on $X$ to the category of sheaves on $X$
   is the left adjoint to the forgetful functor $\mathbf{Sh}(X)\to
   \mathbf{PSh}(X)$ \cite{vakil}.
+  In particular, there is a universal property defining the sheafification of a pre-sheaf.
 \end{cat}
 A typical example illustrating sheafification is to consider the constant
 pre-sheaf and its sheafification. The constant pre-sheaf
@@ -378,7 +379,7 @@ a set $A$, the constant sheaf $\underline{A}$ is defined as the sheafification
 of the constant pre-sheaf with values in $A$.
 
 Now is a good time to introduce other sheaves that will be needed later.
-First one is the \emph{skyscraper sheaf} of some set $A$ at a point $P\in X$.
+First one is the \emph{skyscraper sheaf} $A_P$ of some set $A$ at a point $P\in X$.
 It is defined as follows
 \[
   A_{P}(U)=\begin{cases}
@@ -386,7 +387,9 @@ It is defined as follows
     0, & \quad P\not\in U
   \end{cases}.
 \]
-A second sheaf we need is the \emph{restriction sheaf} of some other sheaf.
+What are the stalks of this sheaf at different points?
+
+A second sheaf we need is the \emph{restriction sheaf} of some sheaf.
 Suppose $\mathscr{F}$ is a sheaf on some space $X$ and $U\subseteq X$ is
 an open set. Then, one defines the restriction sheaf $\mathscr{F}\vert_{U}$
 on $U$ simply by
@@ -398,8 +401,8 @@ for open sets $V\subseteq U$.
 \subsection{Ringed spaces and algebraic varieties}
 Now that we have some feel for sheaves, I will briefly go over the
 construction of abstract algebraic varieties, which are built with the help
-of sheaves. Whenever I mention varieties, I refer to the spaces that are
-defined in this subsection. The precise details of the construction are not
+of sheaves. Whenever I mention varieties, I refer to spaces that are
+defined as in this subsection. The precise details of the construction are not
 essential for the present article, and the reader should consult
 \cite{gathmann} for a more detailed discussion.
 
@@ -455,7 +458,7 @@ Note that such ringed spaces are not always zero sets of some polynomials;
 See for example Lemma 2.3.16 in \cite{gathmann}.
 
 Now that I have defined what it means for a ringed space to be an affine
-variety, I will form \emph{varieties} by ``gluing'' up open affine varieties
+variety, I will form \emph{varieties} by ``gluing'' together open affine varieties
 in the same way as manifolds are glued from open subsets of the Euclidean
 space.
 \begin{defin}[Def. 2.4.1 in \cite{gathmann}]
@@ -468,7 +471,7 @@ space.
           an affine variety.
   \end{itemize}
 \end{defin}
-The reason why these spaces are not yet varieties, but only pre-varieties
+The reason why we do not call these spaces varieties
 is because the definition allows the construction of some pathological
 spaces such as the \emph{line with two origins}, see \cite{gathmann}.
 To avoid such spaces, we add one more condition in the final definition
@@ -518,8 +521,7 @@ pre-sheaves.
       & \mathscr{F}(V)\dar{\alpha_{V}} \\
       \mathscr{G}(U)\arrow[r,"\text{res}_{V}^{U}"'] & \mathscr{G}(V)
     \end{tikzcd}\]
-  If $\mathscr{F}$ and $\mathscr{G}$ are sheaves, a sheaf morphism is defined
-  exactly the same way.
+  Morphisms between sheaves are defined exactly the same way.
 \end{defin}
 One might ask, why this should be the right definition. The reason is that
 this type of morphism \textbf{preserves the structure of the sheaf}. Compare
@@ -553,7 +555,7 @@ $(X,\mathscr{O}_{X})$.
     (s_{1}+s_{2})\vert_{V}=s_{1}\vert_{V}+s_{2}\vert_{V}\quad
     \text{and}\quad (\lambda s)\vert_{V}=\lambda\vert_{V}\cdot s\vert_{V}
   \]
-  for all scalars $\lambda\in\mathscr{O}_{X}$.
+  for all $\lambda\in\mathscr{O}_{X}(U)$.
 \end{defin}
 I can now define the usual algebraic operations for sheaves of
 $\mathscr{O}_{X}$-modules.
@@ -607,7 +609,7 @@ usual definitions.
 \begin{cat}
   One can show that the category $\mathscr{O}_{X}$\textbf{-Mod} of sheaves
   of $\mathscr{O}_{X}$-modules is an \emph{abelian category}, which means
-  that it is the perfect setting for homological algebra (see \cite{vakil}).
+  that it is a perfect setting for homological algebra (see \cite{vakil}).
 
   Furthermore, note that equaliser diagrams in abelian categories can be
   expressed in terms of exact sequences. Therefore, the sheaf axiom in
@@ -660,9 +662,8 @@ on the stalks. Then one can show the following theorem.
             &\iff [(s\vert_{V},V)]\in\left(\im(f_{i-1})\right)_{P} \\
             &\iff \exists V\subseteq U,\ s\vert_{V}\in
               \im^{\prime}(f_{i-1})(V) \\
-            &\iff [(s,U)]\in\im\left(\left(f_{i-1}\right)_{P}\right),
+            &\iff [(s,U)]\in\im\left(\left(f_{i-1}\right)_{P}\right).
           \end{align*}
-          where the second and fourth equivalences are left as exercises.
           Therefore, $\ker\left(\left(f_{i}\right)_{P}\right)
           =\im\left(\left(f_{i-1}\right)_{P}\right)$
           % TODO: Picture with exact sequence ker(f_i) -> F_i -> F_i+1
@@ -719,6 +720,7 @@ definition of the structure sheaf on an affine variety.
   $\mathfrak{m}_{P}$ of the point $P$.
 \end{defin}
 Now, this definition implies the following result.
+% TODO: Check this proof
 \begin{lemm}\label{lemm:qcoh_local_global}
   If $\cm$ is the sheaf on an affine variety $X$ associated to the module
   $M$ over $\mathscr{O}_{X}(X)$, then

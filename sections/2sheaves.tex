@@ -488,22 +488,19 @@ The following lemma will be needed later.
   Then, the intersection $U\cap V$ is an open affine subset of $X$.
 \end{lemm}
 \begin{proof}
-  Embed $U$ and $V$ in some common affine space $\mathbb{A}^{n}$ as
-  irreducible algebraic sets. Then, one can consider the product $U\times V$
-  as a subset of $\mathbb{A}^{n}\times\mathbb{A}^{n}$. The product
-  $U\times V$ is a irreducible algebraic set of
-  $\mathbb{A}^{n}\times\mathbb{A}^{n}$ (see \cite{gathmann}). Note that the
-  diagonal $\Delta =\set{(x,x)\mid x\in\mathbb{A}^{n}}$ of
-  $\mathbb{A}^{n}\times\mathbb{A}^{n}$ is also closed and irreducible.
-  Therefore, the subset $U\times V\cap\Delta$ of
-  $\mathbb{A}^{n}\times\mathbb{A}^{n}$ is an irreducible algebraic set and
-  hence is an affine variety. Now, I can define the map
+  Since the intersection of two open sets is open by definition,
+  we need to only check that the intersection is affine.
+  Recall that the product of two affine varieties is an
+  affine variety, and consider the projection maps $\pi_U:U\times V\to U$
+  and $\pi_V:U\times V\to V$. Also, denote by $\iota_U:U\to X$
+  and $\iota_V:V\to X$ the inclusion maps. Then, we can see that
   \[
-    U\cap V\to U\times V\cap\Delta: w\mapsto (w,w).
+    U\cap V=\Set{P\in U\times V\mid (\iota_U\circ\pi_U)(P)=(\iota_V\circ\pi_V)(P)},
   \]
-  It is easy to see that this map is in fact an isomorphism.
+  which is closed, since $X$ is a variety.
+  Therefore, the intersection is a closed subset of an
+  affine variety.
 \end{proof}
-% TODO: Add a similar picture as in Vakil pp. 283
 
 \subsection{Algebraic constructions with sheaves}\label{ss:sheaf_alg}
 The aim of this subsection is to define algebraic constructions for
@@ -714,13 +711,12 @@ definition of the structure sheaf on an affine variety.
     & \forall P\in U\,
       \exists U_{P}\subseteq U\text{ an open neighbourhood of }P \\
     & \exists m\in M\,\exists g\in \mathscr{O}_{X}(X)\,
-    \forall Q\in U_{P},\ \phi_{Q}=\frac{m}g\text{ and } g(Q)\neq 0\,\big\},
+    \forall Q\in U_{P},\ \phi_{Q}=\frac{m}g\,\big\},
   \end{align*}
   where $M_{\mathfrak{m}_{P}}$ is the localisation of $M$ at the maximal ideal
   $\mathfrak{m}_{P}$ of the point $P$.
 \end{defin}
 Now, this definition implies the following result.
-% TODO: Check this proof
 \begin{lemm}\label{lemm:qcoh_local_global}
   If $\cm$ is the sheaf on an affine variety $X$ associated to the module
   $M$ over $\mathscr{O}_{X}(X)$, then
@@ -735,34 +731,39 @@ Now, this definition implies the following result.
   ideas from the proof of Proposition 3.8 in \cite{gathmann_new}. Note
   that $M\subseteq\Gamma\left(\cm\right)$ holds trivially, and thus I
   only need to show $\Gamma\left(\cm\right)\subseteq M$.
-  Suppose $\phi\in\Gamma\left(\cm\right)$. Then, $\phi$ can be represented
-  as a quotient $m_{P}/g_{P}$ in an open neighbourhood $U_{P}$ of any point
-  $P\in X$. If there is a point $P$, where $g_{P}$ is a unit of
-  $\mathscr{O}_{X}(X)$, then $m_{P}/g_{P}\in M$ and $\phi$ is represented
-  in $U_{P}$ as an element of $M$. But we can actually extend this to the
-  whole of $X$. Let $Q\in X$ be some other point. Then, there is an open
-  neighbourhood $U_{Q}$, where $\phi$ is represented as $m_{Q}/g_{Q}$. Since
-  open sets of a variety are dense, the sets $U_{P}$ and $U_{Q}$ intersect,
-  and we must have $m_{P}/g_{P}=m_{Q}/g_{Q}$. Thus, we must also have that
-  $m_{Q}/g_{Q}\in M$.
+  Begin by fixing an element $\varphi\in\Gamma\left(\cm\right)$.
+  At a point $P\in X$, the section is represented by
+  $\varphi_P=m_P/g_P$, where $m_P\in M$ and $g_P\in\mathscr{O}_X(X)$.
+  Furthermore, $\varphi$ has this representation on an open neighbourhood $U_P$.
+  
+  Note first that the representations of $\varphi$ at
+  any two points $P,Q\in X$ agree on the intersection
+  $U_P\cap U_Q$. Since $X$ is an irreducible topological space,
+  its non-empty open subsets are dense. Therefore, the
+  intersection $U_P\cap U_Q$ is non-empty, and we have that
+  \[g_Qm_P=g_Pm_Q\]
+  for every pair of points $P,Q\in X$.
 
-  Now, suppose $g_{P}$ is never a unit of $\mathscr{O}_{X}(X)$ for any
-  point $P\in X$. Note that for every point $P$, we have $P\not\in V(g_{P})$.
-  Then, we have
+  Now, since $\varphi_P\in M_{\mathfrak{m}_P}$, we may assume $g_P(P)\neq 0$ for every $P\in X$.
+  In particular, $P\not\in V(g_P)$. This implies that
   \[
-    \emptyset=\bigcap_{P\in X}V(g_{P})=V(\set{g_{P}\mid P\in X}).
+    \bigcap_{P\in X}V(g_P)=\varnothing.
   \]
-  Taking the ideals corresponding to these sets and applying the
-  Nullstellensatz, we get
-  \[
-    (1)=\sqrt{(g_{P}\mid P\in X)}.
-  \]
-  But this is not possible if none of the functions $g_{P}$ is a unit.
+  By the Nullstellensatz, $\sqrt{(g_P\mid P\in X)}=(1)$, and therefore
+  there are $k_P\in\mathscr{O}_X(X)$ such that
+  \[1=\sum_{P\in I}k_Pg_P,\]
+  where $I$ is some finite subset of $X$.
+  If we set
+  \[m=\sum_{P\in I}k_Pm_P,\]
+  I claim that we can write $\varphi=m$ on the whole of $X$.
+  Indeed, at a point $Q$, we have
+  \[\varphi_Q=\frac{m_Q}{g_Q}=\frac{\sum_{P\in I}k_Pg_P\cdot m_Q}{g_Q}=\frac{\sum_{P\in I}k_Pg_Qm_P}{g_Q}=\sum_{P\in I}k_Pm_P=m.\]
+  Therefore, we can conclude that $\varphi\in M$.
 \end{proof}
 Quasi-coherent sheaves are then constructed from such sheaves.
 \begin{defin}
   A sheaf $\mathscr{F}$ of $\mathscr{O}_{X}$-modules is quasi-coherent, if
-  for everey affine open set $U\subseteq X$, the sheaf $\mathscr{F}\vert_{U}$
+  for every affine open set $U\subseteq X$, the sheaf $\mathscr{F}\vert_{U}$
   is a sheaf associated to some module $M$ over the coordinate ring
   $\mathscr{O}_{X}(U)$.
 \end{defin}

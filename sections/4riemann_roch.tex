@@ -1,5 +1,5 @@
 \section{The Riemann-Roch theorem}
-Equiped with sheaf cohomology, I will prove the Riemann-Roch theorem
+Equipped with sheaf cohomology, I will prove the Riemann-Roch theorem
 using the methods we have learnt.
 \begin{lnote}
   The rest of this article will be concerned with algebraic curves. Thus,
@@ -31,7 +31,7 @@ for the value $n_{P}$ associated to the point $P\in X$.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{divisors}
-  \caption{Visualising divisors and their sums}
+  \caption{Visualising divisors and their sums.}
 \end{figure}
 I will now define the \emph{degree} of a divisor and an order relation on
 the group of divisors. The degree of a divisor $D$ is simply the integer
@@ -42,7 +42,7 @@ Next, I say $D$ is \emph{effective} and write $D\geq 0$ if $D(P)\geq 0$
 for all $P\in X$. Then, given two divisors $D, D^{\prime}$, I can define
 $D\geq D^{\prime}$ if the divisor $D-D^{\prime}$ is effective.
 
-Important types of divisors are the ones associated to a non-zero rational
+Important types of divisors are ones associated to a non-zero rational
 function $f\in k(X)^{\times}$. For a point $P\in X$, the ring
 $\mathscr{O}_{X,P}$ is a discrete valuation ring (DVR) with valuation
 $\ord_{P}$. Then, the divisor of $f$ is defined as follows.
@@ -67,31 +67,39 @@ $\ord_{P}$. Then, the divisor of $f$ is defined as follows.
   orders of zeros and poles of the function.
 \end{rem}
 It is useful to consider a non-constant element $f$ of $k(X)$ as a morphism
-$f:X\to\mathbb{P}^{1}_{k}$. Note that $f$ induces an inclusion
-$k\left(\mathbb{P}^{1}_{k}\right)\subseteq k\left(X\right)$ of function
-fields. This fact can be used to define a homomorphism
+$f:X\to\mathbb{P}^{1}_{k}$, because then pre-composition by $f$ defines a
+homomorphism of fields
+\[
+  k\left(\mathbb{P}^1_k\right)\to k\left(X\right):g\mapsto g\circ f.
+\]
+Since homomorphisms of fields are always injective, this map
+defines the inclusion $k\left(\mathbb{P}^{1}_{k}\right)\subseteq k\left(X\right)$.
+This fact can be used to define a homomorphism
 $f^{\ast}:\Div\left(\mathbb{P}^{1}_{k}\right)\to\Div\left(X\right)$ in the
 following way \cite{hartshorne}. Firstly, suppose $Q$ is a point of
 $\mathbb{P}^{1}_{k}$ and let $t$ be a local uniformiser of
-$\mathscr{O}_{\mathbb{P}^{1},Q}$. Then, one defines
+$\mathscr{O}_{\mathbb{P}^{1},Q}$. Then, $t$ can be seen as a function in $k(X)$
+and one can define
 \[
   f^{\ast}(Q)=\sum_{f(P)=Q}\ord_{P}(t)\,P.
 \]
-This definition is independent of the choise of local uniformiser: Suppose
+This definition is independent of the choice of local uniformiser: Suppose
 $t^{\prime}$ is another local uniformiser of $\mathscr{O}_{\mathbb{P}^{1},Q}$.
-Then, there is a unit $u$ of $\mathscr{O}_{X,Q}$ such that $t^{\prime}=ut$. If
-$P\in X$ is a point such that $f(P)=Q$, then $u$ is a unit of
-$\mathscr{O}_{X,P}$. Thus, $\ord_{P}(t)=\ord_{P}(t^{\prime})$. Furthermore, this
+Then, there is a unit $u$ of $\mathscr{O}_{\mathbb{P}^1,Q}$ such that $t^{\prime}=ut$. 
+Since $u$ is a unit, its denominator and numerator do not vanish at $Q$. Thus, 
+the denominator and the numerator of the corresponding function $u\circ f$ in $k(X)$ 
+do not vanish at $P$, as $f(P)=Q$. Therefore, $u\circ f$ is a unit of
+$\mathscr{O}_{X,P}$, and so, $\ord_{P}(t)=\ord_{P}(t^{\prime})$. Furthermore, this
 definition can be linearly extended for an arbitrary divisor
 $D\in\Div(\mathbb{P}^{1}_{k})$. Now, the following lemma will be useful.
 \begin{lemm}\label{lemm:deg_of_induced}
-  If $f\in k(X)$, then for the induced morphism $f^{\ast}:\Div\left(
+  If $f\in k(X)\setminus k$, then for the induced morphism $f^{\ast}:\Div\left(
     \mathbb{P}^{1}_{k}\right)\to\Div\left(X\right)$ we have
   \[
     \deg\left(f^{\ast}(D)\right)=[k(X):k(\mathbb{P}^{1}_{k})]\,\deg(D).
   \]
 \end{lemm}
-\begin{proof}
+\begin{proof} % TODO: Give a proof sketch
   See Proposition 6.9 of \cite{hartshorne} chapter II.
 \end{proof}
 \begin{cor}\label{cor:rational_deg_zero}
@@ -118,28 +126,28 @@ $D\in\Div(\mathbb{P}^{1}_{k})$. Now, the following lemma will be useful.
   Then, $D$ and $D^{\prime}$ are said to be \textbf{linearly equivalent}.
 \end{rem}
 
-Now, say I want to control the ``order of vanishing'' of a rational function
-$f\in k(X)^{\times}$ at the points of the curve $X$. For example, if I want
-$f$ to have a ``pole'' only at some point $P\in X$ with order at least $-2$,
+In this paper, I will use divisors to control the ``order of vanishing'' of 
+a rational function $f\in k(X)^{\times}$. For example, if I want to allow 
+$f$ to have a pole only at some point $P\in X$ with order at most $2$,
 I can express this requirement in the following way. Define a divisor
-$D=-2P$. Then, I require that $(f)\geq D$. Conventionally, we would actually
-set $D=2P$ and require that $(f)\geq -D$. This motivates us to define the
-sheaf $\mathcal{L}(D)$ of such functions:
+$D=-2P$ and require that $(f)\geq D$. Conventionally, we would actually
+set $D=2P$ and require that $(f)\geq -D$. This leads us to define the
+sheaf $\mathscr{O}_X(D)$ of such functions:
 \[
-  \left(\mathcal{L}(D)\right)(U)=\Set{f\in k(X)\mid
+  \left(\mathscr{O}_X(D)\right)(U)=\Set{f\in k(X)\mid
   \forall P\in U,\ \ord_{P}(f)\geq -D(P)}
 \]
 \begin{figure}[H]
   \centering
   \includegraphics[width=.6\textwidth]{divisor_section}
-  \caption{A section of the sheaf $\mathcal{L}(D)$}
+  \caption{A section of the sheaf $\mathscr{O}_X(D)$.}
 \end{figure}
 \begin{prop}
-  The sheaves $\mathcal{L}(D)$ are quasi-coherent for every divisor $D$.
+  The sheaves $\mathscr{O}_X(D)$ are quasi-coherent for every divisor $D$.
 \end{prop}
 \begin{proof}
-  Firstly, $\mathcal{L}(D)$ is clearly a sheaf of $\mathscr{O}_{X}$-modules:
-  If $f, g\in\mathcal{L}(D)(U)$, then it is clear that
+  Firstly, $\mathscr{O}_X(D)$ is clearly a sheaf of $\mathscr{O}_{X}$-modules:
+  If $f, g\in\mathscr{O}_X(D)(U)$, then it is clear that
   \[
     \forall P\in U,\ \ord_{P}(f+g)\geq -D(P).
   \]
@@ -152,18 +160,19 @@ sheaf $\mathcal{L}(D)$ of such functions:
   $U_{P}^{\prime}\subseteq U$, which doesn't contain any of the other points
   where $D$ is non-zero. One can find a function $\phi_{P}\in k(X)$ in some
   neighbourhood $U_{P}\subseteq U_{P}^{\prime}$ of $P$ such that $(\phi_{P})=P$
-  (by Lemma 7.5.6 in \cite{gathmann}). Now, multiplication by $\phi_{P}$
-  defines an isomorphism $\mathcal{L}(D)(U_{P})\to \mathscr{O}_{U_{P}}$.
+  (by \cite[Lemma 7.5.6]{gathmann}). Now, multiplication by $\phi_{P}$
+  defines an isomorphism $\mathscr{O}_X(D)(U_{P})\to \mathscr{O}_{U_{P}}$.
   Since quasi-coherence can be checked locally, this finishes the proof.
+  % TODO: Can we not just set phi_P to be the local uniformizer of O_{X,P}?
 \end{proof}
 The following proposition will also be useful later.
 \begin{prop}\label{prop:global_sec_negative_divisor}
-  If a divisor $D$ has negative degree, then $H^{0}(X,\mathcal{L}(D))=0$.
+  If a divisor $D$ has negative degree, then $H^{0}(X,\mathscr{O}_X(D))=0$.
 \end{prop}
 \begin{proof}
-  Suppose $f\in H^{0}(X,\mathcal{L}(D))$. Then, $(f)\geq -D$
+  Suppose $f\in H^{0}(X,\mathscr{O}_X(D))$. Then, $(f)\geq -D$
   so that $\deg((f))\geq -\deg(D)$, but this implies $\deg(D)\geq 0$
-  by Prop.~\ref{cor:rational_deg_zero}. This contradicts the assumption on
+  by Prop.~\ref{cor:rational_deg_zero}, which contradicts the assumption on
   $D$.
 \end{proof}
 
@@ -173,14 +182,14 @@ the tangent space does not translate directly to algebraic geometry,
 and we would like to have a more algebraic alternative. It turns out that it
 is easier to give an algebraic definition of the \emph{cotangent space},
 the dual space of the tangent space. The cotangent space can be defined
-abstractly as a module of differentials, which are nice to work with from
+abstractly as a module of differentials, which makes it nice to work with from
 an algebraic perspective. I will not attempt to make the connection to
 geometry more apparent since giving geometric motivation for the definitions
 would take us too far from the focus of the article, and thus I leave it out.
 For a soft exposition of differential forms in analysis, I recommend reading
 Terence Tao's excellent article \cite{tao}.
 \begin{defin}
-  For a commutative algebra $F$ over the field $k$, the module of
+  For a commutative algebra $F$ over a field $k$, the module of
   $k$-differentials of $F$ is the free $F$-module $\Omega(F)$ generated
   by the symbols $df$ for $f\in F$ with the following rules.
   \begin{itemize}
@@ -190,7 +199,7 @@ Terence Tao's excellent article \cite{tao}.
   \end{itemize}
 \end{defin}
 Note that this definition implies that the differential map $d:F\to\Omega(F)$
-is $k$-linear: $d(af)=a\,df+f\,da=a\,df$ for $a\in k$. I will write
+is $k$-linear, as $d(af)=a\,df+f\,da=a\,df$ for $a\in k$. I will write
 $\Omega$ for the module $\Omega\left(k(X)\right)$.
 \begin{prop}
   Suppose $t$ is a local uniformiser of $\mathscr{O}_{X,P}$ at some
@@ -228,8 +237,8 @@ $\Omega$ for the module $\Omega\left(k(X)\right)$.
   Since I have shown that $dt$ forms a basis of
   $\Omega\left(\mathscr{O}_{X,P}\right)/\mathfrak{m}_{P}\Omega\left(
     \mathscr{O}_{X,P}\right)$, I can apply Nakayama's lemma
-  (see Proposition 2.8 in \cite{am}), which implies that $dt$ also generates
-  $\Omega\left(\mathscr{O}_{X,P}\right)$ as a $\mathscr{O}_{X,P}$-module.
+  (see \cite[Proposition 2.8]{am}), which implies that $dt$ also generates
+  $\Omega\left(\mathscr{O}_{X,P}\right)$ as an $\mathscr{O}_{X,P}$-module.
   Now, suppose $f\in k(X)$. Such a function has an expansion
   \[
     f=a_{-n}t^{-n}+a_{-n+1}t^{-n+1}+\cdots +a_{-1}t^{-1}+ut^{n},
@@ -256,23 +265,23 @@ It turns out that divisors of this kind are all linearly equivalent: suppose
 $\omega_{1}=f_{1}\,dt$ and $\omega_{2}=f_{2}\,dt$. Then,
 \[
   \omega_{1}=\frac{f_{1}}{f_{2}}\, f_{2}\,dt=\frac{f_{1}}{f_{2}}\omega_{2}
-  \implies (\omega_{1})=\left(\frac{f_{1}}{f_{2}}\right)(\omega_{2}).
+  \implies (\omega_{1})=\left(\frac{f_{1}}{f_{2}}\right)+(\omega_{2}).
 \]
 Thus, the divisors of differentials lie in the same divisor class called the
 \emph{canonical class}. A representative of the class is called the
 \emph{canonical divisor} $K_{X}$.
 
 Next I define a module of differentials related to a divisor $D$
-on $X$ in the same way as we defined the sheaf $\mathcal{L}(D)$:
+on $X$ in the same way as we defined the sheaf $\mathscr{O}_X(D)$:
 \[
   \Omega(D)=\Set{\omega\in\Omega\mid \forall P\in X,\ \ord_{P}(\omega)
   \geq D(P)}.
 \]
 (in the modern literature one requires $\ord_{P}(\omega)\geq -D(P)$
-to match the definition of $\mathcal{L}(D)$, but here I follow \cite{serre}
+to match the definition of $\mathscr{O}_X(D)$, but here I follow \cite{serre}
 with the notation). Lastly, I will define the \emph{residue} of a
 differential, which will be the main ingredient in the proof of Serre
-duality in the next section.
+Duality in the next section.
 \begin{defin}
   Let $\omega=f\,dt\in\Omega$, where $t$ is a local uniformiser of
   $\mathscr{O}_{X,P}$ for some point $P\in X$. Then, $f$ can be embedded
@@ -284,10 +293,15 @@ duality in the next section.
   where $n\in\mathbb{Z}$ and $a_{i}\in k$. Then, the residue of $\omega$
   at $P$ is defined as $\res_{P}(\omega)=a_{-1}$.
 \end{defin}
+\begin{lnote}
+  After this point, it is easy to get lost in all the preliminary
+  results we need to prove about residues. It is not forbidden to skip
+  to Subsection~\ref{ss:riemann_roch_proof} if this happens.
+\end{lnote}
 A priori, this definition depends on the local uniformiser $t$, and thus
-I need to show that the definition is indeed independent of the choise
-of a local uniformiser. I will only give a proof sketch, but a more detailed
-proof can be found in \cite{serre}.
+I need to show that the definition is indeed independent of the choice
+of a local uniformiser. I will only give a proof sketch, but for a more
+detailed proof, see \cite{serre}.
 \begin{lemm}\label{lemm:res_quotient}
   For a non-zero function $f$, we have $\res_{P}(df/f)=\ord_{P}(f)$.
 \end{lemm}
@@ -300,30 +314,30 @@ proof can be found in \cite{serre}.
   Thus, $\res_{P}(df/f)=\res_{t}(du/u)+n$, but since $u$ is a unit in
   $\mathscr{O}_{X,P}$, the residue $\res_{t}(du/u)$ is clearly zero.
 \end{proof}
-\begin{prop}
-  Fix a point $P\in X$ and let $t$ and $r$ be two local uniformisers of
-  $\mathscr{O}_{X,P}$. Denote by $\res_{t}$ and $\res_{r}$ the function
+\begin{prop} % TODO: Check differential stuff after this point
+  Fix a point $P\in X$ and let $t$ and $u$ be two local uniformisers of
+  $\mathscr{O}_{X,P}$. Denote by $\res_{t}$ and $\res_{u}$ the function
   $\res_{P}$ calculated using $t$ and $r$ respectively. Then,
-  $\res_{t}(\omega)=\res_{r}(\omega)$ for all differentials $\omega\in\Omega$.
+  $\res_{t}(\omega)=\res_{u}(\omega)$ for all differentials $\omega\in\Omega$.
 \end{prop}
 \begin{proof}[Proof sketch]
   Suppose $f\in k(X)$ is a rational function with a series expansion
   \[
-    f=\sum_{i\geq n}a_{i}t^{i},
+    f=\sum_{i\geq n}a_{i}u^{i},
   \]
-  in $t$. Then, it is possible to construct a module of differentials, where
+  in $u$. Then, it is possible to construct a module of differentials, where
   \[
-    df=\left(\sum_{i\geq n}ia_{i}t^{i-1}\right)\,dt.
+    df=\left(\sum_{i\geq n}ia_{i}u^{i-1}\right)\,du.
   \]
   This is probably the most non-trivial statement of the proof, and the
-  construction can be found in \cite{serre}. Now, we can write a
+  construction is laid out by Serre \cite{serre}. Now, we can write a
   differential $\omega$ in this module as
   \[
     \omega = \sum_{n\geq 0}a_{n}\,du/u^{n}+\omega_{0},
   \]
   where $\omega_{0}$ is a differential with $\ord_{P}(\omega_{0})\geq 0$.
   Then, $\res_{u}(\omega)=a_{1}$ and $\res_{t}(\omega)=
-  \sum a_{n}\res_{t}(du/u^{n})$. Now, consentrate first on the term
+  \sum a_{n}\res_{t}(du/u^{n})$. Now, concentrate first on the term
   $a_{1}\res_{t}(du/u)$. I can apply Lemma~\ref{lemm:res_quotient}
   to get $\res_{t}(du/u)=\ord_{P}(u)=1$. Therefore,
   \[
@@ -338,11 +352,11 @@ proof can be found in \cite{serre}.
   But this immediately implies that $\res_{t}(du/u^{n})=0$ since
   differentiating a series can never result in a term of the form
   $a_{-1}t^{-1}$. The proof for positive characteristic follows from the
-  statement in zero characteristic and can be found in \cite{serre}.
+  statement in zero characteristic by an argument by Serre \cite{serre}.
 \end{proof}
-Now, I will prove the \emph{residue theorem}, which is used in the proof
-of the Serre duality theorem.
-\begin{thm}[Residue Theorem]\label{thm:residue_theorem}
+Now, I will prove the \emph{residue formula}, which is used in the proof
+of Serre Duality.
+\begin{thm}[Residue Formula]\label{thm:residue_theorem}
   For every differential $\omega\in\Omega$, we have that
   \[
     \sum_{P\in X}\res_{P}(\omega)=0.
@@ -350,7 +364,7 @@ of the Serre duality theorem.
 \end{thm}
 First I prove the theorem for the case when $X=\mathbb{P}^{1}_{k}$.
 \begin{lemm}
-  The residue theorem holds for $X=\mathbb{P}^{1}_{k}$.
+  The residue formula holds for $X=\mathbb{P}^{1}_{k}$.
 \end{lemm}
 \begin{proof}
   Fix a differential $\omega=f\,dt$ on $X$. For convenience, I work with
@@ -395,8 +409,8 @@ following definition.
   \tr:\Omega(k(X))\to \Omega(k(\mathbb{P}^{1}_{k}))
   :f\,d\phi\mapsto \left(\tr_{k(X)/k(\mathbb{P}^{1}_{k})}(f)\right)\,d\phi
 \]
-Finally, the residue formula is implied by the following lemma which
-is proved in \cite{serre}.
+Finally, the residue formula is implied by the following lemma
+\cite{serre}.
 \begin{lemm}
   For every point $P\in\mathbb{P}^{1}_{k}$, we have
   \[
@@ -404,18 +418,23 @@ is proved in \cite{serre}.
   \]
 \end{lemm}
 
-\subsection{Proof of Riemann-Roch}
+This finishes the subsection on divisors and differentials, and we 
+are now ready to move on to discussing the Riemann-Roch theorem 
+and Serre Duality.
+
+\subsection{Proof of Riemann-Roch}\label{ss:riemann_roch_proof}
 I am now able to state and prove an ``incomplete'' version of the
 Riemann-Roch theorem, which I will make complete after proving Serre
-duality.
+Duality.
 
 \begin{thm}[Riemann-Roch, cohomology version]
   \label{thm:riemann_roch_cohomology}
-  For every divisor $D$,
+  For every divisor $D$ on $X$,
   \[
-    h^{0}(X, \mathcal{L}(D))-h^{1}(X, \mathcal{L}(D))=\deg(D)+1-g,
+    h^{0}(X, \mathscr{O}_X(D))-h^{1}(X, \mathscr{O}_X(D))=\deg(D)+1-g,
   \]
-  where $g=h^{1}(X, \mathscr{O}_{X})$.
+  where $g=h^{1}(X, \mathscr{O}_{X})$ and $h^i(X,\mathscr{F})$
+  denotes $\textnormal{dim}\left(H^i(X,\mathscr{F})\right)$.
 \end{thm}
 \begin{proof}
   One can use an induction argument, because any divisor $D$ can be
@@ -425,7 +444,7 @@ duality.
 
   \begin{description}[style=nextline]
     \item[base case$\big)$]
-          Since $\mathcal{L}(0)=\mathscr{O}_{X}$ and $\deg(0)=0$,
+          Since $\mathscr{O}_X(0)=\mathscr{O}_{X}$ and $\deg(0)=0$,
           I need to verify that
           \[h^{0}(X, \mathscr{O}_{X})-h^{1}(X, \mathscr{O}_{X})=1-g.\]
           But note that the only globally defined regular functions
@@ -434,16 +453,16 @@ duality.
           so that the equality holds.
     \item[induction step$\big)$]
           In the induction step I want to relate the 0th and the 1st
-          cohomology groups of $\mathcal{L}(D)$ to the 0th and
-          1st cohomology groups of $\mathcal{L}(D+P)$, where
+          cohomology groups of $\mathscr{O}_X(D)$ to the 0th and
+          1st cohomology groups of $\mathscr{O}_X(D+P)$, where
           $P$ is some point. To do this, first note that
-          $\mathcal{L}(D)$ is a subsheaf of $\mathcal{L}(D+P)$, since
-          the orders of the sections of $\mathcal{L}(D+P)$ at $P$ are
+          $\mathscr{O}_X(D)$ is a subsheaf of $\mathscr{O}_X(D+P)$, since
+          the orders of the sections of $\mathscr{O}_X(D+P)$ at $P$ are
           allowed to be smaller than the orders of the sections of
-          $\mathcal{L}(D)$ at $P$. Thus, there is an exact sequence
+          $\mathscr{O}_X(D)$ at $P$. Thus, there is an exact sequence
           \[
           \begin{tikzcd}
-            0\arrow{r} & \mathcal{L}(D)\arrow{r} & \mathcal{L}(D+P)\arrow{r}
+            0\arrow{r} & \mathscr{O}_X(D)\arrow{r} & \mathscr{O}_X(D+P)\arrow{r}
             & Q\arrow{r} & 0,
           \end{tikzcd}
           \]
@@ -456,16 +475,16 @@ duality.
           where $v\in\mathcal{O}_{X,P}$ and $r\in k$.
           Then,
           \[\frac{u}{t^{n+1}}=\frac{v}{t^n}+\frac{r}{t^{n+1}}.\]
-          Since $v/t^n$ is an element of $\mathcal{L}(D)_{P}$, we conclude
-          that every element of $\mathcal{L}(D+P)_{P}$ is equivalent to
-          an element $r/t^{n+1}$ modulo $\mathcal{L}(D)_{P}$ for some
+          Since $v/t^n$ is an element of $\mathscr{O}_X(D)_{P}$, we conclude
+          that every element of $\mathscr{O}_X(D+P)_{P}$ is equivalent to
+          an element $r/t^{n+1}$ modulo $\mathscr{O}_X(D)_{P}$ for some
           $r\in k$. Therefore, $Q_{P}\cong k$ and $Q$ is the skyscraper sheaf
           $k_{P}$.
 
           Now we apply our cohomology machinery on the SES
           \[
           \begin{tikzcd}
-            0\arrow{r} & \mathcal{L}(D)\arrow{r} & \mathcal{L}(D+P)\arrow{r}
+            0\arrow{r} & \mathscr{O}_X(D)\arrow{r} & \mathscr{O}_X(D+P)\arrow{r}
             & k_{P}\arrow{r} & 0
           \end{tikzcd}
           \]
@@ -473,23 +492,23 @@ duality.
           Prop.~\ref{prop:sky_cohom}).
           \[
           \begin{tikzcd}
-            0\arrow{r} & H^{0}(X, \mathcal{L}(D))\arrow{r}
-            & H^{0}(X, \mathcal{L}(D+P))\arrow{r}
+            0\arrow{r} & H^{0}(X, \mathscr{O}_X(D))\arrow{r}
+            & H^{0}(X, \mathscr{O}_X(D+P))\arrow{r}
             & H^{0}(X, k_{P}) \\
-            \arrow{r} & H^{1}(X, \mathcal{L}(D))\arrow{r}
-            & H^{1}(X, \mathcal{L}(D+P))\arrow{r} & 0.
+            \arrow{r} & H^{1}(X, \mathscr{O}_X(D))\arrow{r}
+            & H^{1}(X, \mathscr{O}_X(D+P))\arrow{r} & 0.
           \end{tikzcd}
           \]
           Now, this exact sequence of vector spaces implies the following
           equality.
           \[
-          h^{0}(X,\mathcal{L}(D))-h^{0}(X, \mathcal{L}(D+P))
-          +1-h^{1}(X,\mathcal{L}(D))+h^{1}(X,\mathcal{L}(D+P)) = 0.
+          h^{0}(X,\mathscr{O}_X(D))-h^{0}(X, \mathscr{O}_X(D+P))
+          +1-h^{1}(X,\mathscr{O}_X(D))+h^{1}(X,\mathscr{O}_X(D+P)) = 0.
           \]
           Therefore,
           \begin{align*}
-            h^{0}(X,\mathcal{L}(D+P))&-h^{1}(X,\mathcal{L}(D+P)) \\
-            =&\left(h^{0}(X,\mathcal{L}(D))-h^{1}(X,\mathcal{L}(D+P))\right)
+            h^{0}(X,\mathscr{O}_X(D+P))&-h^{1}(X,\mathscr{O}_X(D+P)) \\
+            =&\left(h^{0}(X,\mathscr{O}_X(D))-h^{1}(X,\mathscr{O}_X(D+P))\right)
               +1 \\
             =&\deg(D)+1-g+1\quad\text{(by induction hypothesis)} \\
             =&\deg(D+P)+1-g.
@@ -497,13 +516,13 @@ duality.
           This is exactly the induction step we wanted to prove.
           We also need to prove
           \[
-            h^{0}(X,\mathcal{L}(D-P))-h^{1}(X,\mathcal{L}(D-P))
+            h^{0}(X,\mathscr{O}_X(D-P))-h^{1}(X,\mathscr{O}_X(D-P))
             =\deg(D-P)+1-g,
           \]
           but we can run the same argument starting with the SES
           \[
           \begin{tikzcd}
-            0\arrow{r} & \mathcal{L}(D-P)\arrow{r} & \mathcal{L}(D)\arrow{r}
+            0\arrow{r} & \mathscr{O}_X(D-P)\arrow{r} & \mathscr{O}_X(D)\arrow{r}
             & k_{P}\arrow{r} & 0.
           \end{tikzcd}
           \]
@@ -511,12 +530,12 @@ duality.
 \end{proof}
 \begin{lwarn}
   One would need to also prove that the cohomology groups are finite
-  dimensional to begin with. The details can be found in \cite{serre}.
+  dimensional to begin with. See \cite{serre} for the details.
 \end{lwarn}
 
 This form of the theorem is not the most useful one for applications,
-because computing $h^{1}(X,\mathcal{L}(D))$ is not easy. However, one can
-get a nice expression for this space using the Serre Duality theorem, which
+because computing $h^{1}(X,\mathscr{O}_X(D))$ is not easy. However, one can
+get a nice expression for this space using the Serre Duality, which
 I will prove in the next section:
 \newtheorem*{thm:serre}{Theorem~\ref{thm:serre}}
 \begin{thm:serre}[Serre Duality]
@@ -527,12 +546,12 @@ I will prove in the next section:
   \]
   of $k$-vector spaces.
 \end{thm:serre}
-Since we are only interested in the dimension of $h^{1}(X,\mathcal{L}(D))$,
+Since we are only interested in the dimension of $h^{1}(X,\mathscr{O}_X(D))$,
 I will use the following lemma to give the dimension in terms of the
 canonical divisor.
 \begin{lemm}\label{lemm:diffs_dim}
   We have the following equality in dimensions.
-  \[\dim\left(\Omega(D)\right)=h^{0}(X,\mathcal{L}(K_{X}-D))\]
+  \[\dim\left(\Omega(D)\right)=h^{0}(X,\mathscr{O}_X(K_{X}-D))\]
 \end{lemm}
 \begin{proof}
   Write $K_{X}=(\omega_{0})$ with $\omega_{0}=f_{0}\,dt$ and fix a
@@ -541,9 +560,9 @@ canonical divisor.
   \[
     \omega\in\Omega(D)\iff (\omega)\geq D
     \iff\left(\frac{f}{f_{0}}\right)+(\omega_{0})\geq D\iff
-    \frac{f}{f_{0}}\in H^{0}(X,\mathcal{L}(K_{X}-D)).
+    \frac{f}{f_{0}}\in H^{0}(X,\mathscr{O}_X(K_{X}-D)).
   \]
-  In other words, the elements of $H^{0}(X,\mathcal{L}(K_{X}-D))$ are in
+  In other words, the elements of $H^{0}(X,\mathscr{O}_X(K_{X}-D))$ are in
   bijection with the elements of $\Omega(D)\cong\dual{D}$.
 \end{proof}
 Now, this equality lets us write the ``complete'' form of the Riemann-Roch
@@ -551,20 +570,17 @@ theorem.
 \begin{thm}[Riemann-Roch]\label{thm:riemann_roch}
   For every divisor $D$,
   \[
-    h^{0}(X, \mathcal{L}(D))-h^{0}(X, \mathcal{L}(K_{X}-D))=\deg(D)+1-g,
+    h^{0}(X, \mathscr{O}_X(D))-h^{0}(X, \mathscr{O}_X(K_{X}-D))=\deg(D)+1-g,
   \]
   where $g=h^{1}(X, \mathscr{O}_{X})$.
 \end{thm}
 
-%\subsection{Applications to the classification of curves}
-%Before proving the Serre duality theorem, I want to take some time to
-%look at applications of the Riemann-Roch theorem.
 \subsection{An application to the classification of curves}
-Before proving the Serre duality theorem, I want to take some time to
+Before proving Serre Duality, I want to take some time to
 look at an application of the Riemann-Roch theorem using \cite{hartshorne}
 as my source. A major project in algebraic geometry is to give a
 classification of different algebraic varieties. The Riemann-Roch theorem
-helps us prove statements about varieties based solely on topological data,
+helps us prove statements about curves based solely on topological data,
 namely the genus of the curve. First, I give a formula for the degree
 of the canonical divisor on a curve.
 \begin{lemm}
@@ -574,12 +590,12 @@ of the canonical divisor on a curve.
 \begin{proof}
   Set $D=K_{X}$ so that the Riemann-Roch theorem yields
   \begin{align*}
-    h^{0}(X,\mathcal{L}(K_{X}))-h^{0}(X,\mathscr{O}_{X})&=\deg(D)+1-g \\
+    h^{0}(X,\mathscr{O}_X(K_{X}))-h^{0}(X,\mathscr{O}_{X})&=\deg(D)+1-g \\
     h^{1}(X,\mathscr{O}_{X})-1&=\deg(D)+1-g \\
     2g-2&=\deg(D),
   \end{align*}
-  where $h^{0}(X,\mathcal{L}(K_{X}))=h^{1}(X,\mathscr{O}_{X})$ is given
-  by the Serre duality theorem.
+  where $h^{0}(X,\mathscr{O}_X(K_{X}))=h^{1}(X,\mathscr{O}_{X})$ is given
+  by Serre Duality.
 \end{proof}
 Now I can give a classification of curves of genus 0.
 \begin{thm}
@@ -589,15 +605,15 @@ Now I can give a classification of curves of genus 0.
   Fix two point $P,Q\in X$ and consider the divisor $D=P-Q$. The Riemann-Roch
   theorem implies
   \[
-    h^{0}(X,\mathcal{L}(D))-h^{0}(X,\mathcal{L}(K_{X}-D))
+    h^{0}(X,\mathscr{O}_X(D))-h^{0}(X,\mathscr{O}_X(K_{X}-D))
     =\deg(D)+1=1.
   \]
   Note that
   \[\deg(K_{X}-D)=-2-0=-2<0\]
-  by the above lemma. Thus, $h^{0}(X,\mathcal{L}(K_{X}-D))=0$
+  by the above lemma. Thus, $h^{0}(X,\mathscr{O}_X(K_{X}-D))=0$
   by Prop.~\ref{prop:global_sec_negative_divisor} and hence, the space
-  $H^{0}(X,\mathcal{L}(D))$ is non-empty. Now, let
-  $f\in H^{0}(X,\mathcal{L}(D))$. Then, there is an effective divisor
+  $H^{0}(X,\mathscr{O}_X(D))$ is non-empty. Now, let
+  $f\in H^{0}(X,\mathscr{O}_X(D))$. Then, there is an effective divisor
   $D^{\prime}$ on $X$ such that $D^{\prime}=(f)+D$. Then, we have
   $\deg\left(D^{\prime}\right)=\deg\left((f)\right)+\deg\left(D\right)=0$.
   But the only effective divisor with degree 0 is the zero divisor.
@@ -611,6 +627,6 @@ Now I can give a classification of curves of genus 0.
   \end{align*}
   Therefore, the function fields $k(X)$ and $k\left(\mathbb{P}^{1}_{k}\right)$
   are isomorphic. Since $X$ and $\mathbb{P}^{1}_{k}$ are non-singular,
-  it follows by Proposition 6.7 in \cite{hartshorne} that the two curves
+  it follows by \cite[Proposition 6.7]{hartshorne} that the two curves
   are isomorphic.
 \end{proof}

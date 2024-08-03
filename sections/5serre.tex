@@ -1,29 +1,29 @@
 \section{Serre duality}
 The rest of this paper is devoted to proving the Serre duality.
 I will prove the theorem by first finding a more concrete representation of
-$H^{1}(X,\mathcal{L}(D))$ and then constructing a perfect pairing between
-$H^{1}(X,\mathcal{L}(D))$ and $\diffs{D}$,
+$H^{1}(X,\mathscr{O}_X(D))$ and then constructing a perfect pairing between
+$H^{1}(X,\mathscr{O}_X(D))$ and $\diffs{D}$,
 which will give us the isomorphism.
 
-\subsection{Concrete representation of $H^{1}(X,\mathcal{L}(D))$}
+\subsection{Concrete representation of $H^{1}(X,\mathscr{O}_X(D))$}
 To prove the Serre duality, we do not want to directly work with the \v Cech
-cohomology definition of $H^{1}(X,\mathcal{L}(D))$.
+cohomology definition of $H^{1}(X,\mathscr{O}_X(D))$.
 Instead we want to give a more concrete description of
-$H^{1}(X,\mathcal{L}(D))$ by finding some SES involving $\mathcal{L}(D)$
-and then taking the cohomology sequence of the SES. Since $\mathcal{L}(D)$ is
+$H^{1}(X,\mathscr{O}_X(D))$ by finding some SES involving $\mathscr{O}_X(D)$
+and then taking the cohomology sequence of the SES. Since $\mathscr{O}_X(D)$ is
 a subsheaf of the constant sheaf $\underline{k(X)}$, one can simply consider
 the following SES.
 \[
   \begin{tikzcd}
-    0\rar & \mathcal{L}(D)\rar & \underline{k(X)}\rar
-    & \underline{k(X)}/\mathcal{L}(D)\rar & 0,
+    0\rar & \mathscr{O}_X(D)\rar & \underline{k(X)}\rar
+    & \underline{k(X)}/\mathscr{O}_X(D)\rar & 0,
   \end{tikzcd}
 \]
 which yields the following exact sequence
 \[
   \begin{tikzcd}
     H^{0}(X,\underline{k(X)})\rar & H^{0}(X,\underline{k(X)}
-    /\mathcal{L}(D))\rar & H^{1}(X,\mathcal{L}(D))\rar
+    /\mathscr{O}_X(D))\rar & H^{1}(X,\mathscr{O}_X(D))\rar
     & H^{1}(X,\underline{k(X)}).
   \end{tikzcd}
 \]
@@ -32,40 +32,40 @@ $H^{0}(X,\underline{k(X)})=k(X)$ and $H^{1}(X,\underline{k(X)})=0$
 so that the exact sequence simplifies to
 \begin{equation}\label{eq:repartition_ses}
   \begin{tikzcd}
-    k(X)\rar & H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\rar
-    & H^{1}(X,\mathcal{L}(D))\rar & 0.
+    k(X)\rar & H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))\rar
+    & H^{1}(X,\mathscr{O}_X(D))\rar & 0.
   \end{tikzcd}
 \end{equation}
 Let us first try to understand the space
-$H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$. An element of the space
+$H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))$. An element of the space
 is of the form $([f_{P}])_{P\in X}$, where $[f_{P}]$ is the equivalence
-class of some $f_{P}\in k(X)$ modulo $\mathcal{L}(D)_{P}$.
+class of some $f_{P}\in k(X)$ modulo $\mathscr{O}_X(D)_{P}$.
 These elements are actually quite simple, because one can show that the
 components $[f_{P}]$ are zero almost everywhere.
 % TODO: Add picture with curve X and section f \in H^0(X,k(X)/L(D)) above it.
-In other words, we can write $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ as a
+In other words, we can write $H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))$ as a
 direct sum of stalks.
 \begin{lemm}
   For a divisor $D$ on a curve $X$, the following equality holds.
   \[
-    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))=\bigoplus_{P\in X}
-    k(X)/\mathcal{L}(D)_{P}.
+    H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))=\bigoplus_{P\in X}
+    k(X)/\mathscr{O}_X(D)_{P}.
   \]
 \end{lemm}
 \begin{proof}
   I will first show the inclusion in forward direction:
   \[
-    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\subseteq\bigoplus_{P\in X}
-    k(X)/\mathcal{L}(D)_{P}.
+    H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))\subseteq\bigoplus_{P\in X}
+    k(X)/\mathscr{O}_X(D)_{P}.
   \]
   I need to check that the components $[f_{P}]$ of some
-  $([f_{P}])_{P\in X}\in H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ are non-zero
+  $([f_{P}])_{P\in X}\in H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))$ are non-zero
   for only finitely many $P\in X$. Thus, suppose $([f_{P}])_{P\in X}\in
-  H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$. Firstly, the divisor $D$ is
+  H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))$. Firstly, the divisor $D$ is
   non-zero only at finitely many points. The components $[f_{P}]$ may or may
   not be zero at those points, but I can ignore those points in any case
   since there are finitely many of them. Thus, assume $P$ is a point where
-  $D(P)=0$. At such a point, the stalk $\mathcal{L}(D)_{P}$ is equal to the
+  $D(P)=0$. At such a point, the stalk $\mathscr{O}_X(D)_{P}$ is equal to the
   ring of germs with non-negative order at $P$, which is of course the ring
   $\mathscr{O}_{X,P}$. Now, it is a basic result in algebraic geometry that
   a rational function $f\in k(X)$ on a curve $X$ has negative order only
@@ -77,12 +77,12 @@ direct sum of stalks.
 
   Next I show the inclusion in the reverse direction:
   \[
-    H^{0}(X,\underline{k(X)}/\mathcal{L}(D))\supseteq\bigoplus_{P\in X}
-    k(X)/\mathcal{L}(D)_{P}.
+    H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))\supseteq\bigoplus_{P\in X}
+    k(X)/\mathscr{O}_X(D)_{P}.
   \]
   Thus, let $([f_{P}]_{P\in X})\in\displaystyle\bigoplus
-  k(X)/\mathcal{L}(D)_{P}$. I want to show that the components $[f_{P}]$
-  form a global section of $\underline{k(X)}/\mathcal{L}(D)$. Let us
+  k(X)/\mathscr{O}_X(D)_{P}$. I want to show that the components $[f_{P}]$
+  form a global section of $\underline{k(X)}/\mathscr{O}_X(D)$. Let us
   fix an arbitrary point $P\in X$. I want to find an open neighbourhood
   $U\ni P$ and a section $g\in k(X)$ such that $\forall Q\in U,\ [f_{Q}]=[g]$.
   If I denote by $P_{1},\ldots,P_{r}$ the points where $D$ is non-zero
@@ -91,10 +91,10 @@ direct sum of stalks.
   \begin{description}[style=nextline]
     \item[$P\not\in\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}\big)$]
           Since $P$ is none of the points $P_{1},\ldots,P_{r}$,
-          $\mathcal{L}(D)_{P}$ consists of all functions $f\in k(X)$
+          $\mathscr{O}_X(D)_{P}$ consists of all functions $f\in k(X)$
           with non-negative order at $P$: $\ord_{P}(f)\geq 0$.
           Since $P$ is non of the points $Q_{1},\ldots,Q_{s}$,
-          $f_{P}\in\mathscr{O}_{X,P}$. Therefore, $f_{P}\in\mathcal{L}(D)_{P}$
+          $f_{P}\in\mathscr{O}_{X,P}$. Therefore, $f_{P}\in\mathscr{O}_X(D)_{P}$
           so that $[f_{P}]=[0]$. Now, if we let $U$ be the complement of
           the set $\set{P_{1},\ldots,P_{r},Q_{1},\ldots,Q_{s}}$, we see
           that $[f_{Q}]=[0]$ for every $r_{Q}$ on $U$ so that we can simply
@@ -113,39 +113,39 @@ direct sum of stalks.
 This direct sum can be expressed in the following way. Consider the
 vector space $R$ of families $\{r_{P}\}_{P\in X}$, where $r_{P}\in k(X)$ and
 $r_{P}\in\mathscr{O}_{X,P}$ for almost all points $P\in X$.
-(Serre calls such a family a \emph{r\'epartition} in \cite{serre}).
+(Serre calls such a family a \emph{r\'epartition} \cite{serre}).
 Then, define $R(D)=\set{\{r_{P}\}_{P\in X}\mid \ord_{P}(r_{P})\geq -D(P)}$.
 It is clear that we have the following isomorphism.
 \[
-  \bigoplus_{P\in X}k(X)/\mathcal{L}(D)_{P}\cong R/R(D).
+  \bigoplus_{P\in X}k(X)/\mathscr{O}_X(D)_{P}\cong R/R(D).
 \]
 Note that r\'epartitions are easier to work with, because the components
 $f_{P}$ of some section $(f_{P})_{P\in X}$ of
-$\underline{k(X)}/\mathcal{L}(D)$ must be related together so that the
+$\underline{k(X)}/\mathscr{O}_X(D)$ must be related together so that the
 sections satisfy sheaf axioms, whereas there is no such requirement for
 r\'epartitions. Therefore, I will make use of r\'epartitions in the rest
 of the section.
 
 Now we can return to the SES \eqref{eq:repartition_ses} derived above and
-replace $H^{0}(X,\underline{k(X)}/\mathcal{L}(D))$ by $R/R(D)$:
+replace $H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))$ by $R/R(D)$:
 \[
   \begin{tikzcd}
-    k(X)\rar & R/R(D)\rar & H^{1}(X,\mathcal{L}(D))\rar & 0.
+    k(X)\rar & R/R(D)\rar & H^{1}(X,\mathscr{O}_X(D))\rar & 0.
   \end{tikzcd}
 \]
 This exact sequence finally gives us the representation of the first
 cohomology group: The second map of the sequence is a surjection
-onto $H^{1}(X,\mathcal{L}(D))$. The space $k(X)$ can be seen as a subspace
+onto $H^{1}(X,\mathscr{O}_X(D))$. The space $k(X)$ can be seen as a subspace
 of $R$ and it is thus the kernel of the map. Such a surjection maps $R/R(D)$
 onto the space $R\,/\left(R(D)+k(X)\right)$, and thus we get the isomorphism
-\[H^{1}(X,\mathcal{L}(D))\cong R/\left(R(D)+k(X)\right).\]
+\[H^{1}(X,\mathscr{O}_X(D))\cong R/\left(R(D)+k(X)\right).\]
 Now, the dual space $\dual{D}$ is simply the space
 of linear functionals on $R$, which vanish on $R(D)$ and $k(X)$.
 
 \subsection{Constructing a pairing}
 Next I will construct a bilinear form
 \[
-  \langle -,-\rangle:\diffs{D}\times H^{1}(X,\mathcal{L}(D))\to k.
+  \langle -,-\rangle:\diffs{D}\times H^{1}(X,\mathscr{O}_X(D))\to k.
 \]
 Recall that the space $\diffs{D}$ consists of differential forms $\omega$
 such that $(\omega)\geq D$. Now, define the bilinear form as follows.
@@ -166,7 +166,7 @@ Secondly, given a repartition $r\in R(D)$, we have $(r_{P}\omega)
 =(r_{P})+(\omega) \geq -D+D=0$ and thus $\res_{P}(r_{P}\omega)=0$ by the same
 % TODO: Make this part more clear.
 argument as above. Also, if $r\in k(X)$, then $\langle \omega,r\rangle=0$ by
-the residue theorem (Thm.~\ref{thm:residue_theorem}).
+the residue formula (Thm.~\ref{thm:residue_theorem}).
 
 Now, Serre duality will follow if we can show that the map
 \[
@@ -175,9 +175,9 @@ Now, Serre duality will follow if we can show that the map
 \]
 is a bijection. Every differential $\omega\in\diffs{D}$ is indeed mapped
 to elements of \linebreak $\dual{D}$ since they vanish on $R(D)$ and $k(X)$
-by the arguments in the previous pragraph. In the proof of the bijectivity of
+by the arguments in the previous paragraph. In the proof of the bijectivity of
 $\iota_{D}$, I will diverge little bit from the proof given by Serre, and
-I mix in ideas from the proof given in \cite{forster}.
+I mix in ideas from \cite{forster}.
 
 I will proceed to prove the bijectivity of $\iota_{D}$. The proof relies
 on the observation that the spaces $\dual{D}$ and $\diffs{D}$ form so called
@@ -187,7 +187,7 @@ filtration'' to derive the wanted results. Thus, let us make the following
 observation. For any two divisors $D_{1}, D_{2}$ such that $D_{1}\geq D_{2}$,
 we have $R(D_{1})\supseteq R(D_{2})$. Therefore, a linear functional
 vanishing on $R(D_{1})$ will also vanish on $R(D_{2})$ so that
-$H^{1}(X,\mathcal{L}(D_{1}))^{\vee}\subseteq H^{1}(X,\mathcal{L}(D_{2}))^\vee$.
+$H^{1}(X,\mathscr{O}_X(D_{1}))^{\vee}\subseteq H^{1}(X,\mathscr{O}_X(D_{2}))^\vee$.
 One can also see that if $D_{1}\geq D_{2}$, then $\diffs{D_{1}}
 \subseteq\diffs{D_{2}}$. Moreover, these inclusions trivially
 commute with $\iota_{\bullet}$ so that the following square is commutative.
@@ -259,16 +259,16 @@ Proving surjectivity is not quite as easy. Let us fix an element $\lambda
 $D^{\prime}\leq D$ such that it is easy to invert $\lambda$ along
 $\iota_{D^{\prime}}$. But first I will introduce an extra degree of freedom,
 which I can work with. Namely, I consider an arbitrary element $\psi\in
-H^{0}(X,\mathcal{L}(\Delta))$ for some divisor $\Delta$. This section induces
+H^{0}(X,\mathscr{O}_X(\Delta))$ for some divisor $\Delta$. This section induces
 a map
-\[H^{1}(X,\mathcal{L}(D-\Delta))\to H^{1}(X,\mathcal{L}(D))
+\[H^{1}(X,\mathscr{O}_X(D-\Delta))\to H^{1}(X,\mathscr{O}_X(D))
 :[\{r_{P}\}_{P\in X}]\mapsto [\{\psi r_{P}\}_{P\in X}].\]
 It is easy to check that this map is well-defined. Then, the dual map
 \[\dual{D}\to\dual{D-\Delta}\]
 is defined so that $(\psi f)(r) =f(\psi r)$. Note that $\frac1{\psi}
-\in H^{0}(X,\mathcal{L}((\psi)))$,
+\in H^{0}(X,\mathscr{O}_X((\psi)))$,
 and it induces a map $\dual{D-\Delta}\to\dual{D-\Delta-(\psi)}$ in the same
-way. If I now take $D^{\prime}=H^{1}(X,\mathcal{L}(D-\Delta-(\psi)))$,
+way. If I now take $D^{\prime}=H^{1}(X,\mathscr{O}_X(D-\Delta-(\psi)))$,
 the inclusion $i_{D}^{D^{\prime}}:\dual{D}\to\dual{D^{\prime}}$ can be
 factored as follows.
 \[\begin{tikzcd}[row sep=large]
@@ -277,10 +277,10 @@ factored as follows.
   \end{tikzcd}\]
 Now, I will prove a result analogous to Lemma~\ref{lemm:invert_inclusion},
 which lets us ``move along these maps'' induced by elements of
-$H^{0}(X,\mathcal{L}(D))$.
+$H^{0}(X,\mathscr{O}_X(D))$.
 \begin{lemm}\label{lemm:invert_multiplication}
   Suppose $D_{1}$ and $D_{2}$ are two divisors on $X$ and $\psi
-  \in H^{0}(X,\mathcal{L}(D_{2}))$. Then, the following square commutes.
+  \in H^{0}(X,\mathscr{O}_X(D_{2}))$. Then, the following square commutes.
   \[\begin{tikzcd}[column sep=large]
       \dual{D_{1}}\rar[shorten=.3em,"\psi\cdot"] & \dual{D_{1}-D_{2}} \\
       \diffs{D_{1}}\rar["\psi\cdot"']\uar["\iota_{D_{1}}"]
@@ -288,7 +288,7 @@ $H^{0}(X,\mathcal{L}(D))$.
     \end{tikzcd}\]
 \end{lemm}
 \begin{proof}
-  Let $\omega\in\diffs{D_{1}}$ and $r\in H^{1}(X,\mathcal{L}(D_{1}-D_{2}))$.
+  Let $\omega\in\diffs{D_{1}}$ and $r\in H^{1}(X,\mathscr{O}_X(D_{1}-D_{2}))$.
   Then,
   \begin{align*}
     \left(\psi\circ\iota_{D_{1}}\right)(\omega)(r)
@@ -305,7 +305,7 @@ Now I will invert $\psi\lambda$ along $\iota_{D-\Delta}$, which will finally
 let us prove the surjectivity of $\iota_{D}$.
 \begin{lemm}\label{lemm:invert_iota}
   Let $\lambda\in\dual{D}$. Then, there is a divisor $\Delta$,
-  a section $\psi\in H^{0}(X,\mathcal{L}(\Delta))$ and a differential
+  a section $\psi\in H^{0}(X,\mathscr{O}_X(\Delta))$ and a differential
   $\omega\in\diffs{D-\Delta}$ such that $\psi\lambda
   =\iota_{D-\Delta}(\omega)$.
 \end{lemm}
@@ -328,12 +328,12 @@ let us prove the surjectivity of $\iota_{D}$.
       so that there is some non-zero $\psi\in H^{0}(X,\Delta)$ such that
       $\psi\lambda=0$. Note that the multiplication map
       \[
-        H^{1}(X,\mathcal{L}(D-\Delta))\to H^{1}(X,\mathcal{L}(D))
+        H^{1}(X,\mathscr{O}_X(D-\Delta))\to H^{1}(X,\mathscr{O}_X(D))
         :[\{r_{P}\}_{P\in X}]\mapsto [\{\psi r_{P}\}_{P\in X}]
       \]
       is clearly surjective since for a repartition
-      $[\{r_{P}\}_{P\in X}]\in H^{1}(X,\mathcal{L}(D))$, we have
-      $[\{1/\psi\cdot r_{P}\}_{P\in X}]\in H^{1}(X,\mathcal{L}(D-\Delta))$.
+      $[\{r_{P}\}_{P\in X}]\in H^{1}(X,\mathscr{O}_X(D))$, we have
+      $[\{1/\psi\cdot r_{P}\}_{P\in X}]\in H^{1}(X,\mathscr{O}_X(D-\Delta))$.
       Thus, the dual map
       \[\psi\cdot:\dual{D}\to\dual{D-\Delta}\]
       is an injection. But this is a contradiction, because we also have that
@@ -356,15 +356,15 @@ let us prove the surjectivity of $\iota_{D}$.
   Using Lemm.~\ref{lemm:diffs_dim}, I can apply Riemann-Roch again:
   \begin{equation}\label{eq:im_dimension}
     \dim\left(\im(\iota_{D-\Delta})\right)
-    =h^{0}(X,\mathcal{L}((\omega)-D+\Delta))\geq \deg((\omega)-D+\Delta)-g+1.
+    =h^{0}(X,\mathscr{O}_X((\omega)-D+\Delta))\geq \deg((\omega)-D+\Delta)-g+1.
   \end{equation}
-  Of course, I can also apply Riemann-Roch to $\mathcal{L}(D-\Delta)$
-  to get $h^{0}(X,\mathcal{L}(D-\Delta))-h^{1}(X,\mathcal{L}(D-\Delta))
+  Of course, I can also apply Riemann-Roch to $\mathscr{O}_X(D-\Delta)$
+  to get $h^{0}(X,\mathscr{O}_X(D-\Delta))-h^{1}(X,\mathscr{O}_X(D-\Delta))
   =\deg(D-\Delta)-g+1$. Since $\Delta$ was an arbitrary divisor, I can
   choose it so that $\deg\Delta >\deg D$. Then the zeroth cohomology
   group vanishes and we are left with
   \begin{equation}\label{eq:fst_dimension}
-    h^{1}(X,\mathcal{L}(D-\Delta))=\deg(\Delta)-\deg D+g-1.
+    h^{1}(X,\mathscr{O}_X(D-\Delta))=\deg(\Delta)-\deg D+g-1.
   \end{equation}
   Combining inequalities \eqref{eq:lambda_dimension} and
   \eqref{eq:im_dimension}, we get the following:
@@ -376,7 +376,7 @@ let us prove the surjectivity of $\iota_{D}$.
   so that
   \[
     \dim\Lambda+\dim\left(\im(\iota_{D-\Delta})\right)
-    \geq h^{1}(X,\mathcal{L}(D-\Delta)).
+    \geq h^{1}(X,\mathscr{O}_X(D-\Delta)).
   \]
   Now, since the sum of the dimensions of these two subspaces is larger
   than the total space, they must intersect.
@@ -387,7 +387,7 @@ Combining all these lemmas, the surjectivity of $\iota_{D}$ follows.
 \end{prop}
 \begin{proof}
   Fix an element $\lambda\in\dual{D}$. Then, by Lemma~\ref{lemm:invert_iota},
-  there is a section $\psi\in H^{0}(X,\mathcal{L}(\Delta))$ and a differential
+  there is a section $\psi\in H^{0}(X,\mathscr{O}_X(\Delta))$ and a differential
   $\omega\in\diffs{D-\Delta}$ such that $\psi\lambda=\iota_{D-\Delta}(\omega)$.
   Then,
   \[\lambda=\frac1{\psi}(\psi\lambda)=\frac1{\psi}\iota_{D-\Delta}(\omega),\]
@@ -416,7 +416,7 @@ Combining all these lemmas, the surjectivity of $\iota_{D}$ follows.
   \end{tikzcd}\]
 \end{cat}
 
-We finally arrive at the Serre Duality theorem!
+We finally arrive at Serre Duality!
 \begin{thm}[Serre Duality]\label{thm:serre}
   If $X$ is an algebraic curve as in the previous section
   and $D$ is a divisor on $X$, there is an isomorphism

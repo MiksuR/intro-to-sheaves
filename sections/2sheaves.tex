@@ -56,7 +56,7 @@ be written as a product: $S^{1}\times (-1,1)$. An example of a
     \centering
     \includegraphics[height=4cm]{mobius}
   \end{minipage}
-  \caption{The two line bundles over $S^{1}$}
+  \caption{The two line bundles over $S^{1}$.}
 \end{figure}
 Similarly, we can consider \emph{circle bundles} over $S^{1}$. A trivial
 circle bundle over $S^{1}$ is the torus and a non-trivial example is given
@@ -78,7 +78,7 @@ in $\mathbb{R}^{+}$ (assuming the
 \begin{wrapfigure}{r}{0.3\textwidth} % TODO: Redo this picture
   \centering
   \includegraphics[width=0.3\textwidth]{vector_field}
-  \caption{A section of the tangent bundle on $S^{1}$}
+  \caption{A section of the tangent bundle on $S^{1}$.}
 \end{wrapfigure}
  measurement is taken in Kelvins).
 If one were to collect the temperature readings across all points of $C$,
@@ -100,7 +100,7 @@ ability to define sections locally is very useful.
 
 \subsection{Defining sheaves}
 To summarise, fibre bundles are a way of attaching geometric data to
-points of a given space, and one can consider sections over the fiber
+points of a given space, and one can consider sections over the fibre
 bundle, which can be glued from small patches. We wish to extend the notion
 of a fibre bundle, because the requirement that the fibres must be
 topological spaces which form another topological space when bundled
@@ -374,7 +374,7 @@ neighbourhood $U_{P}\subseteq U$ of $P$ and a constant function
 $d: U_{P}\to\mathbb{R}$ such that $\forall Q\in U_{P},\ c_{Q}=d_{Q}$.
 Hence, the restriction of $(c_{Q})_{Q\in U}$ to $U_{P}$ can be identified
 with the constant function $d$. Therefore, the sheafification of the constant
-pre-sheaf constists of \emph{locally constant functions}. In general, given
+pre-sheaf consists of \emph{locally constant functions}. In general, given
 a set $A$, the constant sheaf $\underline{A}$ is defined as the sheafification
 of the constant pre-sheaf with values in $A$.
 
@@ -414,8 +414,7 @@ a topological space by attaching the data of the functions on the space.
   space $X$ and a sheaf of rings $\mathscr{O}_{X}$ called the structure
   sheaf of $X$.
 \end{defin}
-Next, I will define morphisms between ringed spaces following the
-definition given in \cite{gathmann}.
+Next, I will define morphisms between ringed spaces \cite{gathmann}.
 \begin{defin}
   Suppose $(X,\mathscr{O}_{X})$ and $(Y,\mathscr{O}_{Y})$ are two ringed
   spaces with structure sheaves consisting of $k$-valued functions
@@ -445,7 +444,7 @@ $g:(Y,\mathscr{O}_{Y})\to (X,\mathscr{O}_{X})$ with $f\circ g=g\circ f
 =\text{id}$. Next I will define what it means for a ringed space to be
 an affine variety.
 
-\begin{defin}[Def. 2.3.15 in \cite{gathmann}]
+\begin{defin}[{\cite[Def. 2.3.15]{gathmann}}]
   A ringed space $(X,\mathscr{O}_{X})$ is an affine variety if
   \begin{itemize}
     \item $X$ is an irreducible space,
@@ -455,13 +454,13 @@ an affine variety.
   \end{itemize}
 \end{defin}
 Note that such ringed spaces are not always zero sets of some polynomials;
-See for example Lemma 2.3.16 in \cite{gathmann}.
+See for example \cite[Lemma~2.3.16]{gathmann}.
 
 Now that I have defined what it means for a ringed space to be an affine
 variety, I will form \emph{varieties} by ``gluing'' together open affine varieties
 in the same way as manifolds are glued from open subsets of the Euclidean
 space.
-\begin{defin}[Def. 2.4.1 in \cite{gathmann}]
+\begin{defin}[{\cite[{Def. 2.4.1}]{gathmann}}]
   A ringed space $(X,\mathscr{O}_{X})$ is a pre-variety if
   \begin{itemize}
     \item $X$ is an irreducible space,
@@ -476,14 +475,15 @@ is because the definition allows the construction of some pathological
 spaces such as the \emph{line with two origins}, see \cite{gathmann}.
 To avoid such spaces, we add one more condition in the final definition
 of a variety. % TODO: Explain how the projective line is a variety
-\begin{defin}[Def. 2.5.1 in \cite{gathmann}]
+\begin{defin}[{\cite[{Def. 2.5.1}]{gathmann}}]
   A pre-variety $X$ is a variety, if for every pre-variety $Y$ and any
   pair of morphisms $f_{1}, f_{2}: Y\to X$, the set
   \[\set{P\in Y\mid f_{1}(P)=f_{2}(P)}\]
   is closed in $Y$.
 \end{defin}
 The following lemma will be needed later.
-\begin{lemm}[Prop. 10.1.8 in \cite{vakil}]\label{lemm:affine_intersection}
+\begin{lemm}[{\cite[{Prop. 10.1.8}]{vakil}}]%
+  \label{lemm:affine_intersection}
   Suppose $X$ is a variety and $U, V\subseteq X$ are two open affine subsets.
   Then, the intersection $U\cap V$ is an open affine subset of $X$.
 \end{lemm}
@@ -629,7 +629,8 @@ $\mathscr{O}_{X}$-modules induces an $\mathscr{O}_{X,P}$-module homomorphism
   :[(s,U)]\mapsto [(f_{U}(s),U)]
 \]
 on the stalks. Then one can show the following theorem.
-\begin{thm}[Lemma 13.21 in \cite{gathmann_new}]\label{thm:ses_equivalence}
+\begin{thm}[{\cite[{Lemma 13.21}]{gathmann_new}}]%
+  \label{thm:ses_equivalence}
   A sequence
   \[\begin{tikzcd}
       \cdots\rar{f_{i-2}} & \mathscr{F}_{i-1}\rar{f_{i-1}}
@@ -728,7 +729,7 @@ Now, this definition implies the following result.
 \begin{proof}
   The proof of part (a) is basically the same as the proof of
   Prop.~\ref{prop:struct_stalk}. Thus, I will only prove part (b) using
-  ideas from the proof of Proposition 3.8 in \cite{gathmann_new}. Note
+  ideas from the proof of \cite[Proposition 3.8]{gathmann_new}. Note
   that $M\subseteq\Gamma\left(\cm\right)$ holds trivially, and thus I
   only need to show $\Gamma\left(\cm\right)\subseteq M$.
   Begin by fixing an element $\varphi\in\Gamma\left(\cm\right)$.
@@ -773,7 +774,7 @@ Quasi-coherent sheaves are then constructed from such sheaves.
   all $i\in I$, see \cite{gathmann}.
 \end{rem}
 \begin{rem}
-  The constructios in Def.~\ref{def:sheaf_algebra} are quasi-coherent
+  The constructions in Def.~\ref{def:sheaf_algebra} are quasi-coherent
   for quasi-coherent sheaves, see \cite{gathmann}.
 \end{rem}
 \begin{cat}
@@ -789,7 +790,7 @@ Quasi-coherent sheaves are then constructed from such sheaves.
 \end{cat}
 Quasi-coherent sheaves have the following nice property, which plays a
 major role in the following section.
-\begin{prop}[Lemma 7.2.7 in \cite{gathmann}]\label{prop:qcoh_gsec_exact}
+\begin{prop}[{\cite[Lemma 7.2.7]{gathmann}}]\label{prop:qcoh_gsec_exact}
   Given an affine variety $X$ and a short exact sequence
   \[\begin{tikzcd}
       0\rar & \cm_{1}\rar & \cm_{2}\rar & \cm_{3}\rar & 0

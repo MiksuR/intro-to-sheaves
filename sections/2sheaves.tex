@@ -98,7 +98,7 @@ agree on $U_{1}\cap U_{2}$ to get a section $s:U_{1}\cup U_{2}\to E$.
 Then, one can piece together larger sections from smaller sections. This
 ability to define sections locally is very useful.
 
-\subsection{Defining sheaves}
+\subsection{Defining sheaves}\label{subsec:sheaf_defs}
 To summarise, fibre bundles are a way of attaching geometric data to
 points of a given space, and one can consider sections over the fibre
 bundle, which can be glued from small patches. We wish to extend the notion
@@ -166,17 +166,51 @@ Thus, sheaves are defined in the following way.
   $\text{res}_{U_{i}\cap U_{j}}^{U_{j}}$ respectively.
 \end{bcat}
 
-Next, suppose $\pi: E\to B$ is a fibre bundle. One can easily check that
-it is possible to define a sheaf $\mathscr{F}$ by
-\[
-  \mathscr{F}(U) = \Set{s:U\to E\mid s\text{ a section of }\pi}.
-\]
-An example of a sheaf showing up in algebraic geometry is the structure
-sheaf $\mathscr{O}_{X}$ of an affine variety $X$ defined by
-\[
-  \mathscr{O}_{X}(U)=\Set{f\in k(X)\mid f\text{ regular on } U}.
-\]
-From now on, we will be concentrating on this sheaf more.
+Now would be a good time to list some important examples of sheaves.
+\begin{enumerate}
+  \item Any fibre bundle $\pi\colon E\to B$ defines a sheaf by
+        \[
+        \mathscr{E}(U) = \Set{s:U\to E\mid s\text{ a section of }\pi}.
+        \]
+  \item Every affine variety $X$ carries the structure sheaf $\mathscr{O}_{X}$ defined by
+        \[
+        \mathscr{O}_{X}(U)=\Set{f\in k(X)\mid f\text{ regular on } U}.
+        \]
+  \item Let $A$ be a group and $P\in X$ a point. The skyscraper sheaf $A_{P}$
+        is defined by
+        \[
+        A_{P}(U)=\begin{cases}
+          A, & \quad P\in U \\
+          0, & \quad P\not\in U
+        \end{cases}
+        \]
+  \item Suppose $X$ is any topological space and $V\subseteq X$ is an open subset.
+        If $\mathscr{F}$ is a sheaf on $X$, then we can restrict it to
+        a sheaf $\mathscr{F}\vert_{V}$ on $V$ by defining
+        \[
+        \mathscr{F}\vert_{V}(U)=\mathscr{F}(U\cap V).
+        \]
+  \item If $f\colon X\to Y$ is a continuous map of topological spaces and
+        $\mathscr{F}$ is a sheaf on $X$, then we can construct the so-called
+        pushforward sheaf $f_{\ast}\mathscr{F}$ on $Y$ by defining
+        \[
+        f_{\ast}\mathscr{F}(U)=\mathscr{F}(f^{-1}(U)).
+        \]
+\end{enumerate}
+\begin{bcat}% TODO: Cite
+  Let $X$ be a topological space and $\iota\colon V\hookrightarrow X$ an open subset.
+  The assignments
+  \[
+    \iota_{\ast}\colon\textbf{Sh}(V)\to\textbf{Sh}(X)\quad\text{and}\quad
+    (-)\vert_{V}\colon\textbf{Sh}(X)\to\textbf{Sh}(V)
+    :\mathscr{F}\mapsto\mathscr{F}\vert_{V}
+  \]
+  are functorial and define an adjoint pair $\iota_{\ast}\dashv(-)_{V}$.
+
+  More generally, one can define the \emph{pullback} $f^{\ast}\mathscr{F}$
+  of a sheaf $\mathscr{F}$ for any continuous map $f\colon X\to Y$,
+  which is the left adjoint to the pushforward $f_{\ast}$.
+\end{bcat}
 
 \subsection{Stalks and sheafification}
 Now I will introduce two important constructions: stalks, which give a
@@ -377,26 +411,6 @@ with the constant function $d$. Therefore, the sheafification of the constant
 pre-sheaf consists of \emph{locally constant functions}. In general, given
 a set $A$, the constant sheaf $\underline{A}$ is defined as the sheafification
 of the constant pre-sheaf with values in $A$.
-
-Now is a good time to introduce other sheaves that will be needed later.
-First one is the \emph{skyscraper sheaf} $A_P$ of some set $A$ at a point $P\in X$.
-It is defined as follows
-\[
-  A_{P}(U)=\begin{cases}
-    A, & \quad P\in U \\
-    0, & \quad P\not\in U
-  \end{cases}.
-\]
-What are the stalks of this sheaf at different points?
-
-A second sheaf we need is the \emph{restriction sheaf} of some sheaf.
-Suppose $\mathscr{F}$ is a sheaf on some space $X$ and $U\subseteq X$ is
-an open set. Then, one defines the restriction sheaf $\mathscr{F}\vert_{U}$
-on $U$ simply by
-\[
-  \mathscr{F}\vert_{U}(V)=\mathscr{F}(V)
-\]
-for open sets $V\subseteq U$.
 
 \subsection{Ringed spaces and algebraic varieties}
 Now that we have some feel for sheaves, I will briefly go over the
@@ -695,15 +709,18 @@ One can prove the following results as an immediate corollary.
   \end{enumerate}
 \end{cor}
 
+\subsubsection{Quasi-coherent sheaves}
 In algebraic geometry, one further restricts attention to a certain class of
 sheaves of $\mathscr{O}_{X}$-modules called \emph{quasi-coherent sheaves}.
-These have even nicer algebraic properties, and they include most sheaves
-one encounters in algebraic geometry. To define quasi-coherent sheaves,
-I need to first make the following definition, which generalises the
-definition of the structure sheaf on an affine variety.
+Indeed, most sheaves that algebraic geometers are interested in belong to this
+class. The definition is algebraic and makes more sense in the framework
+of scheme theory, but we can state it in elementary terms now. The reason
+we introduce quasi-coherent sheaves is that Lemma~\ref{lemm:qcoh_local_global}
+below is what makes our definition of \v Cech cohomology work
+(Subsection~\ref{subsec:cech_cohomology}).
 \begin{defin}
   Suppose $X$ is an affine variety and $M$ is a module over the coordinate
-  ring $\mathscr{O}_{X}(X)$. Then, the sheaf $\cm$ associated with the
+  ring $\mathscr{O}_{X}(X)$. Then, the sheaf $\cm$ associated to the
   module $M$ is defined as follows.
   \begin{align*}
     \cm(U)=\big\{\,
@@ -717,7 +734,28 @@ definition of the structure sheaf on an affine variety.
   where $M_{\mathfrak{m}_{P}}$ is the localisation of $M$ at the maximal ideal
   $\mathfrak{m}_{P}$ of the point $P$.
 \end{defin}
-Now, this definition implies the following result.
+Quasi-coherent sheaves are then constructed from such sheaves.
+\begin{defin}
+  A sheaf $\mathscr{F}$ of $\mathscr{O}_{X}$-modules is quasi-coherent, if
+  for every affine open set $U\subseteq X$, the sheaf $\mathscr{F}\vert_{U}$
+  is a sheaf associated to some module $M$ over the coordinate ring
+  $\mathscr{O}_{X}(U)$.
+\end{defin}
+\begin{rem}
+  To check quasi-coherence, it is enough to have an affine cover
+  $(U_{i})_{i\in I}$, where $\mathscr{F}\vert_{U_{i}}$ is of the form $\cm$ for
+  all $i\in I$, see \cite{gathmann}.
+\end{rem}
+\begin{rem}
+  The constructions in Def.~\ref{def:sheaf_algebra} preserve quasi-coherence.
+  I refer the reader to \cite{gathmann}.
+\end{rem}
+\begin{ex}
+  The structure sheaf $\mathscr{O}_{X}$ of a variety $X$ is always
+  quasi-coherent with $\mathscr{O}_{X}=\cm$, where
+  $M=\mathscr{O}_{X}(X)$.
+\end{ex}
+Here are two basic properties satisfied by the construction.
 \begin{lemm}\label{lemm:qcoh_local_global}
   If $\cm$ is the sheaf on an affine variety $X$ associated to the module
   $M$ over $\mathscr{O}_{X}(X)$, then
@@ -761,33 +799,6 @@ Now, this definition implies the following result.
   \[\varphi_Q=\frac{m_Q}{g_Q}=\frac{\sum_{P\in I}k_Pg_P\cdot m_Q}{g_Q}=\frac{\sum_{P\in I}k_Pg_Qm_P}{g_Q}=\sum_{P\in I}k_Pm_P=m.\]
   Therefore, we can conclude that $\varphi\in M$.
 \end{proof}
-Quasi-coherent sheaves are then constructed from such sheaves.
-\begin{defin}
-  A sheaf $\mathscr{F}$ of $\mathscr{O}_{X}$-modules is quasi-coherent, if
-  for every affine open set $U\subseteq X$, the sheaf $\mathscr{F}\vert_{U}$
-  is a sheaf associated to some module $M$ over the coordinate ring
-  $\mathscr{O}_{X}(U)$.
-\end{defin}
-\begin{rem}
-  To check quasi-coherence, it is enough to have an affine cover
-  $(U_{i})_{i\in I}$, where $\mathscr{F}\vert_{U_{i}}$ is of the form $\cm$ for
-  all $i\in I$, see \cite{gathmann}.
-\end{rem}
-\begin{rem}
-  The constructions in Def.~\ref{def:sheaf_algebra} are quasi-coherent
-  for quasi-coherent sheaves, see \cite{gathmann}.
-\end{rem}
-\begin{cat}
-  If $X$ is affine with a coordinate ring $R=\mathscr{O}_X(X)$,
-  then the functors 
-  \begin{gather*}
-  \text{QCoh}(X)\to R\textbf{-Mod}
-  :\mathscr{F}\mapsto\Gamma\left(\mathscr{F}\right)
-  \\\text{and}\\
-  R\textbf{-Mod}\to \text{QCoh}(X):M\mapsto\cm
-  \end{gather*}
-  define quasi-inverse equivalences of categories \cite[\href{https://stacks.math.columbia.edu/tag/01IB}{Tag 01IB}]{stacks-project}.
-\end{cat}
 Quasi-coherent sheaves have the following nice property, which plays a
 major role in the following section.
 \begin{prop}[{\cite[Lemma 7.2.7]{gathmann}}]\label{prop:qcoh_gsec_exact}
@@ -819,3 +830,14 @@ major role in the following section.
   Thm.~\ref{thm:ses_equivalence} with Lemma~\ref{lemm:qcoh_local_global}(a),
   we see that the sequences of the localisations are exact.
 \end{proof}
+\begin{cat}
+  If $X$ is affine with a coordinate ring $R=\mathscr{O}_X(X)$,
+  then the functors
+  \begin{gather*}
+  \text{QCoh}(X)\to R\textbf{-Mod}
+  :\mathscr{F}\mapsto\Gamma\left(\mathscr{F}\right)
+  \\\text{and}\\
+  R\textbf{-Mod}\to \text{QCoh}(X):M\mapsto\cm
+  \end{gather*}
+  define quasi-inverse equivalences of categories \cite[\href{https://stacks.math.columbia.edu/tag/01IB}{Tag 01IB}]{stacks-project}.
+\end{cat}

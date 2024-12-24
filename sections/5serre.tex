@@ -5,7 +5,7 @@ $H^{1}(X,\mathscr{O}_X(D))$ and then constructing a perfect pairing between
 $H^{1}(X,\mathscr{O}_X(D))$ and $\diffs{D}$,
 which will give us the isomorphism.
 
-\subsection{Concrete representation of $H^{1}(X,\mathscr{O}_X(D))$}
+\subsection{Concrete representation of 1st cohomology}
 To prove the Serre duality, we do not want to directly work with the \v Cech
 cohomology definition of $H^{1}(X,\mathscr{O}_X(D))$.
 Instead we want to give a more concrete description of
@@ -42,7 +42,6 @@ is of the form $([f_{P}])_{P\in X}$, where $[f_{P}]$ is the equivalence
 class of some $f_{P}\in k(X)$ modulo $\mathscr{O}_X(D)_{P}$.
 These elements are actually quite simple, because one can show that the
 components $[f_{P}]$ are zero almost everywhere.
-% TODO: Add picture with curve X and section f \in H^0(X,k(X)/L(D)) above it.
 In other words, we can write $H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))$ as a
 direct sum of stalks.
 \begin{lemm}
@@ -72,8 +71,6 @@ direct sum of stalks.
   at finitely many points so that $f_{P}\in\mathscr{O}_{X,P}$ for almost
   all points $P$. Therefore, we see that $[f_{P}]=0$ for almost all points
   $P$.
-  % TODO: Insert a picture of the plane with points where the section
-  %       might be non-zero.
 
   Next I show the inclusion in the reverse direction:
   \[
@@ -134,12 +131,11 @@ replace $H^{0}(X,\underline{k(X)}/\mathscr{O}_X(D))$ by $R/R(D)$:
   \end{tikzcd}
 \]
 This exact sequence finally gives us the representation of the first
-cohomology group: The second map of the sequence is a surjection
-onto $H^{1}(X,\mathscr{O}_X(D))$. The space $k(X)$ can be seen as a subspace
-of $R$ and it is thus the kernel of the map. Such a surjection maps $R/R(D)$
-onto the space $R\,/\left(R(D)+k(X)\right)$, and thus we get the isomorphism
+cohomology group: By exactness, the second map is a surjection such that
+its kernel is the image of $k(X)$ in $R/R(D)$. By the first isomorphism theorem,
+we have
 \[H^{1}(X,\mathscr{O}_X(D))\cong R/\left(R(D)+k(X)\right).\]
-Now, the dual space $\dual{D}$ is simply the space
+The dual space $\dual{D}$ is simply the space
 of linear functionals on $R$, which vanish on $R(D)$ and $k(X)$.
 
 \subsection{Constructing a pairing}
@@ -164,7 +160,6 @@ local uniformiser at $P$. This clearly implies that the coefficients of the
 terms of negative degree in the series expansion of $r_{P}f$ are all zero.
 Secondly, given a repartition $r\in R(D)$, we have $(r_{P}\omega)
 =(r_{P})+(\omega) \geq -D+D=0$ and thus $\res_{P}(r_{P}\omega)=0$ by the same
-% TODO: Make this part more clear.
 argument as above. Also, if $r\in k(X)$, then $\langle \omega,r\rangle=0$ by
 the residue formula (Thm.~\ref{thm:residue_theorem}).
 

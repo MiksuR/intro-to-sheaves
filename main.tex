@@ -39,18 +39,18 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 
 \linespread{1.1}
 \frenchspacing
-
-%\includeonly{sections/4riemann_roch}
+\setcounter{tocdepth}{2}
 
 \begin{document}
-
 \title{A Motivated Introduction to Sheaves and Cohomology}
 \author{Miika Rankaviita\\Imperial College London}
+\date{}
 \maketitle
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{cover}
 \end{figure}
+\thispagestyle{empty}
 \newpage
 \tableofcontents
 
@@ -80,19 +80,21 @@ colorlinks,linkcolor=black,citecolor=blue]{hyperref}
 \renewcommand{\emptyset}{\text{\O}}
 \newcommand{\cm}{\widetilde{M}}
 
+\vspace{5em}
+\section*{Acknowledgements}
+I want to thank my supervisor Professor Johannes Nicaise, whose guidance throughout
+the project was always invaluable. He patiently answered my numerous questions, while
+trusting my mathematical abilities. A huge thanks goes also to my friend
+Yourong Zang for giving good feedback on this article and encouraging me
+to publish it even when I was about to left it unfinished. Finally,
+I want to thank the Department of Mathematics at Imperial College London
+for funding this project.
+
 \include{sections/1intro}
 \include{sections/2sheaves}
 \include{sections/3cohomology}
 \include{sections/4riemann_roch}
 \include{sections/5serre}
-
-\section*{Acknowledgements}
-\addcontentsline{toc}{section}{Acknowledgements and references}
-I want to thank my supervisor Professor Johannes Nicaise without whom this
-project would not have happened. His guidance through out the project was
-always valuable, and he patiently answered my numerous questions, while
-trusting my mathematical abilities. I also want to thank the Department of
-Mathematics at Imperial College London for funding this project.
 
 \bibliographystyle{alpha}
 \bibliography{refs}

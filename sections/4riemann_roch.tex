@@ -3,11 +3,11 @@ Equipped with sheaf cohomology, I will prove the Riemann-Roch theorem
 using the methods we have learnt.
 \begin{lnote}
   The rest of this article will be concerned with algebraic curves. Thus,
-  $X$ will always denote an irreducible, non-singular, complete algebraic
-  curve over an algebraically closed field $k$. Such curves can be embedded
-  in the projective space, see \cite{serre}. This allows us to assume that
-  the field of rational functions $k(X)$ consists of functions $f/g$, where
-  $f$ and $g$ are homogeneous polynomials over $k$ with $\deg f=\deg g$.
+  from now on $X$ will always denote an irreducible, non-singular,
+  projective curve over an algebraically closed field $k$. We will often
+  use the fact that in this case the field of rational functions $k(X)$
+  consists of functions $f/g$, where $f$ and $g$ are homogeneous
+  polynomials over $k$ with $\deg f=\deg g$.
 \end{lnote}
 
 \subsection{Divisors and differentials}
@@ -42,10 +42,10 @@ Next, I say $D$ is \emph{effective} and write $D\geq 0$ if $D(P)\geq 0$
 for all $P\in X$. Then, given two divisors $D, D^{\prime}$, I can define
 $D\geq D^{\prime}$ if the divisor $D-D^{\prime}$ is effective.
 
-Important types of divisors are ones associated to a non-zero rational
-function $f\in k(X)^{\times}$. For a point $P\in X$, the ring
-$\mathscr{O}_{X,P}$ is a discrete valuation ring (DVR) with valuation
-$\ord_{P}$. Then, the divisor of $f$ is defined as follows.
+One can associate a divisor to a non-zero rational
+function $f\in k(X)^{\times}$, and these form an important class of divisors.
+For a point $P\in X$, the ring $\mathscr{O}_{X,P}$ is a discrete valuation ring
+(DVR) with valuation $\ord_{P}$. Then, the divisor of $f$ is defined as follows.
 \[
   (f) = \sum_{P\in X}\ord_{P}(f)P.
 \]
@@ -93,13 +93,13 @@ $\mathscr{O}_{X,P}$, and so, $\ord_{P}(t)=\ord_{P}(t^{\prime})$. Furthermore, th
 definition can be linearly extended for an arbitrary divisor
 $D\in\Div(\mathbb{P}^{1}_{k})$. Now, the following lemma will be useful.
 \begin{lemm}\label{lemm:deg_of_induced}
-  If $f\in k(X)\setminus k$, then for the induced morphism $f^{\ast}:\Div\left(
-    \mathbb{P}^{1}_{k}\right)\to\Div\left(X\right)$ we have
+  If $f\in k(X)$ is a non-constant function, then for the induced morphism
+  $f^{\ast}:\Div\left(\mathbb{P}^{1}_{k}\right)\to\Div\left(X\right)$ we have
   \[
     \deg\left(f^{\ast}(D)\right)=[k(X):k(\mathbb{P}^{1}_{k})]\,\deg(D).
   \]
 \end{lemm}
-\begin{proof} % TODO: Give a proof sketch
+\begin{proof}
   See Proposition 6.9 of \cite{hartshorne} chapter II.
 \end{proof}
 \begin{cor}\label{cor:rational_deg_zero}
@@ -118,15 +118,14 @@ $D\in\Div(\mathbb{P}^{1}_{k})$. Now, the following lemma will be useful.
   Note that divisors of rational functions form a group since
   $(f)+(g)=(fg)$. Then, we can take the quotient of $\Div X$ by this group.
   The quotient is called the Picard group $\Pic X$ and its elements are
-  called \textbf{divisor classes}. Thus, there is an equivalence relation on
-  $\Div X$ such that
+  called \textbf{divisor classes}. Two elements of the same class are
+  said to be \textbf{linearly equivalent} and one has
   \[
     D\sim D^{\prime}\iff \exists f\in k(X)^{\times},\ D^{\prime}=D+(f).
   \]
-  Then, $D$ and $D^{\prime}$ are said to be \textbf{linearly equivalent}.
 \end{rem}
 
-In this paper, I will use divisors to control the ``order of vanishing'' of 
+In this article, I will use divisors to control the ``order of vanishing'' of
 a rational function $f\in k(X)^{\times}$. For example, if I want to allow 
 $f$ to have a pole only at some point $P\in X$ with order at most $2$,
 I can express this requirement in the following way. Define a divisor
@@ -146,7 +145,7 @@ sheaf $\mathscr{O}_X(D)$ of such functions:
   The sheaves $\mathscr{O}_X(D)$ are quasi-coherent for every divisor $D$.
 \end{prop}
 \begin{proof}
-  Firstly, $\mathscr{O}_X(D)$ is clearly a sheaf of $\mathscr{O}_{X}$-modules:
+  Firstly, $\mathscr{O}_X(D)$ is a sheaf of $\mathscr{O}_{X}$-modules:
   If $f, g\in\mathscr{O}_X(D)(U)$, then it is clear that
   \[
     \forall P\in U,\ \ord_{P}(f+g)\geq -D(P).
@@ -155,15 +154,27 @@ sheaf $\mathscr{O}_X(D)$ of such functions:
   increases the order at all points, since $\ord_{P}(h)$ is never negative
   on $U$.
 
-  Now, suppose $U\subseteq X$ is an affine open set and let $P\in U$ be a
-  point where $D$ is non-zero. Then, take the open set
-  $U_{P}^{\prime}\subseteq U$, which doesn't contain any of the other points
-  where $D$ is non-zero. One can find a function $\phi_{P}\in k(X)$ in some
-  neighbourhood $U_{P}\subseteq U_{P}^{\prime}$ of $P$ such that $(\phi_{P})=P$
-  (by \cite[Lemma 7.5.6]{gathmann}). Now, multiplication by $\phi_{P}$
-  defines an isomorphism $\mathscr{O}_X(D)(U_{P})\to \mathscr{O}_{U_{P}}$.
-  Since quasi-coherence can be checked locally, this finishes the proof.
-  % TODO: Can we not just set phi_P to be the local uniformizer of O_{X,P}?
+  To finish the proof, I will show that $\mathscr{O}_{X}(D)$ is locally
+  isomorphic to the structure sheaf $\mathscr{O}_{X}$. Thus, fix a point
+  $P\in X$ and choose a local uniformiser $t\in k(X)$ at $P$
+  so that $\ord_{P}(t)=1$. The function $t$
+  has finitely many zeroes and poles, so we can find an affine open
+  neighbourhood $U\subseteq X$ of $P$ such that $t$ has order 0 on
+  $U\setminus\set{P}$. Moreover, one may restrict $U$ further so that
+  $P$ is the only point of $U$ where $D$ is non-zero. Next, note that
+  the function $\varphi=t^{D(P)}$ satisfies
+  \[
+    \ord_{Q}(\varphi)
+    =\begin{cases}
+      D(P),&Q=P\\0,&Q\neq P
+    \end{cases}.
+  \]
+  Since the sections of $\mathscr{O}_{X}(D)\vert_{U}$ consist of functions $f$
+  such that $\ord_{P}(f)\geq -D(P)$ and $\ord_{Q}(f)\geq 0$ for $Q\neq P$,
+  multiplying by $\varphi$ yields regular functions. Hence, it is easy to see
+  that multiplication by $\varphi$ defines an isomorphism
+  $\mathscr{O}_X(D)\vert_{U}\to \mathscr{O}_{U}$. Since quasi-coherence can
+  be checked locally, we are done.
 \end{proof}
 The following proposition will also be useful later.
 \begin{prop}\label{prop:global_sec_negative_divisor}
@@ -192,64 +203,72 @@ Terence Tao's excellent article \cite{tao}.
   For a commutative algebra $F$ over a field $k$, the module of
   $k$-differentials of $F$ is the free $F$-module $\Omega(F)$ generated
   by the symbols $df$ for $f\in F$ with the following rules.
-  \begin{itemize}
+  \begin{enumerate}
     \item $d(f+g)=df+dg$ for $f, g\in F$,
     \item $d(fg)=f\,dg+g\,df$ for $f, g\in F$,
     \item $da = 0$ for $a\in k$.
-  \end{itemize}
+  \end{enumerate}
 \end{defin}
 Note that this definition implies that the differential map $d:F\to\Omega(F)$
 is $k$-linear, as $d(af)=a\,df+f\,da=a\,df$ for $a\in k$. I will write
 $\Omega$ for the module $\Omega\left(k(X)\right)$.
 \begin{prop}
   Suppose $t$ is a local uniformiser of $\mathscr{O}_{X,P}$ at some
-  point $P\in X$. Then, $\Omega$ is spanned by the differential $dt$.
+  point $P\in X$. Then, $\Omega$ is generated by the differential $dt$
+  as a $k(X)$-module.
 \end{prop}
-\begin{proof}
-  First, consider the $k$-vector space
+The proof relies on the following lemma from commutative algebra.
+\begin{lemm}[Nakayama's lemma, {\cite[Proposition 2.8]{am}}]
+  Let $M$ be a finitely generated module over a local ring $(A,\mathfrak{m})$.
+  If $x_{1},\ldots,x_{n}$ are elements of $M$ such that their images form
+  a $k$-vector basis of $M/\mathfrak{m}M$, where $k=A/\mathfrak{m}$,
+  then they generate $M$.
+\end{lemm}
+\begin{proof}[Proof of Proposition.]
+  I will first prove that $\Omega\left(\mathscr{O}_{{X,P}}\right)$ is
+  generated by $dt$ by showing that $dt$ spans the $k$-vector space
   $\Omega\left(\mathscr{O}_{X,P}\right)/\mathfrak{m}_{P}\Omega\left(
-    \mathscr{O}_{X,P}\right)$, where
-  $\mathfrak{m}_{P}$ is the maximal ideal of $\mathscr{O}_{X,P}$. I will show
-  that this space is spanned by the differential $dt$ and then apply
-  Nakayama's lemma. Thus, take an element $\sum f_{i}\,dg_{i}\in\Omega\left(
-    \mathscr{O}_{X,P}\right)$. As $\mathscr{O}_{X,P}/\mathfrak{m}_{P}=k$,
-  one can write
+    \mathscr{O}_{X,P}\right)$, where $\mathfrak{m}_{P}$ is the maximal ideal
+  of $\mathscr{O}_{X,P}$. To apply Nakayama's lemma, I need to first check that
+  $\Omega\left(\mathscr{O}_{X,P}\right)$ is finitely generated.
+  Recall that $\mathscr{O}_{X,P}$ consists of rational
+  functions in finitely many variables $X_{1},\ldots,X_{n}$. Using the rules
+  of differentiation, any such rational function can be written as a
+  $\mathscr{O}_{X,P}$-linear combination of the differentials
+  $dX_{1},\ldots,dX_{n}$. In other words, $\Omega(\mathscr{O}_{X,P})$ is
+  finitely generated as an $\mathscr{O}_{X,P}$-module.
+
+  Now, take an element $\sum f_{i}\,dg_{i}\in\Omega\left(\mathscr{O}_{X,P}\right)$.
+  One can write $f_{i}=a_{i}+m_{i}$ with $a_{i}\in k$ and
+  $m_{i}\in\mathfrak{m}$, so
   \[
-    f_{i}=m_{i}+a_{i}\text{ and }g_{i}=m_{i}^{\prime}+a_{i}^{\prime}
-    \text{, where } m_{i}, m_{i}^{\prime}\in\mathfrak{m}_{P}
-    \text{ and } a_{i}, a_{i}^{\prime}\in k.
+    f_{i}\,dg_{i}=a_{i}\,dg_{i}+m_{i}\,dg_{i}\equiv a_{i}\,dg_{i}.
   \]
-  Then, $f_{i}\,dg_{i}\equiv a_{i}\,dg_{i}$ modulo
-  $\mathfrak{m}_{P}\Omega\left(\mathscr{O}_{X,P}\right)$.
-  Furthermore, since $\mathfrak{m}_{P}=(t)$, there is
-  $r_{i}\in\mathscr{O}_{X,P}$ such that $m_{i}^{\prime}=r_{i}t$. One can again
-  write $r_{i}=m_{i}^{\prime\prime}+a_{i}^{\prime\prime}$ so that
-  $m_{i}^{\prime}=a_{i}^{\prime\prime}t+m_{i}^{\prime\prime}t$. Therefore,
-  \[
-    dg_{i}=d\left(m_{i}^{\prime}+a_{i}^{\prime}\right)=dm_{i}^{\prime}
-    =a_{i}^{\prime\prime}\,dt+m_{i}^{\prime\prime}\,dt+t\,dm_{i}^{\prime\prime}
-    \equiv a_{i}^{\prime\prime}\,dt.
-  \]
-  and thus
-  \[
-    \sum f_{i}\,dg_{i}\equiv \sum a_{i}a_{i}^{\prime\prime}\,dt.
-  \]
-  Since I have shown that $dt$ forms a basis of
-  $\Omega\left(\mathscr{O}_{X,P}\right)/\mathfrak{m}_{P}\Omega\left(
-    \mathscr{O}_{X,P}\right)$, I can apply Nakayama's lemma
-  (see \cite[Proposition 2.8]{am}), which implies that $dt$ also generates
-  $\Omega\left(\mathscr{O}_{X,P}\right)$ as an $\mathscr{O}_{X,P}$-module.
-  Now, suppose $f\in k(X)$. Such a function has an expansion
-  \[
-    f=a_{-n}t^{-n}+a_{-n+1}t^{-n+1}+\cdots +a_{-1}t^{-1}+ut^{n},
-  \]
-  where $a_{i}\in k$, $u$ is a unit in $\mathscr{O}_{X,P}$ and $n\geq 0$.
+  Thus, it suffices to show that $dg_{i}$ is in the $k$-linear span of $dt$.
+  We can now write $g_{i}=a_{i}'+m_{i}'$, where $a_{i}'\in k$ and
+  $m_{i}'\in\mathfrak{m}$. Since $\mathfrak{m}=(t)$, we can further write
+  $m_{i}'=(a_{i}''+m_{i}'')t$, where $a_{i}''\in k$ and $m_{i}''\in\mathfrak{m}$.
   Then,
   \[
-    df=-na_{-n}t^{-n-1}\,dt+\cdots-a_{-1}t^{-2}\,dt+d\left(ut^{n}\right)
+    dg_{i}=dm_{i}'=t\,da_{i}''+a_{i}''\,dt+t\,dm_{i}''+m_{i}''\,dt.
   \]
-  Since $ut^{n}\in\mathscr{O}_{X,P}$, the differential $df$ is in the span
-  of $dt$. It is easy to see that the statement follows from here.
+  Note that the first term vanishes, since $a_{i}''\in k$. Also, the third
+  and fourth terms vanish modulo $\mathfrak{m}\mathscr{O}_{X,P}$, because
+  $t,m_{i}''\in\mathfrak{m}$. Therefore, $dg_{i}=a_{i}''\,dt$, and
+  Nakayama's lemma implies $\mathscr{O}_{X,P}$ is generated by $dt$.
+
+  Now, suppose $f\in k(X)$. Such a function has an expansion
+  \[
+    f=a_{-m}t^{-m}+a_{-m+1}t^{-m+1}+\cdots +a_{-1}t^{-1}+ut^{\ell},
+  \]
+  where $a_{i}\in k$, $u$ is a unit in $\mathscr{O}_{X,P}$ and $m,\ell\geq 0$.
+  Then,
+  \[
+    df=-ma_{-m}t^{-m-1}\,dt+\cdots-a_{-1}t^{-2}\,dt+d\left(ut^{\ell}\right)
+  \]
+  Since $ut^{\ell}\in\mathscr{O}_{X,P}$, it is in the $\mathscr{O}_{X,P}$-linear
+  span of $dt$ by what we proved above. This shows the generators of $\Omega$
+  lie in the $k(X)$-linear span of $dt$.
 \end{proof}
 This proposition lets us to define the order of a differential
 $\omega\in\Omega$ as follows. Write $\omega=f\,dt$ for $f\in k(X)$. Then,
@@ -268,7 +287,7 @@ $\omega_{1}=f_{1}\,dt$ and $\omega_{2}=f_{2}\,dt$. Then,
   \implies (\omega_{1})=\left(\frac{f_{1}}{f_{2}}\right)+(\omega_{2}).
 \]
 Thus, the divisors of differentials lie in the same divisor class called the
-\emph{canonical class}. A representative of the class is called the
+\emph{canonical class}. Any representative of the class is called the
 \emph{canonical divisor} $K_{X}$.
 
 Next I define a module of differentials related to a divisor $D$
@@ -314,10 +333,10 @@ detailed proof, see \cite{serre}.
   Thus, $\res_{P}(df/f)=\res_{t}(du/u)+n$, but since $u$ is a unit in
   $\mathscr{O}_{X,P}$, the residue $\res_{t}(du/u)$ is clearly zero.
 \end{proof}
-\begin{prop} % TODO: Check differential stuff after this point
+\begin{prop}
   Fix a point $P\in X$ and let $t$ and $u$ be two local uniformisers of
   $\mathscr{O}_{X,P}$. Denote by $\res_{t}$ and $\res_{u}$ the function
-  $\res_{P}$ calculated using $t$ and $r$ respectively. Then,
+  $\res_{P}$ calculated using $t$ and $u$ respectively. Then,
   $\res_{t}(\omega)=\res_{u}(\omega)$ for all differentials $\omega\in\Omega$.
 \end{prop}
 \begin{proof}[Proof sketch]
@@ -325,7 +344,7 @@ detailed proof, see \cite{serre}.
   \[
     f=\sum_{i\geq n}a_{i}u^{i},
   \]
-  in $u$. Then, it is possible to construct a module of differentials, where
+  in $k((u))$. Then, it is possible to construct a module of differentials, where
   \[
     df=\left(\sum_{i\geq n}ia_{i}u^{i-1}\right)\,du.
   \]
@@ -399,12 +418,11 @@ to use this embedding to apply the above lemma in the case of an arbitrary
 curve $X$. Now, one can consider the trace map $\tr_{k(X)/k(\mathbb{P}^{1}_{k})}$
 defined as follows \cite{milne}. Multiplication by an element
 $\alpha\in k(X)$ defines a $k(\mathbb{P}^{1}_{k})$-linear map
-$\alpha^{\ast}: E\to E: x\mapsto \alpha x$. Then, we simply define
+$k(X)\to k(X): f\mapsto \alpha\cdot f$. Then, we simply define
 $\tr_{k(X)/k(\mathbb{P}^{1}_{k})}(\alpha)$ to be the usual trace of this linear
-transformation $\alpha^{\ast}$. Next I translate this definition to
-differentials on $k(X)$. We can write any differential
-$\omega\in\Omega(k(X))$ as $\omega=f\,d\phi$. Then, one can make the
-following definition.
+transformation. This definition translates to differentials on $k(X)$.
+Any differential $\omega\in\Omega(k(X))$ can be written as $\omega=f\,d\phi$
+and one can make the following definition.
 \[
   \tr:\Omega(k(X))\to \Omega(k(\mathbb{P}^{1}_{k}))
   :f\,d\phi\mapsto \left(\tr_{k(X)/k(\mathbb{P}^{1}_{k})}(f)\right)\,d\phi
@@ -437,10 +455,9 @@ Duality.
   denotes $\textnormal{dim}\left(H^i(X,\mathscr{F})\right)$.
 \end{thm}
 \begin{proof}
-  One can use an induction argument, because any divisor $D$ can be
-  obtained from the zero divisor by adding and subtracting points.
-  Thus, I proceed by first proving the base case and then proving
-  the induction step.
+  One can use an induction argument, because any divisor $D$ is
+  obtained from the zero divisor by adding and subtracting finitely
+  many points.
 
   \begin{description}[style=nextline]
     \item[base case$\big)$]
@@ -499,7 +516,7 @@ Duality.
             & H^{1}(X, \mathscr{O}_X(D+P))\arrow{r} & 0.
           \end{tikzcd}
           \]
-          Now, this exact sequence of vector spaces implies the following
+          This exact sequence of vector spaces implies the following
           equality.
           \[
           h^{0}(X,\mathscr{O}_X(D))-h^{0}(X, \mathscr{O}_X(D+P))
@@ -546,27 +563,25 @@ I will prove in the next section:
   \]
   of $k$-vector spaces.
 \end{thm:serre}
-Since we are only interested in the dimension of $h^{1}(X,\mathscr{O}_X(D))$,
-I will use the following lemma to give the dimension in terms of the
-canonical divisor.
+Using the below lemma, we get a nicer looking version of the Riemann-Roch theorem.
 \begin{lemm}\label{lemm:diffs_dim}
-  We have the following equality in dimensions.
-  \[\dim\left(\Omega(D)\right)=h^{0}(X,\mathscr{O}_X(K_{X}-D))\]
+  The following isomorphism holds.
+  \[\Omega(D)=H^{0}(X,\mathscr{O}_X(K_{X}-D))\]
 \end{lemm}
 \begin{proof}
-  Write $K_{X}=(\omega_{0})$ with $\omega_{0}=f_{0}\,dt$ and fix a
-  differential $\omega=f\,dt$. Then, $\omega=\frac{f}{f_{0}}\omega_{0}$
-  and we have
+  First, let $t$ be a local uniformiser at some point $P\in X$, so
+  one can write $K_{X}=(dt)$. Then, define
   \[
-    \omega\in\Omega(D)\iff (\omega)\geq D
-    \iff\left(\frac{f}{f_{0}}\right)+(\omega_{0})\geq D\iff
-    \frac{f}{f_{0}}\in H^{0}(X,\mathscr{O}_X(K_{X}-D)).
+    \Phi\colon\Omega(D)\to H^{0}(X,\mathscr{O}_{X}(K_{X}-D)):f\,dt\mapsto f.
   \]
-  In other words, the elements of $H^{0}(X,\mathscr{O}_X(K_{X}-D))$ are in
-  bijection with the elements of $\Omega(D)\cong\dual{D}$.
+  The map is well-defined, because
+  \[
+    f\,dt\in\Omega(D)\iff (f)+(dt)\geq D\iff (f)\geq D-K_{X}.
+  \]
+  Since the above is not only a chain of implications but a chain of equivalences,
+  we immediately see that $\Phi$ is bijective. Since it is trivially linear, we are done.
 \end{proof}
-Now, this equality lets us write the ``complete'' form of the Riemann-Roch
-theorem.
+Finally, we can write the ``complete'' form of the Riemann-Roch theorem.
 \begin{thm}[Riemann-Roch]\label{thm:riemann_roch}
   For every divisor $D$,
   \[
